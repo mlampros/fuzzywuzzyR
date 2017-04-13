@@ -1,6 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
+pandoc_version: 1.18
 python: 2.7
 
 sudo: required
@@ -17,6 +18,7 @@ before_install:
   - sudo pip install fuzzywuzzy
   - sudo pip install python-Levenshtein
   - sudo apt-get install r-base-dev
+  - tlmgr install index
   - sudo apt-get update
 
 r_packages:
