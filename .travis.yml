@@ -1,5 +1,30 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
-sudo: false
+language: r
+python: 2.7
+
+sudo: required
 cache: packages
+
+install:
+  - sudo apt-get install python-pip
+  - sudo pip install --upgrade pip
+  - sudo pip install fuzzywuzzy
+  - sudo pip install python-Levenshtein
+  - sudo apt-get update
+  - Rscript -e 'install.packages(c("devtools", "roxygen2", "testthat", "reticulate", "R6", "covr", "knitr", "rmarkdown"))'
+
+r:
+  - oldrel
+  - release
+  - devel
+  
+after_success:
+  - Rscript -e 'covr::codecov(quiet = FALSE)'
+  
+warnings_are_errors: false
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
