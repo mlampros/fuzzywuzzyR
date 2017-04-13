@@ -6,18 +6,27 @@ python: 2.7
 sudo: required
 cache: packages
 
-install:
+env:
+  global:
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+    
+before_install:
   - sudo apt-get install python-pip
   - sudo pip install --upgrade pip
   - sudo pip install fuzzywuzzy
   - sudo pip install python-Levenshtein
   - sudo apt-get update
-  - Rscript -e 'install.packages(c("devtools", "roxygen2", "testthat", "reticulate", "R6", "covr", "knitr", "rmarkdown"))'
 
-r:
-  - oldrel
-  - release
-  - devel
+r_packages:
+  - devtools
+  - roxygen2
+  - testthat
+  - reticulate
+  - R6
+  - covr
+  - knitr
+  - rmarkdown
   
 after_success:
   - Rscript -e 'covr::codecov(quiet = FALSE)'
