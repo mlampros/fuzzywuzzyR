@@ -1,4 +1,11 @@
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fuzzywuzzyR)](http://cran.r-project.org/package=fuzzywuzzyR)
+[![Travis-CI Build Status](https://travis-ci.org/mlampros/fuzzywuzzyR.svg?branch=master)](https://travis-ci.org/mlampros/fuzzywuzzyR)
+[![codecov.io](https://codecov.io/github/mlampros/fuzzywuzzyR/coverage.svg?branch=master)](https://codecov.io/github/mlampros/fuzzywuzzyR?branch=master)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mlampros/fuzzywuzzyR?branch=master&svg=true)](https://ci.appveyor.com/project/mlampros/fuzzywuzzyR/branch/master)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fuzzywuzzyR?color=blue)](http://www.r-pkg.org/pkg/fuzzywuzzyR)
+
+
 ## fuzzywuzzyR
 <br>
 
