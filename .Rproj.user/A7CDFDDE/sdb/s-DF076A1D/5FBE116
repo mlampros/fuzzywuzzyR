@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n## fuzzywuzzyR\n<br>\n\nThe **fuzzywuzzyR** package is a fuzzy string matching implemenation of the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python package. It uses the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to calculate the differences between sequences. More details on the functionality of the fuzzywuzzyR can be found in the [blog-post](https://github.com/mlampros/mlampros.github.io/blob/master/_posts/2017-04-13-fuzzywuzzyR_package.md) and in the package Vignette.\n\n\n<br>\n\n### **System Requirements**\n\n<br>\n\n* Python (>= 2.4)\n\n* difflib\n\n* fuzzywuzzy ( >=0.15.0 )\n\n* [python-Levenshtein](https://github.com/ztane/python-Levenshtein/) ( >=0.12.0, optional, provides a 4-10x speedup in String Matching, though may result in differing results for certain cases)\n\n<br>\n\nBefore the installation of any python modules one should check the python-configuration using :\n\n<br>\n\n```R\nreticulate::py_config()\n\n```\n<br>\n\nAll modules should be installed in the default python configuration (the configuration that the R-session displays as default), otherwise errors will occur during package installation. \n\n<br>\n\n#### **Debian/Ubuntu/Fedora**\n\n<br>\n\n**Python2**\n\n```R\nsudo apt-get install python-pip\nsudo pip install --upgrade pip\npip install fuzzywuzzy\npip install python-Levenshtein\n```\n<br>\n\n**Python 3**\n\n```R\nsudo apt-get install python3-pip\nsudo pip3 install --upgrade pip\npip3 install fuzzywuzzy\npip3 install python-Levenshtein\n```\n<br><br>\n\n\n\n#### **Macintosh OSX** \n<br>\n\n```R\nsudo easy_install pip\nsudo pip install fuzzywuzzy\nsudo pip install python-Levenshtein\n```\n<br>\n\n#### **Windows OS**\n\n<br>\n\n* Download of [get-pip.py](https://bootstrap.pypa.io/get-pip.py)\n* Update of the Environment variables ( Control Panel >> System and Security >> System >> Advanced system settings >> Environment variables >> System variables >> Path >> Edit ) by adding ( for instance in case of python 2.7 ) : \n```R\nC:\\Python27;C:\\Python27\\Scripts\n```\n\n* Install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)\n* Open the *Command prompt* and use the following commands:\n```R\npip install fuzzywuzzy\npip install python-Levenshtein\n```\n\n<br>\n\n### **Installation of the fuzzywuzzyR package**\n\n<br>\n\nTo install the package from CRAN use, \n\n```R\n\ninstall.packages('fuzzywuzzyR')\n\n\n```\n<br>\n\nand to download the latest version from Github use the *install_github* function of the devtools package,\n<br><br>\n\n```R\n\ndevtools::install_github(repo = 'mlampros/fuzzywuzzyR')\n\n```\n<br>\nUse the following link to report bugs/issues,\n<br><br>\n\n[https://github.com/mlampros/fuzzywuzzyR/issues](https://github.com/mlampros/fuzzywuzzyR/issues)\n\n<br>\n",
+    "created" : 1492085528302.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1672060697",
+    "id" : "5FBE116",
+    "lastKnownWriteTime" : 1492105615,
+    "last_content_update" : 1492105615305,
+    "path" : "~/Desktop/kaggle_gpu/add_GITHUB/fuzzywuzzyR/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nlibrary(fuzzywuzzyR)\n\n\nMCLAPPLY_RATIOS = function(QUERY1, QUERY2, class_fuzz = 'FuzzMatcher', method_fuzz = 'QRATIO', threads = 1, ...) {\n\n  init <- eval(parse(text = paste0(class_fuzz, '$new()')))\n\n  METHOD = paste0('init$', method_fuzz)\n\n  if (threads == 1) {\n\n    res_qrat = lapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)))}\n\n  else {\n\n    res_qrat = parallel::mclapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)), mc.cores = threads)\n  }\n\n  return(res_qrat)\n}\n\n\n\n\nMCLAPPLY_RATIOS = function(QUERY1, QUERY2, class_fuzz = 'FuzzMatcher', method_fuzz = 'QRATIO', threads = 1, ...) {\n\n  init <- eval(parse(text = paste0(class_fuzz, '$new()')))\n\n  METHOD = paste0('init$', method_fuzz)\n\n  if (class(QUERY1) == 'character' && class(QUERY2) == 'character') {\n\n    if (threads == 1) {\n\n      res_qrat = lapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[x], QUERY2[x], ...)))}\n\n    else {\n\n      res_qrat = parallel::mclapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[x], QUERY2[x], ...)), mc.cores = threads)\n    }\n  }\n\n  else if (class(QUERY1) == 'list' && class(QUERY2) == 'list') {\n\n    if (threads == 1) {\n\n      res_qrat = lapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)))}\n\n    else {\n\n      res_qrat = parallel::mclapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)), mc.cores = threads)\n    }\n  }\n\n  else {\n\n    stop(\"valid input data types for QUERY1 and QUERY2 are vector or list\", call. = F)\n  }\n\n  return(res_qrat)\n}\n\n\n\n\nres = MCLAPPLY_RATIOS(QUERY1, QUERY2, class_fuzz = 'FuzzMatcher', method_fuzz = 'QRATIO', threads = 1, ...)\n",
+    "created" : 1492094285081.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1854849875",
+    "id" : "F6D9DD65",
+    "lastKnownWriteTime" : 1491473128,
+    "last_content_update" : 1491473128,
+    "path" : "/media/lampros/C2A8-A74D/fuzzy_parallel.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

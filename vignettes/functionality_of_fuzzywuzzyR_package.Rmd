@@ -1,0 +1,507 @@
+---
+title: "Functionality of the fuzzywuzzyR package"
+author: "Lampros Mouselimis"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Functionality of the fuzzywuzzyR package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+I recently released an (other one) R package on CRAN - **fuzzywuzzyR** - which ports the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python library in R. "fuzzywuzzy does fuzzy string matching by using the Levenshtein Distance to calculate the differences between sequences (of character strings)." <br> 
+
+<br>
+
+The *fuzzywuzzyR* package includes R6-classes / functions for string matching,
+
+<br>
+
+##### **classes** 
+
+
+<br>
+
+
+|    FuzzExtract              |   FuzzMatcher                   |  FuzzUtils                       |  SequenceMatcher        |
+| :-------------------------: |  :----------------------------: | :-----------------------------:  | :---------------------: |
+|   Extract()                 |  Partial_token_set_ratio()      | Full_process()                   | ratio()                 |
+|   ExtractBests()            |  Partial_token_sort_ratio()     | Make_type_consistent()           | quick_ratio()           |
+|   ExtractWithoutOrder()     |  Ratio()                        | Asciidammit()                    | real_quick_ratio()      |
+|   ExtractOne()              |  QRATIO()                       | Asciionly()                      | get_matching_blocks()   |
+|                             |  WRATIO()                       | Validate_string()                | get_opcodes()           |
+|                             |  UWRATIO()                      |                                  |                         |
+|                             |  UQRATIO()                      |                                  |                         |
+|                             |  Token_sort_ratio()             |                                  |                         |
+|                             |  Partial_ratio()                |                                  |                         |
+|                             |  Token_set_ratio()              |                                  |                         |
+
+
+<br>
+  
+  
+##### **functions**
+
+
+<br>
+
+| GetCloseMatches() |
+| :---------------- |
+
+<br>
+
+
+The following code chunks / examples are part of the package documentation and give an idea on what can be done with the *fuzzywuzzyR* package,
+
+<br>
+
+
+##### *FuzzExtract*
+
+<br>
+
+Each one of the methods in the *FuzzExtract* class takes a *character string* and a *character string sequence* as input ( except for the *Dedupe* method which takes a string sequence only ) and given a *processor* and a *scorer* it returns one or more string match(es) and the corresponding score ( in the range 0 - 100 ). Information about the additional parameters (*limit*, *score_cutoff* and *threshold*) can be found in the package documentation,
+
+<br>
+
+```{r, eval = F, echo = T}
+
+library(fuzzywuzzyR)
+
+word = "new york jets"
+
+choices = c("Atlanta Falcons", "New York Jets", "New York Giants", "Dallas Cowboys")
+
+
+#------------
+# processor :
+#------------
+
+init_proc = FuzzUtils$new()      # initialization of FuzzUtils class to choose a processor
+
+PROC = init_proc$Full_process    # processor-method
+
+PROC1 = tolower                  # base R function ( as an example for a processor )
+
+#---------
+# scorer :
+#---------
+
+init_scor = FuzzMatcher$new()    # initialization of the scorer class
+
+SCOR = init_scor$WRATIO          # choosen scorer function
+
+
+init <- FuzzExtract$new()        # Initialization of the FuzzExtract class
+
+init$Extract(string = word, sequence_strings = choices, processor = PROC, scorer = SCOR)
+  
+```
+  
+```{r, eval = F, echo = T}
+
+# example output
+  
+  [[1]]
+[[1]][[1]]
+[1] "New York Jets"
+
+[[1]][[2]]
+[1] 100
+
+
+[[2]]
+[[2]][[1]]
+[1] "New York Giants"
+
+[[2]][[2]]
+[1] 79
+
+
+[[3]]
+[[3]][[1]]
+[1] "Atlanta Falcons"
+
+[[3]][[2]]
+[1] 29
+
+
+[[4]]
+[[4]][[1]]
+[1] "Dallas Cowboys"
+
+[[4]][[2]]
+[1] 22
+  
+```
+
+```{r, eval = F, echo = T}
+
+# extracts best matches (limited to 2 matches)
+
+init$ExtractBests(string = word, sequence_strings = choices, processor = PROC1,
+
+                  scorer = SCOR, score_cutoff = 0L, limit = 2L)
+                  
+```
+
+```{r, eval = F, echo = T}
+
+[[1]]
+[[1]][[1]]
+[1] "New York Jets"
+
+[[1]][[2]]
+[1] 100
+
+
+[[2]]
+[[2]][[1]]
+[1] "New York Giants"
+
+[[2]][[2]]
+[1] 79
+
+```
+
+```{r, eval = F, echo = T}
+
+# extracts matches without keeping the output order
+
+init$ExtractWithoutOrder(string = word, sequence_strings = choices, processor = PROC,
+
+                         scorer = SCOR, score_cutoff = 0L)
+
+```
+
+
+```{r, eval = F, echo = T}
+
+[[1]]
+[[1]][[1]]
+[1] "Atlanta Falcons"
+
+[[1]][[2]]
+[1] 29
+
+
+[[2]]
+[[2]][[1]]
+[1] "New York Jets"
+
+[[2]][[2]]
+[1] 100
+
+
+[[3]]
+[[3]][[1]]
+[1] "New York Giants"
+
+[[3]][[2]]
+[1] 79
+
+
+[[4]]
+[[4]][[1]]
+[1] "Dallas Cowboys"
+
+[[4]][[2]]
+[1] 22
+
+```
+
+
+```{r, eval = F, echo = T}
+
+# extracts first result 
+
+init$ExtractOne(string = word, sequence_strings = choices, processor = PROC,
+
+                scorer = SCOR, score_cutoff = 0L)
+
+```
+
+
+```{r, eval = F, echo = T}
+
+[[1]]
+[1] "New York Jets"
+
+[[2]]
+[1] 100
+
+```
+<br>
+
+The *dedupe* method removes duplicates from a sequence of character strings using fuzzy string matching, 
+
+<br>
+
+```{r, eval = F, echo = T}
+
+duplicat = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin', 'Samuel L. Jackson',
+
+             'F. Baggins', 'Frody Baggins', 'Bilbo Baggins')
+
+
+init$Dedupe(contains_dupes = duplicat, threshold = 70L, scorer = SCOR)
+
+```
+
+
+```{r, eval = F, echo = T}
+
+[1] "Frodo Baggins"     "Samuel L. Jackson" "Bilbo Baggins"     "Tom Sawyer"
+
+```
+
+<br>
+
+##### *FuzzMatcher*
+
+<br>
+
+Each one of the methods in the *FuzzMatcher* class takes two *character strings* (string1, string2) as input and returns a score ( in range 0 to 100 ). Information about the additional parameters (*force_ascii*, *full_process* and *threshold*) can be found in the package documentation,
+
+```{r, eval = F, echo = T}
+
+s1 = "Atlanta Falcons"
+
+s2 = "New York Jets"
+
+init = FuzzMatcher$new()          initialization of FuzzMatcher class
+
+init$Partial_token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+
+# example output
+
+[1] 31
+
+```
+
+```{r, eval = F, echo = T}
+
+init$Partial_token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+
+
+[1] 31
+
+```
+
+```{r, eval = F, echo = T}
+
+init$Ratio(string1 = s1, string2 = s2)
+
+[1] 21
+
+```
+
+```{r, eval = F, echo = T}
+
+init$QRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+
+[1] 29
+
+```
+
+```{r, eval = F, echo = T}
+
+init$WRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+
+[1] 29
+
+```
+
+```{r, eval = F, echo = T}
+
+init$UWRATIO(string1 = s1, string2 = s2)
+
+[1] 29
+
+```
+
+```{r, eval = F, echo = T}
+
+init$UQRATIO(string1 = s1, string2 = s2)
+
+[1] 29
+
+```
+
+```{r, eval = F, echo = T}
+
+init$Token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+
+[1] 29
+
+```
+
+```{r, eval = F, echo = T}
+
+
+init$Partial_ratio(string1 = s1, string2 = s2)
+
+[1] 23
+
+```
+
+```{r, eval = F, echo = T}
+
+init$Token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+
+[1] 29
+
+```
+
+<br>
+
+##### *FuzzUtils*
+
+<br>
+
+The *FuzzUtils* class includes a number of utility methods, from which the *Full_process* method is from greater importance as besides its main functionality it can also be used as a secondary function in some of the other fuzzy matching classes,
+
+<br>
+
+```{r, eval = F, echo = T}
+
+s1 = 'Frodo Baggins'
+
+init = FuzzUtils$new()
+
+init$Full_process(string = s1, force_ascii = TRUE)
+
+```
+
+```{r, eval = F, echo = T}
+
+# example output
+
+[1] "frodo baggins"
+
+```
+
+<br>
+
+##### *GetCloseMatches*
+
+<br>
+
+The *GetCloseMatches* method returns a list of the best "good enough" matches. The parameter *string* is a sequence for which close matches are desired (typically a character string), and *sequence_strings* is a list of sequences against which to match the parameter *string* (typically a list of strings).
+
+<br>
+
+```{r, eval = F, echo = T}
+
+vec = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
+
+str1 = 'Fra Bagg'
+
+GetCloseMatches(string = str1, sequence_strings = vec, n = 2L, cutoff = 0.6)
+
+
+```
+
+```{r, eval = F, echo = T}
+
+[1] "Frodo Baggins"
+
+```
+
+
+<br>
+
+##### *SequenceMatcher*
+
+<br>
+
+The *SequenceMatcher* class is based on [difflib](https://www.npmjs.com/package/difflib) which comes by default installed with python and includes the following fuzzy string matching methods,
+
+<br>
+
+
+```{r, eval = F, echo = T}
+
+s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
+
+s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
+
+init = SequenceMatcher$new(string1 = s1, string2 = s2)
+
+init$ratio()
+
+[1] 0.9127517
+
+```
+
+```{r, eval = F, echo = T}
+
+init$quick_ratio()
+
+[1] 0.9127517
+
+```
+
+```{r, eval = F, echo = T}
+
+init$real_quick_ratio()
+
+[1] 0.966443 
+
+```
+<br>
+
+The *get_matching_blocks* and *get_opcodes* return triples and 5-tuples describing matching subsequences. More information can be found in the [Python's difflib module](https://www.npmjs.com/package/difflib) and in the *fuzzywuzzyR* package documentation.
+
+<br>
+
+A last think to note here is that the mentioned fuzzy string matching classes can be parallelized using the base R *parallel* package. For instance, the following *MCLAPPLY_RATIOS* function can take two vectors of character strings (QUERY1, QUERY2) and return the scores for each method of the *FuzzMatcher* class,
+
+<br>
+
+```{r, eval = F, echo = T}
+
+MCLAPPLY_RATIOS = function(QUERY1, QUERY2, class_fuzz = 'FuzzMatcher', method_fuzz = 'QRATIO', threads = 1, ...) {
+
+  init <- eval(parse(text = paste0(class_fuzz, '$new()')))
+
+  METHOD = paste0('init$', method_fuzz)
+
+  if (threads == 1) {
+
+    res_qrat = lapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)))}
+
+  else {
+
+    res_qrat = parallel::mclapply(1:length(QUERY1), function(x) do.call(eval(parse(text = METHOD)), list(QUERY1[[x]], QUERY2[[x]], ...)), mc.cores = threads)
+  }
+
+  return(res_qrat)
+}
+
+```
+<br>
+
+```{r, eval = F, echo = T}
+
+query1 = c('word1', 'word2', 'word3')
+
+query2 = c('similarword1', 'similar_word2', 'similarwor')
+
+quer_res = MCLAPPLY_RATIOS(query1, query2, class_fuzz = 'FuzzMatcher', method_fuzz = 'QRATIO', threads = 1)
+
+unlist(quer_res)
+
+```
+
+```{r, eval = F, echo = T}
+
+# example output
+
+[1] 59 56 40
+
+```
+
+
+<br>

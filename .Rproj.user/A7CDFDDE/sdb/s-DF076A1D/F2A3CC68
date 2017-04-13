@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nreticulate::py_module_available(\"skimage\")\n\nfeat <- reticulate::import(\"skimage.feature\")\n\ndata_sk <- reticulate::import(\"skimage.data\")\n\ncolor <- reticulate::import(\"skimage.color\")\n\ntmp_im = data_sk$astronaut()\n\nimage = color$rgb2gray(tmp_im)\ndim(image)\n\nres = feat$hog(image, orientations = 8L, pixels_per_cell = c(16L, 16L), cells_per_block = c(1L, 1L), visualise=T)\nstr(res)\n\n\nres1 = OpenImageR::HOG(image, cells = 16, orientations = 8)\ndim(res1)\n\nOpenImageR::imageShow(res[[2]])\n\n\n\n\n",
+    "created" : 1492098066410.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2236722854",
+    "id" : "F2A3CC68",
+    "lastKnownWriteTime" : 1490380150,
+    "last_content_update" : 1490380150,
+    "path" : "/media/lampros/C2A8-A74D/hog_visualize.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
