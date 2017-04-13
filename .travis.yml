@@ -16,6 +16,7 @@ before_install:
   - sudo pip install --upgrade pip
   - sudo pip install fuzzywuzzy
   - sudo pip install python-Levenshtein
+  - sudo apt-get install r-base-dev
   - sudo apt-get update
 
 r_packages:
