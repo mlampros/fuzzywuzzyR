@@ -2,7 +2,7 @@ Package: fuzzywuzzyR
 Type: Package
 Title: Fuzzy String Matching
 Version: 1.0.1
-Date: 2017-04-13
+Date: 2017-08-03
 Author: Lampros Mouselimis <mouselimislampros@gmail.com>
 Maintainer: Lampros Mouselimis <mouselimislampros@gmail.com>
 BugReports: https://github.com/mlampros/fuzzywuzzyR/issues
@@ -22,4 +22,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

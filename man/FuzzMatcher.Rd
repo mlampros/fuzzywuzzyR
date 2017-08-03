@@ -93,6 +93,7 @@ the \emph{Token_set_ratio} method works in the following way : 1. Find all alpha
  \item{\code{Token_set_ratio(string1 = NULL, string2 = NULL, force_ascii = TRUE, full_process = TRUE)}}{}
  }
 }
+
 \examples{
 
 if (check_availability()) {
@@ -133,4 +134,3 @@ if (check_availability()) {
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py
 }
 \keyword{datasets}
-

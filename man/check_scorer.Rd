@@ -10,4 +10,3 @@ check_scorer(scorer)
 secondary function for the 'FuzzExtract' class
 }
 \keyword{internal}
-

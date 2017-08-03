@@ -9,4 +9,3 @@ check_availability()
 \description{
 This function checks if all relevant python modules are available
 }
-

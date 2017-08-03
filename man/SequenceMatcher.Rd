@@ -63,6 +63,7 @@ the i2 from the preceding tuple, and, likewise, j1 equal to the previous j2. The
  \item{\code{get_opcodes()}}{}
  }
 }
+
 \examples{
 
 if (check_availability()) {
@@ -93,4 +94,3 @@ if (check_availability()) {
 https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison
 }
 \keyword{datasets}
-

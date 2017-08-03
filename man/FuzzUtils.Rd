@@ -70,6 +70,7 @@ Some of the utils functions are used as secondary methods in the \emph{FuzzExtra
  \item{\code{Validate_string(string = NULL)}}{}
  }
 }
+
 \examples{
 
 if (check_availability()) {
@@ -112,4 +113,3 @@ if (check_availability()) {
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py
 }
 \keyword{datasets}
-

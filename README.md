@@ -1,8 +1,15 @@
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fuzzywuzzyR)](http://cran.r-project.org/package=fuzzywuzzyR)
+[![Travis-CI Build Status](https://travis-ci.org/mlampros/fuzzywuzzyR.svg?branch=master)](https://travis-ci.org/mlampros/fuzzywuzzyR)
+[![codecov.io](https://codecov.io/github/mlampros/fuzzywuzzyR/coverage.svg?branch=master)](https://codecov.io/github/mlampros/fuzzywuzzyR?branch=master)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mlampros/fuzzywuzzyR?branch=master&svg=true)](https://ci.appveyor.com/project/mlampros/fuzzywuzzyR/branch/master)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fuzzywuzzyR?color=blue)](http://www.r-pkg.org/pkg/fuzzywuzzyR)
+
+
 ## fuzzywuzzyR
 <br>
 
-The **fuzzywuzzyR** package is a fuzzy string matching implemenation of the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python package. It uses the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to calculate the differences between sequences. More details on the functionality of the fuzzywuzzyR can be found in the [blog-post](https://github.com/mlampros/mlampros.github.io/blob/master/_posts/2017-04-13-fuzzywuzzyR_package.md) and in the package Vignette.
+The **fuzzywuzzyR** package is a fuzzy string matching implemenation of the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python package. It uses the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to calculate the differences between sequences. More details on the functionality of the fuzzywuzzyR can be found in the [blog-post](http://mlampros.github.io/2017/04/13/fuzzywuzzyR_package/) and in the package Vignette.
 
 
 <br>

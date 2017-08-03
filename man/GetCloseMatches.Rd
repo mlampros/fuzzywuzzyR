@@ -42,4 +42,3 @@ if (check_availability()) {
 \references{
 https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison
 }
-

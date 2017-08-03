@@ -70,6 +70,7 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.
 
  }
 }
+
 \examples{
 
 if (check_availability()) {
@@ -129,4 +130,3 @@ if (check_availability()) {
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py
 }
 \keyword{datasets}
-
