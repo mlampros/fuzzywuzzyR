@@ -1,5 +1,8 @@
 
 
+# https://github.com/rstudio/reticulate
+
+
 FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL
 
 
@@ -7,30 +10,19 @@ FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL
 
   if (reticulate::py_available(initialize = TRUE)) {
 
-    FUZZ <<- reticulate::import("fuzzywuzzy.fuzz", delay_load =  list(
+    if (reticulate::py_module_available("fuzzywuzzy")) {
 
-      on_error = function(e) { stop("the 'fuzzywuzzy' module is not available", call. = F) }
+      FUZZ <<- reticulate::import("fuzzywuzzy.fuzz", delay_load = TRUE)            # delay load foo module ( will only be loaded when accessed via $ )
 
-      )
-    )
+      EXTRACT <<- reticulate::import("fuzzywuzzy.process", delay_load = TRUE)
 
-    EXTRACT <<- reticulate::import("fuzzywuzzy.process", delay_load = list(
+      UTILS <<- reticulate::import("fuzzywuzzy.utils", delay_load = TRUE)
+    }
 
-      on_error = function(e) { stop("the 'fuzzywuzzy' module is not available", call. = F) }
-      )
-    )
+    if (reticulate::py_module_available("difflib")) {
 
-    UTILS <<- reticulate::import("fuzzywuzzy.utils", delay_load = list(
-
-      on_error = function(e) { stop("the 'fuzzywuzzy' module is not available", call. = F) }
-      )
-    )
-
-    DIFFLIB <<- reticulate::import("difflib", delay_load = list(
-
-      on_error = function(e) { stop("the 'difflib' module is not available", call. = F) }
-      )
-    )
+      DIFFLIB <<- reticulate::import("difflib", delay_load = TRUE)
+    }
   }
 }
 
