@@ -3,12 +3,14 @@
 # https://github.com/rstudio/reticulate
 
 
-FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL
+FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL; BUILTINS <- NULL;
 
 
 .onLoad <- function(libname, pkgname) {
 
   if (reticulate::py_available(initialize = TRUE)) {
+    
+    BUILTINS <<- reticulate::import_builtins(convert = FALSE)                      # 'buildins' are used in non-ascii languages (see issue https://github.com/mlampros/fuzzywuzzyR/issues/3) where the R-function accepts a python object as input [ convert = FALSE ]
 
     if (reticulate::py_module_available("fuzzywuzzy")) {
 

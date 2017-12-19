@@ -4,7 +4,7 @@
 \alias{check_scorer}
 \title{secondary function for the 'FuzzExtract' class}
 \usage{
-check_scorer(scorer)
+check_scorer(scorer, DECODING)
 }
 \description{
 secondary function for the 'FuzzExtract' class

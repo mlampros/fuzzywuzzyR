@@ -9,6 +9,8 @@
 # init <- FuzzUtils$new()
 }
 \arguments{
+\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information (in this class it applies only to the \emph{Full_process} function)}
+
 \item{string}{a character string.}
 
 \item{string1}{a character string.}
@@ -25,6 +27,8 @@
 Utility functions
 }
 \details{
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+
 the \emph{Full_process} processes a string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case and 4. if force_ascii == TRUE, force convert to ascii
 
 the \emph{INTR} method returns a correctly rounded integer
@@ -47,7 +51,7 @@ Some of the utils functions are used as secondary methods in the \emph{FuzzExtra
 
  \item{\code{--------------}}{}
 
- \item{\code{Full_process(string = NULL, force_ascii = TRUE)}}{}
+ \item{\code{Full_process(string = NULL, force_ascii = TRUE, decoding = NULL)}}{}
 
  \item{\code{--------------}}{}
 
@@ -110,6 +114,6 @@ if (check_availability()) {
 }
 }
 \references{
-https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py
+https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
 \keyword{datasets}

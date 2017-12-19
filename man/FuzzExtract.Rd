@@ -6,9 +6,11 @@
 \title{Fuzzy extraction from a sequence}
 \format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
-# init <- FuzzExtract$new()
+# init <- FuzzExtract$new(decoding = NULL)
 }
 \arguments{
+\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
+
 \item{string}{a character string.}
 
 \item{sequence_strings}{a character string vector}
@@ -29,6 +31,8 @@
 Fuzzy extraction from a sequence
 }
 \details{
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+
 the \emph{Extract} method selects the best match of a character string vector. It returns a list with the match and it's score.
 
 the \emph{ExtractBests} method returns a list of the best matches for a sequence of character strings.
@@ -46,7 +50,7 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.
 
 
 \describe{
- \item{\code{FuzzExtract$new()}}{}
+ \item{\code{FuzzExtract$new(decoding = NULL)}}{}
 
  \item{\code{--------------}}{}
 
@@ -127,6 +131,6 @@ if (check_availability()) {
 }
 }
 \references{
-https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py
+https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
 \keyword{datasets}

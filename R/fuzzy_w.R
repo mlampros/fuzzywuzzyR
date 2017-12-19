@@ -125,8 +125,9 @@ SequenceMatcher <- R6::R6Class("SequenceMatcher",
 
                                      stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                    }
-
+                                   
                                    private$tmp = DIFFLIB$SequenceMatcher(NULL, self$string1, self$string2)
+                                   
                                  },
 
                                  ratio = function() {
@@ -218,12 +219,15 @@ GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutof
 #' Fuzzy character string matching ( ratios )
 #'
 #'
+#' @param decoding either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.
 #' @param string1 a character string.
 #' @param string2 a character string.
 #' @param force_ascii allow only ASCII characters (force convert to ascii)
 #' @param full_process either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case
 #' @export
 #' @details
+#'
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
 #'
 #' the \emph{Partial_token_set_ratio} method works in the following way : 1. Find all alphanumeric tokens in each string, 2. treat them as a set, 3. construct two strings of the form, <sorted_intersection><sorted_remainder>, 4. take ratios of those two strings, 5. controls for unordered partial matches (HERE partial match is TRUE)
 #'
@@ -250,14 +254,14 @@ GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutof
 #'
 #' the \emph{Token_set_ratio} method works in the following way : 1. Find all alphanumeric tokens in each string, 2. treat them as a set, 3. construct two strings of the form, <sorted_intersection><sorted_remainder>, 4. take ratios of those two strings, 5. controls for unordered partial matches (HERE partial match is FALSE)
 #'
-#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py
+#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 #' @docType class
 #' @importFrom R6 R6Class
 #' @import reticulate
 #' @section Methods:
 #'
 #' \describe{
-#'  \item{\code{FuzzMatcher$new()}}{}
+#'  \item{\code{FuzzMatcher$new(decoding = NULL)}}{}
 #'
 #'  \item{\code{--------------}}{}
 #'
@@ -300,7 +304,7 @@ GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutof
 #'  \item{\code{Token_set_ratio(string1 = NULL, string2 = NULL, force_ascii = TRUE, full_process = TRUE)}}{}
 #'  }
 #'
-#' @usage # init <- FuzzMatcher$new()
+#' @usage # init <- FuzzMatcher$new(decoding = NULL)
 #' @examples
 #'
 #' if (check_availability()) {
@@ -344,12 +348,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                              public = list(
 
-                               initialize = function() {
-
+                               initialize = function(decoding = NULL) {
+                                 
+                                 self$decoding <- decoding
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   if (!inherits(self$decoding, 'character')) {
+                                     
+                                     stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
+                                   }
+                                 }
                                },
 
                                Partial_token_set_ratio = function(string1 = NULL, string2 = NULL, force_ascii = TRUE, full_process = TRUE) {
-
+                                 
                                  if (is.null(string1) || is.null(string2)) { stop("both parameters 'string1' and 'string2' should be non-NULL", call. = F) }
 
                                  if (!inherits(string1, c('character', 'vector')) || !inherits(string2, c('character', 'vector'))) {
@@ -360,6 +373,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$partial_token_set_ratio(string1, string2, force_ascii, full_process))
                                },
@@ -376,6 +398,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$partial_token_sort_ratio(string1, string2, force_ascii, full_process))
                                },
@@ -387,6 +418,13 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!inherits(string1, c('character', 'vector')) || !inherits(string2, c('character', 'vector'))) {
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
+                                 }
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
                                  }
 
                                  return(FUZZ$ratio(string1, string2))
@@ -402,6 +440,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  }
 
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$QRatio(string1, string2, force_ascii))
                                },
@@ -416,6 +463,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  }
 
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$WRatio(string1, string2, force_ascii))
                                },
@@ -428,6 +484,13 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                  }
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                 }
 
                                  return(FUZZ$UWRatio(string1, string2))
                                },
@@ -439,6 +502,13 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!inherits(string1, c('character', 'vector')) || !inherits(string2, c('character', 'vector'))) {
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
+                                 }
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
                                  }
 
                                  return(FUZZ$UQRatio(string1, string2))
@@ -456,6 +526,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$token_sort_ratio(string1, string2, force_ascii, full_process))
                                },
@@ -467,6 +546,13 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!inherits(string1, c('character', 'vector')) || !inherits(string2, c('character', 'vector'))) {
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
+                                 }
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
                                  }
 
                                  return(FUZZ$partial_ratio(string1, string2))
@@ -484,6 +570,15 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
+                                 
+                                 if (!is.null(self$decoding)) {
+                                   
+                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   
+                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
 
                                  return(FUZZ$token_set_ratio(string1, string2, force_ascii, full_process))
                                }
@@ -493,6 +588,8 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
 #' Utility functions
 #'
+#'
+#' @param decoding either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information (in this class it applies only to the \emph{Full_process} function)
 #' @param string  a character string.
 #' @param string1 a character string.
 #' @param string2 a character string.
@@ -501,6 +598,8 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 #' @param n a float number
 #' @export
 #' @details
+#'
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
 #'
 #' the \emph{Full_process} processes a string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case and 4. if force_ascii == TRUE, force convert to ascii
 #'
@@ -516,7 +615,7 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 #'
 #' Some of the utils functions are used as secondary methods in the \emph{FuzzExtract} class. See the examples of the \emph{FuzzExtract} class for more details.
 #'
-#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py
+#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 #' @docType class
 #' @importFrom R6 R6Class
 #' @import reticulate
@@ -527,7 +626,7 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 #'
 #'  \item{\code{--------------}}{}
 #'
-#'  \item{\code{Full_process(string = NULL, force_ascii = TRUE)}}{}
+#'  \item{\code{Full_process(string = NULL, force_ascii = TRUE, decoding = NULL)}}{}
 #'
 #'  \item{\code{--------------}}{}
 #'
@@ -600,7 +699,15 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
 
                              },
 
-                             Full_process = function(string = NULL, force_ascii = TRUE) {
+                             Full_process = function(string = NULL, force_ascii = TRUE, decoding = NULL) {
+                               
+                               if (!is.null(decoding)) {
+                                 
+                                 if (!inherits(decoding, 'character')) {
+                                   
+                                   stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
+                                 }
+                               }
 
                                if (is.null(string)) { stop("the 'string' parameter should be non-NULL", call. = F) }
 
@@ -610,6 +717,13 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
                                }
 
                                if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
+                               
+                               if (!is.null(decoding)) {
+                                 
+                                 string <- BUILTINS$str(string)$decode(decoding)
+                                 
+                                 force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                               }
 
                                return(UTILS$full_process(string, force_ascii))
                              },
@@ -648,7 +762,7 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
 
                                  stop("the 'string' parameter should be of type character string", call. = F)
                                }
-
+                               
                                return(UTILS$asciionly(string))
                              },
 
@@ -673,7 +787,7 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
 #'
 #' @keywords internal
 
-check_scorer = function(scorer) {
+check_scorer = function(scorer, DECODING) {
 
   if (!is.null(scorer)) {
 
@@ -684,7 +798,7 @@ check_scorer = function(scorer) {
 
   else {
 
-    tmp_init = FuzzMatcher$new()
+    tmp_init = FuzzMatcher$new(decoding = DECODING)
 
     tmp_sc = tmp_init$WRATIO            # defaults to 'FuzzMatcher.WRATIO()'
   }
@@ -696,6 +810,8 @@ check_scorer = function(scorer) {
 
 #' Fuzzy extraction from a sequence
 #'
+#'
+#' @param decoding either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.
 #' @param string  a character string.
 #' @param sequence_strings a character string vector
 #' @param contains_dupes a vector of strings that we would like to dedupe
@@ -706,6 +822,8 @@ check_scorer = function(scorer) {
 #' @param threshold the numerical value (0, 100) point at which we expect to find duplicates. Defaults to 70 out of 100
 #' @export
 #' @details
+#'
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
 #'
 #' the \emph{Extract} method selects the best match of a character string vector. It returns a list with the match and it's score.
 #'
@@ -720,14 +838,14 @@ check_scorer = function(scorer) {
 #' It breaks string length ties on an alphabetical sort. Note: as the threshold DECREASES the number of duplicates that are found INCREASES. This means that the returned deduplicated list will likely be shorter.
 #' Raise the threshold for fuzzy_dedupe to be less sensitive.
 #'
-#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py
+#' @references  https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 #' @docType class
 #' @importFrom R6 R6Class
 #' @import reticulate
 #' @section Methods:
 #'
 #' \describe{
-#'  \item{\code{FuzzExtract$new()}}{}
+#'  \item{\code{FuzzExtract$new(decoding = NULL)}}{}
 #'
 #'  \item{\code{--------------}}{}
 #'
@@ -751,7 +869,7 @@ check_scorer = function(scorer) {
 #'
 #'  }
 #'
-#' @usage # init <- FuzzExtract$new()
+#' @usage # init <- FuzzExtract$new(decoding = NULL)
 #' @examples
 #'
 #' if (check_availability()) {
@@ -814,8 +932,17 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
 
                            public = list(
 
-                             initialize = function() {
-
+                             initialize = function(decoding = NULL) {
+                               
+                               self$decoding <- decoding
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 if (!inherits(self$decoding, 'character')) {
+                                   
+                                   stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
+                                 }
+                               }
                              },
 
                              Extract = function(string = NULL, sequence_strings = NULL, processor = NULL, scorer = NULL, limit = 5L) {
@@ -832,11 +959,18 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                  if (!inherits(processor, 'function')) { stop("the 'processor' parameter should be of type function", call. = F) }
                                }
 
-                               tmp_sc = check_scorer(scorer)
+                               tmp_sc = check_scorer(scorer, self$decoding)
 
                                if (!inherits(limit, c('numeric', 'integer'))) { stop("the 'limit' parameter should be of type integer", call. = F) }
 
                                limit = as.integer(limit)
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 
+                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))    # add parallelization in case of big vectors [ if requested ]
+                               }
 
                                tmp = EXTRACT$extract(string, sequence_strings, processor, tmp_sc, limit)
 
@@ -857,7 +991,7 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                  if (!inherits(processor, 'function')) { stop("the 'processor' parameter should be of type function", call. = F) }
                                }
 
-                               tmp_sc = check_scorer(scorer)
+                               tmp_sc = check_scorer(scorer, self$decoding)
 
                                if (!inherits(score_cutoff, c('numeric', 'integer'))) { stop("the 'score_cutoff' parameter should be of type integer", call. = F) }
 
@@ -866,6 +1000,13 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                limit = as.integer(limit)
 
                                score_cutoff = as.integer(score_cutoff)
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 
+                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                               }
 
                                tmp = EXTRACT$extractBests(string, sequence_strings, processor, tmp_sc, score_cutoff, limit)
 
@@ -887,11 +1028,18 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                  if (!inherits(processor, 'function')) { stop("the 'processor' parameter should be of type function", call. = F) }
                                }
 
-                               tmp_sc = check_scorer(scorer)
+                               tmp_sc = check_scorer(scorer, self$decoding)
 
                                if (!inherits(score_cutoff, c('numeric', 'integer'))) { stop("the 'score_cutoff' parameter should be of type integer", call. = F) }
 
                                score_cutoff = as.integer(score_cutoff)
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 
+                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                               }
 
                                iter_gen = EXTRACT$extractWithoutOrder(string, sequence_strings, processor, tmp_sc, score_cutoff)           # iterator-generator use the iterate() function to traverse
 
@@ -915,11 +1063,18 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                  if (!inherits(processor, 'function')) { stop("the 'processor' parameter should be of type function", call. = F) }
                                }
 
-                               tmp_sc = check_scorer(scorer)
+                               tmp_sc = check_scorer(scorer, self$decoding)
 
                                if (!inherits(score_cutoff, c('numeric', 'integer'))) { stop("the 'score_cutoff' parameter should be of type integer", call. = F) }
 
                                score_cutoff = as.integer(score_cutoff)
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 
+                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                               }
 
                                tmp = EXTRACT$extractOne(string, sequence_strings, processor, tmp_sc, score_cutoff)
 
@@ -935,11 +1090,16 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                  stop("the 'contains_dupes' parameter should be of type character string vector", call. = F)
                                }
 
-                               tmp_sc = check_scorer(scorer)
+                               tmp_sc = check_scorer(scorer, self$decoding)
 
                                if (!inherits(threshold, c('numeric', 'integer'))) { stop("the 'threshold' parameter should be of type integer", call. = F) }
 
                                threshold = as.integer(threshold)
+                               
+                               if (!is.null(self$decoding)) {
+                                 
+                                 contains_dupes = unlist(lapply(1:length(contains_dupes), function(item) BUILTINS$str(contains_dupes[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                               }
 
                                tmp = EXTRACT$dedupe(contains_dupes, threshold, tmp_sc)
 

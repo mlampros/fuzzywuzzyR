@@ -6,9 +6,11 @@
 \title{Fuzzy character string matching ( ratios )}
 \format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
-# init <- FuzzMatcher$new()
+# init <- FuzzMatcher$new(decoding = NULL)
 }
 \arguments{
+\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
+
 \item{string1}{a character string.}
 
 \item{string2}{a character string.}
@@ -21,6 +23,8 @@
 Fuzzy character string matching ( ratios )
 }
 \details{
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+
 the \emph{Partial_token_set_ratio} method works in the following way : 1. Find all alphanumeric tokens in each string, 2. treat them as a set, 3. construct two strings of the form, <sorted_intersection><sorted_remainder>, 4. take ratios of those two strings, 5. controls for unordered partial matches (HERE partial match is TRUE)
 
 the \emph{Partial_token_sort_ratio} method returns the ratio of the most similar substring as a number between 0 and 100 but sorting the token before comparing.
@@ -50,7 +54,7 @@ the \emph{Token_set_ratio} method works in the following way : 1. Find all alpha
 
 
 \describe{
- \item{\code{FuzzMatcher$new()}}{}
+ \item{\code{FuzzMatcher$new(decoding = NULL)}}{}
 
  \item{\code{--------------}}{}
 
@@ -131,6 +135,6 @@ if (check_availability()) {
 }
 }
 \references{
-https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py
+https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
 \keyword{datasets}
