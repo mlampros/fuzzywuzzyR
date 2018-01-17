@@ -1771,8 +1771,8 @@ if (.Platform$OS.type != "windows") {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FuzzMatcher [ methods ]
 
-if (tests_python2()) {
 
+if (tests_python2() && (.Platform$OS.type != "windows")) {               # run the decoding tests only on unix OS's due to an exception-error on win32 ["Your current architecture is 32bit however this version of Python is compiled for 64bit" -- on win64 works error-free ]
 
   testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_set_ratio ] function", {
     
@@ -2140,5 +2140,4 @@ if (tests_python2()) {
     
     testthat::expect_error( FuzzExtract$new(decoding = list()) )
   })
-  
 }
