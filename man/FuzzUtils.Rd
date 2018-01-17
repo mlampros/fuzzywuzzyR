@@ -27,7 +27,7 @@
 Utility functions
 }
 \details{
-the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 
 the \emph{Full_process} processes a string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case and 4. if force_ascii == TRUE, force convert to ascii
 

@@ -1,7 +1,7 @@
 
 ## fuzzywuzzyR 1.0.2
 
-I added the *decoding* parameter to the following classes : *FuzzExtract*, *FuzzMatcher* and *FuzzUtils*. The *decoding* parameter does not apply to the *GetCloseMatches* and *SequenceMatcher* classes, because there isn't any *force_ascii* parameter in the *difflib* python library.
+I added the *decoding* parameter to the following classes : *FuzzExtract*, *FuzzMatcher* and *FuzzUtils*. The *decoding* parameter does not apply to the *GetCloseMatches* and *SequenceMatcher* classes, because there isn't any *force_ascii* parameter in the *difflib* python library. The *decoding* parameter applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 For reference, see the following github issue : https://github.com/mlampros/fuzzywuzzyR/issues/3
 
 

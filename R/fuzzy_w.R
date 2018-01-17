@@ -19,6 +19,23 @@ check_availability = function() {
 
 
 
+
+#' This function returns TRUE if python2 is installed and used in the OS
+#' 
+#' @keywords internal
+
+is_python2 = function() {
+  
+  vers = reticulate::py_config()
+  
+  out = (as.numeric(vers$version) < 3)
+  
+  return(out)
+}
+
+
+
+
 #' Character string sequence matching
 #'
 #'
@@ -227,7 +244,7 @@ GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutof
 #' @export
 #' @details
 #'
-#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 #'
 #' the \emph{Partial_token_set_ratio} method works in the following way : 1. Find all alphanumeric tokens in each string, 2. treat them as a set, 3. construct two strings of the form, <sorted_intersection><sorted_remainder>, 4. take ratios of those two strings, 5. controls for unordered partial matches (HERE partial match is TRUE)
 #'
@@ -376,11 +393,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                     
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$partial_token_set_ratio(string1, string2, force_ascii, full_process))
@@ -401,11 +421,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$partial_token_sort_ratio(string1, string2, force_ascii, full_process))
@@ -422,9 +445,12 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   }
                                  }
 
                                  return(FUZZ$ratio(string1, string2))
@@ -443,11 +469,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$QRatio(string1, string2, force_ascii))
@@ -466,11 +495,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$WRatio(string1, string2, force_ascii))
@@ -487,9 +519,12 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   }
                                  }
 
                                  return(FUZZ$UWRatio(string1, string2))
@@ -506,9 +541,12 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   }
                                  }
 
                                  return(FUZZ$UQRatio(string1, string2))
@@ -529,11 +567,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$token_sort_ratio(string1, string2, force_ascii, full_process))
@@ -550,9 +591,12 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                   }
                                  }
 
                                  return(FUZZ$partial_ratio(string1, string2))
@@ -573,11 +617,14 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  
                                  if (!is.null(self$decoding)) {
                                    
-                                   string1 <- BUILTINS$str(string1)$decode(self$decoding)
+                                   if (is_python2()) {
+                                     
+                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
                                    
-                                   string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                   
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
 
                                  return(FUZZ$token_set_ratio(string1, string2, force_ascii, full_process))
@@ -599,7 +646,7 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 #' @export
 #' @details
 #'
-#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 #'
 #' the \emph{Full_process} processes a string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case and 4. if force_ascii == TRUE, force convert to ascii
 #'
@@ -720,9 +767,12 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
                                
                                if (!is.null(decoding)) {
                                  
-                                 string <- BUILTINS$str(string)$decode(decoding)
+                                 if (is_python2()) {
+                                   
+                                   string <- BUILTINS$str(string)$decode(decoding)
                                  
-                                 force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                 }
                                }
 
                                return(UTILS$full_process(string, force_ascii))
@@ -823,7 +873,7 @@ check_scorer = function(scorer, DECODING) {
 #' @export
 #' @details
 #'
-#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+#' the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 #'
 #' the \emph{Extract} method selects the best match of a character string vector. It returns a list with the match and it's score.
 #'
@@ -967,9 +1017,12 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                
                                if (!is.null(self$decoding)) {
                                  
-                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 if (is_python2()) {
+                                   
+                                   string <- BUILTINS$str(string)$decode(self$decoding)
                                  
-                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))    # add parallelization in case of big vectors [ if requested ]
+                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))    # add parallelization in case of big vectors [ if requested ]
+                                 }
                                }
 
                                tmp = EXTRACT$extract(string, sequence_strings, processor, tmp_sc, limit)
@@ -1003,9 +1056,12 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                
                                if (!is.null(self$decoding)) {
                                  
-                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 if (is_python2()) {
+                                   
+                                   string <- BUILTINS$str(string)$decode(self$decoding)
                                  
-                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                 }
                                }
 
                                tmp = EXTRACT$extractBests(string, sequence_strings, processor, tmp_sc, score_cutoff, limit)
@@ -1036,9 +1092,12 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                
                                if (!is.null(self$decoding)) {
                                  
-                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 if (is_python2()) {
+                                   
+                                   string <- BUILTINS$str(string)$decode(self$decoding)
                                  
-                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                 }
                                }
 
                                iter_gen = EXTRACT$extractWithoutOrder(string, sequence_strings, processor, tmp_sc, score_cutoff)           # iterator-generator use the iterate() function to traverse
@@ -1071,9 +1130,12 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                
                                if (!is.null(self$decoding)) {
                                  
-                                 string <- BUILTINS$str(string)$decode(self$decoding)
+                                 if (is_python2()) {
+                                   
+                                   string <- BUILTINS$str(string)$decode(self$decoding)
                                  
-                                 sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                 }
                                }
 
                                tmp = EXTRACT$extractOne(string, sequence_strings, processor, tmp_sc, score_cutoff)
@@ -1098,7 +1160,10 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                
                                if (!is.null(self$decoding)) {
                                  
-                                 contains_dupes = unlist(lapply(1:length(contains_dupes), function(item) BUILTINS$str(contains_dupes[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                 if (is_python2()) {
+                                   
+                                   contains_dupes = unlist(lapply(1:length(contains_dupes), function(item) BUILTINS$str(contains_dupes[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                 }
                                }
 
                                tmp = EXTRACT$dedupe(contains_dupes, threshold, tmp_sc)

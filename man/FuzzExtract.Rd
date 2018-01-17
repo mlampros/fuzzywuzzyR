@@ -31,7 +31,7 @@
 Fuzzy extraction from a sequence
 }
 \details{
-the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 
 the \emph{Extract} method selects the best match of a character string vector. It returns a list with the match and it's score.
 

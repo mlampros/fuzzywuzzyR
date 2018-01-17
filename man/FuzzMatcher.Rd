@@ -23,7 +23,7 @@
 Fuzzy character string matching ( ratios )
 }
 \details{
-the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE.
+the \emph{decoding} parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the \emph{force_ascii} parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
 
 the \emph{Partial_token_set_ratio} method works in the following way : 1. Find all alphanumeric tokens in each string, 2. treat them as a set, 3. construct two strings of the form, <sorted_intersection><sorted_remainder>, 4. take ratios of those two strings, 5. controls for unordered partial matches (HERE partial match is TRUE)
 

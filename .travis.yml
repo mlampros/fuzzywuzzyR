@@ -2,10 +2,18 @@
 
 language: r
 pandoc_version: 1.18
-python: 2.7
+#python:
+  #- 3.5
+  #- 2.7
 
 sudo: required
 cache: packages
+
+addons:
+  apt:
+    packages:
+      #- python2.7
+      - python3
 
 env:
   global:
@@ -13,12 +21,15 @@ env:
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
     
 before_install:
-  - sudo apt-get install python-pip
-  - sudo pip install --upgrade pip
-  - sudo pip install fuzzywuzzy
-  - sudo pip install python-Levenshtein
+  - sudo apt-get install python3-pip
+  - sudo pip3 install --upgrade pip
+  - sudo pip3 install fuzzywuzzy
+  - sudo pip3 install python-Levenshtein
   - sudo apt-get install r-base-dev
   - tlmgr install index
+  - sudo apt-get update
+  - sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+  - sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
   - sudo apt-get update
 
 r_packages:

@@ -2,7 +2,7 @@ Package: fuzzywuzzyR
 Type: Package
 Title: Fuzzy String Matching
 Version: 1.0.2
-Date: 2018-01-16
+Date: 2018-01-17
 Author: Lampros Mouselimis <mouselimislampros@gmail.com>
 Maintainer: Lampros Mouselimis <mouselimislampros@gmail.com>
 BugReports: https://github.com/mlampros/fuzzywuzzyR/issues
