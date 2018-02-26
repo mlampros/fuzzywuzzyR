@@ -1,4 +1,9 @@
 
+## fuzzywuzzyR 1.0.3
+
+I added an exception in the additional tests, to avoid Solaris OS throw an error if python is not available
+
+
 ## fuzzywuzzyR 1.0.2
 
 I added the *decoding* parameter to the following classes : *FuzzExtract*, *FuzzMatcher* and *FuzzUtils*. The *decoding* parameter does not apply to the *GetCloseMatches* and *SequenceMatcher* classes, because there isn't any *force_ascii* parameter in the *difflib* python library. The *decoding* parameter applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.
