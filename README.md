@@ -88,7 +88,7 @@ sudo pip install python-Levenshtein
 C:\Python27;C:\Python27\Scripts
 ```
 
-* Install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)
+* Install the [Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017)
 * Open the *Command prompt* and use the following commands:
 ```R
 pip install fuzzywuzzy
