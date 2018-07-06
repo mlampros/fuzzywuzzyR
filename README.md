@@ -6,6 +6,7 @@
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fuzzywuzzyR?color=blue)](http://www.r-pkg.org/pkg/fuzzywuzzyR)
 
 
+
 ## fuzzywuzzyR
 <br>
 
