@@ -1798,14 +1798,14 @@ if (.Platform$OS.type != "windows") {                         # run the decoding
       })
       
       
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_sort_ratio ] function", {
-        
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
-        
-        init = FuzzMatcher$new(decoding = NULL)
-        
-        testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+      # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_sort_ratio ] function", {
+      #   
+      #   skip_test_if_no_module("fuzzywuzzy.fuzz")
+      #   
+      #   init = FuzzMatcher$new(decoding = NULL)
+      #   
+      #   testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+      # })
       
       
       testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Partial_token_sort_ratio ] function", {
@@ -1900,14 +1900,14 @@ if (.Platform$OS.type != "windows") {                         # run the decoding
       
       
       
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_sort_ratio ] function", {
-        
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
-        
-        init = FuzzMatcher$new(decoding = NULL)
-        
-        testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+      # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_sort_ratio ] function", {
+      #   
+      #   skip_test_if_no_module("fuzzywuzzy.fuzz")
+      #   
+      #   init = FuzzMatcher$new(decoding = NULL)
+      #   
+      #   testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+      # })
       
       
       testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Token_sort_ratio ] function", {

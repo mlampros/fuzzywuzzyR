@@ -4,6 +4,7 @@
 [![codecov.io](https://codecov.io/github/mlampros/fuzzywuzzyR/coverage.svg?branch=master)](https://codecov.io/github/mlampros/fuzzywuzzyR?branch=master)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mlampros/fuzzywuzzyR?branch=master&svg=true)](https://ci.appveyor.com/project/mlampros/fuzzywuzzyR/branch/master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fuzzywuzzyR?color=blue)](http://www.r-pkg.org/pkg/fuzzywuzzyR)
+<a href="https://www.buymeacoffee.com/VY0x8snyh" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
 
 
 ## fuzzywuzzyR
@@ -88,7 +89,7 @@ sudo pip install python-Levenshtein
 C:\Python27;C:\Python27\Scripts
 ```
 
-* Install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)
+* Install the [Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017)
 * Open the *Command prompt* and use the following commands:
 ```R
 pip install fuzzywuzzy
