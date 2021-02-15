@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^appveyor\.yml$
 ^\.travis\.yml$
+^\.ccache$
+^\.github$
+^tic\.R$
