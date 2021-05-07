@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Fuzzy character string matching ( ratios ) — FuzzMatcher" />
-<meta property="og:description" content="Fuzzy character string matching ( ratios )" />
+<meta property="og:description" content="Fuzzy character string matching ( ratios )
+Fuzzy character string matching ( ratios )" />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fuzzywuzzyR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -130,38 +131,12 @@
 
     <div class="ref-description">
     <p>Fuzzy character string matching ( ratios )</p>
+<p>Fuzzy character string matching ( ratios )</p>
     </div>
 
     <pre class="usage"><span class='co'># init &lt;- FuzzMatcher$new(decoding = NULL)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>decoding</th>
-      <td><p>either NULL or a character string. If not NULL then the <em>decoding</em> parameter takes one of the standard python encodings (such as 'utf-8'). See the <em>details</em> and <em>references</em> link for more information.</p></td>
-    </tr>
-    <tr>
-      <th>string1</th>
-      <td><p>a character string.</p></td>
-    </tr>
-    <tr>
-      <th>string2</th>
-      <td><p>a character string.</p></td>
-    </tr>
-    <tr>
-      <th>force_ascii</th>
-      <td><p>allow only ASCII characters (force convert to ascii)</p></td>
-    </tr>
-    <tr>
-      <th>full_process</th>
-      <td><p>either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>the <em>decoding</em> parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the <em>force_ascii</em> parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.</p>
@@ -233,42 +208,262 @@ partial_token_sort_ratio and partial_token_set_ratio scale all of these by the r
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://docs.python.org/3/library/codecs.html#standard-encodings</p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>FuzzMatcher$new()</code></a></p></li>
+<li><p><a href='#method-Partial_token_set_ratio'><code>FuzzMatcher$Partial_token_set_ratio()</code></a></p></li>
+<li><p><a href='#method-Partial_token_sort_ratio'><code>FuzzMatcher$Partial_token_sort_ratio()</code></a></p></li>
+<li><p><a href='#method-Ratio'><code>FuzzMatcher$Ratio()</code></a></p></li>
+<li><p><a href='#method-QRATIO'><code>FuzzMatcher$QRATIO()</code></a></p></li>
+<li><p><a href='#method-WRATIO'><code>FuzzMatcher$WRATIO()</code></a></p></li>
+<li><p><a href='#method-UWRATIO'><code>FuzzMatcher$UWRATIO()</code></a></p></li>
+<li><p><a href='#method-UQRATIO'><code>FuzzMatcher$UQRATIO()</code></a></p></li>
+<li><p><a href='#method-Token_sort_ratio'><code>FuzzMatcher$Token_sort_ratio()</code></a></p></li>
+<li><p><a href='#method-Partial_ratio'><code>FuzzMatcher$Partial_ratio()</code></a></p></li>
+<li><p><a href='#method-Token_set_ratio'><code>FuzzMatcher$Token_set_ratio()</code></a></p></li>
+<li><p><a href='#method-clone'><code>FuzzMatcher$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>decoding <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>decoding</code></dt><dd><p>either NULL or a character string. If not NULL then the <em>decoding</em> parameter takes one of the standard python encodings (such as 'utf-8'). See the <em>details</em> and <em>references</em> link for more information.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Partial_token_set_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Partial_token_set_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Partial_token_set_ratio</span><span class='op'>(</span>
+  string1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  string2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  full_process <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+<dt><code>full_process</code></dt><dd><p>either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Partial_token_sort_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Partial_token_sort_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Partial_token_sort_ratio</span><span class='op'>(</span>
+  string1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  string2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  full_process <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+<dt><code>full_process</code></dt><dd><p>either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-QRATIO"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>QRATIO()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>QRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-WRATIO"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>WRATIO()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>WRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-UWRATIO"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>UWRATIO()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>UWRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-UQRATIO"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>UQRATIO()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>UQRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Token_sort_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Token_sort_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Token_sort_ratio</span><span class='op'>(</span>
+  string1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  string2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  full_process <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+<dt><code>full_process</code></dt><dd><p>either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Partial_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Partial_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Partial_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Token_set_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Token_set_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>Token_set_ratio</span><span class='op'>(</span>
+  string1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  string2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  full_process <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>force_ascii</code></dt><dd><p>allow only ASCII characters (force convert to ascii)</p></dd>
+
+<dt><code>full_process</code></dt><dd><p>either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 
+    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
+      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
 
-  <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>"Atlanta Falcons"</span>
+      <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>"Atlanta Falcons"</span>
 
-  <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>"New York Jets"</span>
+      <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>"New York Jets"</span>
 
-  <span class='va'>init</span> <span class='op'>=</span> <span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span> <span class='op'>=</span> <span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,
+                                   string2 <span class='op'>=</span> <span class='va'>s2</span>,
+                                   force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                                   full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,
+                                    string2 <span class='op'>=</span> <span class='va'>s2</span>,
+                                    force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                                    full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>QRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>QRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>WRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>WRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>UWRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UWRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>UQRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UQRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-
-<span class='op'>}</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+    <span class='op'>}</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Character string sequence matching — SequenceMatcher" />
-<meta property="og:description" content="Character string sequence matching" />
+<meta property="og:description" content="Character string sequence matching
+Character string sequence matching" />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fuzzywuzzyR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -130,26 +131,12 @@
 
     <div class="ref-description">
     <p>Character string sequence matching</p>
+<p>Character string sequence matching</p>
     </div>
 
     <pre class="usage"><span class='co'># init &lt;- SequenceMatcher$new(string1 = NULL, string2 = NULL)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>string1</th>
-      <td><p>a character string.</p></td>
-    </tr>
-    <tr>
-      <th>string2</th>
-      <td><p>a character string.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>the <em>ratio</em> method returns a measure of the sequences' similarity as a float in the range [0, 1]. Where T is the total number of elements in both sequences, and M is the number of matches, this
@@ -199,32 +186,104 @@ the i2 from the preceding tuple, and, likewise, j1 equal to the previous j2. The
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison</p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>SequenceMatcher$new()</code></a></p></li>
+<li><p><a href='#method-ratio'><code>SequenceMatcher$ratio()</code></a></p></li>
+<li><p><a href='#method-quick_ratio'><code>SequenceMatcher$quick_ratio()</code></a></p></li>
+<li><p><a href='#method-real_quick_ratio'><code>SequenceMatcher$real_quick_ratio()</code></a></p></li>
+<li><p><a href='#method-get_matching_blocks'><code>SequenceMatcher$get_matching_blocks()</code></a></p></li>
+<li><p><a href='#method-get_opcodes'><code>SequenceMatcher$get_opcodes()</code></a></p></li>
+<li><p><a href='#method-clone'><code>SequenceMatcher$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='cn'>NULL</span>, string2 <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string1</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>string2</code></dt><dd><p>a character string.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>ratio</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+
+<p><hr>
+<a id="method-quick_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>quick_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>quick_ratio</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+
+<p><hr>
+<a id="method-real_quick_ratio"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>real_quick_ratio()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>real_quick_ratio</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+
+<p><hr>
+<a id="method-get_matching_blocks"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_matching_blocks()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>get_matching_blocks</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+
+<p><hr>
+<a id="method-get_opcodes"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_opcodes()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>get_opcodes</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 
+    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
+      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
 
-  <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>' It was a dark and stormy night. I was all alone sitting on a red chair.'</span>
+      <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>' It was a dark and stormy night. I was all alone sitting on a red chair.'</span>
 
-  <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>' It was a murky and stormy night. I was all alone sitting on a crimson chair.'</span>
+      <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>' It was a murky and stormy night. I was all alone sitting on a crimson chair.'</span>
 
-  <span class='va'>init</span> <span class='op'>=</span> <span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
+      <span class='va'>init</span> <span class='op'>=</span> <span class='va'>SequenceMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>ratio</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ratio</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>quick_ratio</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>quick_ratio</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>real_quick_ratio</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>real_quick_ratio</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>get_matching_blocks</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>get_matching_blocks</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>get_opcodes</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>get_opcodes</span><span class='op'>(</span><span class='op'>)</span>
 
-
-<span class='op'>}</span>
+    <span class='op'>}</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

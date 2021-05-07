@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Fuzzy extraction from a sequence — FuzzExtract" />
-<meta property="og:description" content="Fuzzy extraction from a sequence" />
+<meta property="og:description" content="Fuzzy extraction from a sequence
+Fuzzy extraction from a sequence" />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fuzzywuzzyR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -130,54 +131,12 @@
 
     <div class="ref-description">
     <p>Fuzzy extraction from a sequence</p>
+<p>Fuzzy extraction from a sequence</p>
     </div>
 
     <pre class="usage"><span class='co'># init &lt;- FuzzExtract$new(decoding = NULL)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>decoding</th>
-      <td><p>either NULL or a character string. If not NULL then the <em>decoding</em> parameter takes one of the standard python encodings (such as 'utf-8'). See the <em>details</em> and <em>references</em> link for more information.</p></td>
-    </tr>
-    <tr>
-      <th>string</th>
-      <td><p>a character string.</p></td>
-    </tr>
-    <tr>
-      <th>sequence_strings</th>
-      <td><p>a character string vector</p></td>
-    </tr>
-    <tr>
-      <th>contains_dupes</th>
-      <td><p>a vector of strings that we would like to dedupe</p></td>
-    </tr>
-    <tr>
-      <th>processor</th>
-      <td><p>either NULL or a function of the form f(a) -&gt; b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.</p></td>
-    </tr>
-    <tr>
-      <th>scorer</th>
-      <td><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></td>
-    </tr>
-    <tr>
-      <th>limit</th>
-      <td><p>An integer value for the maximum number of elements to be returned. Defaults to 5L</p></td>
-    </tr>
-    <tr>
-      <th>score_cutoff</th>
-      <td><p>an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0</p></td>
-    </tr>
-    <tr>
-      <th>threshold</th>
-      <td><p>the numerical value (0, 100) point at which we expect to find duplicates. Defaults to 70 out of 100</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>R6ClassGenerator</code> of length 24.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>the <em>decoding</em> parameter is useful in case of non-ascii character strings. If this parameter is not NULL then the <em>force_ascii</em> parameter (if applicable) is internally set to FALSE. Decoding applies only to python 2 configurations, as in python 3 character strings are decoded to unicode by default.</p>
@@ -223,61 +182,219 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https://docs.python.org/3/library/codecs.html#standard-encodings</p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>FuzzExtract$new()</code></a></p></li>
+<li><p><a href='#method-Extract'><code>FuzzExtract$Extract()</code></a></p></li>
+<li><p><a href='#method-ExtractBests'><code>FuzzExtract$ExtractBests()</code></a></p></li>
+<li><p><a href='#method-ExtractWithoutOrder'><code>FuzzExtract$ExtractWithoutOrder()</code></a></p></li>
+<li><p><a href='#method-ExtractOne'><code>FuzzExtract$ExtractOne()</code></a></p></li>
+<li><p><a href='#method-Dedupe'><code>FuzzExtract$Dedupe()</code></a></p></li>
+<li><p><a href='#method-clone'><code>FuzzExtract$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>decoding <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>decoding</code></dt><dd><p>either NULL or a character string. If not NULL then the <em>decoding</em> parameter takes one of the standard python encodings (such as 'utf-8'). See the <em>details</em> and <em>references</em> link for more information.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Extract"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code><a href='https://rdrr.io/r/base/Extract.html'>Extract()</a></code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>
+  string <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sequence_strings <span class='op'>=</span> <span class='cn'>NULL</span>,
+  processor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scorer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  limit <span class='op'>=</span> <span class='fl'>5L</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>sequence_strings</code></dt><dd><p>a character string vector</p></dd>
+
+<dt><code>processor</code></dt><dd><p>either NULL or a function of the form f(a) -&gt; b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.</p></dd>
+
+<dt><code>scorer</code></dt><dd><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></dd>
+
+<dt><code>limit</code></dt><dd><p>An integer value for the maximum number of elements to be returned. Defaults to 5L</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-ExtractBests"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>ExtractBests()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>
+  string <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sequence_strings <span class='op'>=</span> <span class='cn'>NULL</span>,
+  processor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scorer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>,
+  limit <span class='op'>=</span> <span class='fl'>5L</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>sequence_strings</code></dt><dd><p>a character string vector</p></dd>
+
+<dt><code>processor</code></dt><dd><p>either NULL or a function of the form f(a) -&gt; b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.</p></dd>
+
+<dt><code>scorer</code></dt><dd><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></dd>
+
+<dt><code>score_cutoff</code></dt><dd><p>an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0</p></dd>
+
+<dt><code>limit</code></dt><dd><p>An integer value for the maximum number of elements to be returned. Defaults to 5L</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-ExtractWithoutOrder"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>ExtractWithoutOrder()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>ExtractWithoutOrder</span><span class='op'>(</span>
+  string <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sequence_strings <span class='op'>=</span> <span class='cn'>NULL</span>,
+  processor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scorer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>sequence_strings</code></dt><dd><p>a character string vector</p></dd>
+
+<dt><code>processor</code></dt><dd><p>either NULL or a function of the form f(a) -&gt; b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.</p></dd>
+
+<dt><code>scorer</code></dt><dd><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></dd>
+
+<dt><code>score_cutoff</code></dt><dd><p>an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-ExtractOne"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>ExtractOne()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>ExtractOne</span><span class='op'>(</span>
+  string <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sequence_strings <span class='op'>=</span> <span class='cn'>NULL</span>,
+  processor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scorer <span class='op'>=</span> <span class='cn'>NULL</span>,
+  score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>
+<span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>string</code></dt><dd><p>a character string.</p></dd>
+
+<dt><code>sequence_strings</code></dt><dd><p>a character string vector</p></dd>
+
+<dt><code>processor</code></dt><dd><p>either NULL or a function of the form f(a) -&gt; b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.</p></dd>
+
+<dt><code>scorer</code></dt><dd><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></dd>
+
+<dt><code>score_cutoff</code></dt><dd><p>an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-Dedupe"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>Dedupe()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='cn'>NULL</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>contains_dupes</code></dt><dd><p>a vector of strings that we would like to dedupe</p></dd>
+
+<dt><code>threshold</code></dt><dd><p>the numerical value (0, 100) point at which we expect to find duplicates. Defaults to 70 out of 100</p></dd>
+
+<dt><code>scorer</code></dt><dd><p>a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -&gt; int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+
+    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+
+      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
+
+      <span class='va'>word</span> <span class='op'>=</span> <span class='st'>"new york jets"</span>
+
+      <span class='va'>choices</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Atlanta Falcons"</span>, <span class='st'>"New York Jets"</span>, <span class='st'>"New York Giants"</span>, <span class='st'>"Dallas Cowboys"</span><span class='op'>)</span>
+
+      <span class='va'>duplicat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Frodo Baggins'</span>, <span class='st'>'Tom Sawyer'</span>, <span class='st'>'Bilbo Baggin'</span>, <span class='st'>'Samuel L. Jackson'</span>,
+
+                   <span class='st'>'F. Baggins'</span>, <span class='st'>'Frody Baggins'</span>, <span class='st'>'Bilbo Baggins'</span><span class='op'>)</span>
+
+      <span class='co'>#------------</span>
+      <span class='co'># processor :</span>
+      <span class='co'>#------------</span>
+
+      <span class='va'>init_proc</span> <span class='op'>=</span> <span class='va'><a href='FuzzUtils.html'>FuzzUtils</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+
+      <span class='va'>PROC</span> <span class='op'>=</span> <span class='va'>init_proc</span><span class='op'>$</span><span class='va'>Full_process</span>    <span class='co'># class process-method</span>
+
+      <span class='va'>PROC1</span> <span class='op'>=</span> <span class='va'>tolower</span>                  <span class='co'># base R function</span>
+
+      <span class='co'>#---------</span>
+      <span class='co'># scorer :</span>
+      <span class='co'>#---------</span>
+
+      <span class='va'>init_scor</span> <span class='op'>=</span> <span class='va'><a href='FuzzMatcher.html'>FuzzMatcher</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+
+      <span class='va'>SCOR</span> <span class='op'>=</span> <span class='va'>init_scor</span><span class='op'>$</span><span class='va'>WRATIO</span>
 
 
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
+      <span class='va'>init</span> <span class='op'>&lt;-</span> <span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='va'>word</span> <span class='op'>=</span> <span class='st'>"new york jets"</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
 
-  <span class='va'>choices</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Atlanta Falcons"</span>, <span class='st'>"New York Jets"</span>, <span class='st'>"New York Giants"</span>, <span class='st'>"Dallas Cowboys"</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC1</span>,
 
-  <span class='va'>duplicat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Frodo Baggins'</span>, <span class='st'>'Tom Sawyer'</span>, <span class='st'>'Bilbo Baggin'</span>, <span class='st'>'Samuel L. Jackson'</span>,
+                        scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>, limit <span class='op'>=</span> <span class='fl'>2L</span><span class='op'>)</span>
 
-               <span class='st'>'F. Baggins'</span>, <span class='st'>'Frody Baggins'</span>, <span class='st'>'Bilbo Baggins'</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractWithoutOrder</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
 
-  <span class='co'>#------------</span>
-  <span class='co'># processor :</span>
-  <span class='co'>#------------</span>
+                               scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
 
-  <span class='va'>init_proc</span> <span class='op'>=</span> <span class='va'><a href='FuzzUtils.html'>FuzzUtils</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractOne</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
 
-  <span class='va'>PROC</span> <span class='op'>=</span> <span class='va'>init_proc</span><span class='op'>$</span><span class='va'>Full_process</span>    <span class='co'># class process-method</span>
+                      scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
 
-  <span class='va'>PROC1</span> <span class='op'>=</span> <span class='va'>tolower</span>                  <span class='co'># base R function</span>
+      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='va'>duplicat</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
 
-  <span class='co'>#---------</span>
-  <span class='co'># scorer :</span>
-  <span class='co'>#---------</span>
-
-  <span class='va'>init_scor</span> <span class='op'>=</span> <span class='va'><a href='FuzzMatcher.html'>FuzzMatcher</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-  <span class='va'>SCOR</span> <span class='op'>=</span> <span class='va'>init_scor</span><span class='op'>$</span><span class='va'>WRATIO</span>
-
-
-  <span class='va'>init</span> <span class='op'>&lt;-</span> <span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
-
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC1</span>,
-
-                    scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>, limit <span class='op'>=</span> <span class='fl'>2L</span><span class='op'>)</span>
-
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractWithoutOrder</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
-
-                           scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
-
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractOne</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
-
-                  scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
-
-  <span class='va'>init</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='va'>duplicat</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
-
-
-<span class='op'>}</span>
+    <span class='op'>}</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
