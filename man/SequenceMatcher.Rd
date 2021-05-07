@@ -4,16 +4,12 @@
 \name{SequenceMatcher}
 \alias{SequenceMatcher}
 \title{Character string sequence matching}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 # init <- SequenceMatcher$new(string1 = NULL, string2 = NULL)
 }
-\arguments{
-\item{string1}{a character string.}
-
-\item{string2}{a character string.}
-}
 \description{
+Character string sequence matching
+
 Character string sequence matching
 }
 \details{
@@ -66,31 +62,126 @@ the i2 from the preceding tuple, and, likewise, j1 equal to the previous j2. The
 
 \examples{
 
-if (check_availability()) {
+try({
+  if (reticulate::py_available(initialize = FALSE)) {
 
+    if (check_availability()) {
 
-  library(fuzzywuzzyR)
+      library(fuzzywuzzyR)
 
-  s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
+      s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
 
-  s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
+      s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
 
-  init = SequenceMatcher$new(string1 = s1, string2 = s2)
+      init = SequenceMatcher$new(string1 = s1, string2 = s2)
 
-  init$ratio()
+      init$ratio()
 
-  init$quick_ratio()
+      init$quick_ratio()
 
-  init$real_quick_ratio()
+      init$real_quick_ratio()
 
-  init$get_matching_blocks()
+      init$get_matching_blocks()
 
-  init$get_opcodes()
+      init$get_opcodes()
 
-
-}
+    }
+  }
+}, silent=TRUE)
 }
 \references{
 https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{SequenceMatcher$new()}}
+\item \href{#method-ratio}{\code{SequenceMatcher$ratio()}}
+\item \href{#method-quick_ratio}{\code{SequenceMatcher$quick_ratio()}}
+\item \href{#method-real_quick_ratio}{\code{SequenceMatcher$real_quick_ratio()}}
+\item \href{#method-get_matching_blocks}{\code{SequenceMatcher$get_matching_blocks()}}
+\item \href{#method-get_opcodes}{\code{SequenceMatcher$get_opcodes()}}
+\item \href{#method-clone}{\code{SequenceMatcher$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$new(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-ratio}{}}}
+\subsection{Method \code{ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$ratio()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-quick_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-quick_ratio}{}}}
+\subsection{Method \code{quick_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$quick_ratio()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-real_quick_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-real_quick_ratio}{}}}
+\subsection{Method \code{real_quick_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$real_quick_ratio()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_matching_blocks"></a>}}
+\if{latex}{\out{\hypertarget{method-get_matching_blocks}{}}}
+\subsection{Method \code{get_matching_blocks()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$get_matching_blocks()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_opcodes"></a>}}
+\if{latex}{\out{\hypertarget{method-get_opcodes}{}}}
+\subsection{Method \code{get_opcodes()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$get_opcodes()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

@@ -1,65 +1,4 @@
 
-#========================================================================================
-# helper function to skip tests if we don't have the 'foo' module
-# https://github.com/rstudio/reticulate
-
-
-skip_test_if_no_module <- function(MODULE) {                   # MODULE is of type character string
-
-  module_exists <- reticulate::py_module_available(MODULE)
-
-  if (!module_exists) {
-
-    testthat::skip(paste0(MODULE, " is not available for testthat-testing"))
-  }
-}
-
-
-#===========================================================================================
-
-# run the 'decoding' tests only in python 2 (not in python 3)
-
-tests_python2 = function() {
-
-  vers = reticulate::py_config()
-
-  out = (as.numeric(vers$version) < 3)
-
-  return(out)
-}
-
-
-#===========================================================================================
-
-# data
-
-s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
-
-s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
-
-word = 'Fra Bagg'
-
-vec_getclose = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
-
-st1 = "Atlanta Falcons"
-
-st2 = "New York Jets"
-
-
-# non-ascii character strings [ https://github.com/mlampros/fuzzywuzzyR/issues/3 ]
-# tests begin from line 1745 [ excluded the 'SequenceMatcher()' and 'GetCloseMatches()', which belong to the 'difflib' python package and character strings do not need to be encoded ]
-
-one_word = "一个词"
-
-seq_words = c("两个字", "序列词")
-
-valid_one_word = "abc"
-
-valid_seq_words = c("dbe", "fgc")
-
-#===========================================================================================
-
-
 
 context('all fuzzywuzzy R6 classes')
 
@@ -71,6 +10,7 @@ context('all fuzzywuzzy R6 classes')
 
 testthat::test_that("both parameters are non-NULL input data types", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( SequenceMatcher$new(string1 = s1, string2 = NULL) )
@@ -79,6 +19,7 @@ testthat::test_that("both parameters are non-NULL input data types", {
 
 testthat::test_that("both inputs are of type character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( SequenceMatcher$new(string1 = 1, string2 = s2) )
@@ -87,6 +28,7 @@ testthat::test_that("both inputs are of type character string", {
 
 testthat::test_that("both inputs are of type character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( SequenceMatcher$new(string1 = s1, string2 = 1) )
@@ -95,6 +37,7 @@ testthat::test_that("both inputs are of type character string", {
 
 testthat::test_that("it returns the correct output for all ratios of the SequenceMatcher class", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   init = SequenceMatcher$new(string1 = s1, string2 = s2)
@@ -122,6 +65,7 @@ testthat::test_that("it returns the correct output for all ratios of the Sequenc
 
 testthat::test_that("the string argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = NULL, sequence_strings = vec_getclose, n = 3L, cutoff = 0.6) )
@@ -130,6 +74,7 @@ testthat::test_that("the string argument is not NULL", {
 
 testthat::test_that("the sequence_strings argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = word, sequence_strings = NULL, n = 3L, cutoff = 0.6) )
@@ -139,6 +84,7 @@ testthat::test_that("the sequence_strings argument is not NULL", {
 
 testthat::test_that("the string argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = 1, sequence_strings = vec_getclose, n = 3L, cutoff = 0.6) )
@@ -147,6 +93,7 @@ testthat::test_that("the string argument is a character string", {
 
 testthat::test_that("the sequence_strings argument is a character vector", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = word, sequence_strings = 1, n = 3L, cutoff = 0.6) )
@@ -155,6 +102,7 @@ testthat::test_that("the sequence_strings argument is a character vector", {
 
 testthat::test_that("the n argument is an integer", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = word, sequence_strings = vec_getclose, n = list(), cutoff = 0.6) )
@@ -163,6 +111,7 @@ testthat::test_that("the n argument is an integer", {
 
 testthat::test_that("the cutoff argument is numeric", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = word, sequence_strings = vec_getclose, n = 3L, cutoff = list()) )
@@ -171,6 +120,7 @@ testthat::test_that("the cutoff argument is numeric", {
 
 testthat::test_that("the cutoff argument is in range [0, 1]", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_error( GetCloseMatches(string = word, sequence_strings = vec_getclose, n = 3L, cutoff = 1.1) )
@@ -179,6 +129,7 @@ testthat::test_that("the cutoff argument is in range [0, 1]", {
 
 testthat::test_that("the cutoff argument is in range [0, 1]", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("difflib")
 
   testthat::expect_true( GetCloseMatches(string = word, sequence_strings = vec_getclose, n = 3L, cutoff = 0.6) == "Frodo Baggins" )
@@ -196,6 +147,7 @@ testthat::test_that("the cutoff argument is in range [0, 1]", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -206,6 +158,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -216,6 +169,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -226,6 +180,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -236,6 +191,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -246,6 +202,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("the full_process parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -269,6 +226,7 @@ testthat::test_that("the full_process parameter is boolean", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -279,6 +237,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -289,6 +248,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -299,6 +259,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -309,6 +270,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -319,6 +281,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("the full_process parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -342,6 +305,7 @@ testthat::test_that("the full_process parameter is boolean", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -352,6 +316,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -362,6 +327,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -372,6 +338,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -394,6 +361,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -404,6 +372,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -414,6 +383,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -424,6 +394,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -434,6 +405,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -458,6 +430,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -468,6 +441,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -478,6 +452,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -488,6 +463,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -498,6 +474,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -522,6 +499,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -532,6 +510,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -542,6 +521,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -552,6 +532,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -576,6 +557,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -586,6 +568,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -596,6 +579,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -606,6 +590,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -629,6 +614,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -639,6 +625,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -649,6 +636,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -659,6 +647,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -669,6 +658,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -679,6 +669,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("the full_process parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -689,6 +680,7 @@ testthat::test_that("the full_process parameter is boolean", {
 
 testthat::test_that("the method returns a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -705,6 +697,7 @@ testthat::test_that("the method returns a numeric value", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -715,6 +708,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -725,6 +719,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -735,6 +730,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -758,6 +754,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -768,6 +765,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -778,6 +776,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -788,6 +787,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -798,6 +798,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -808,6 +809,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("the full_process parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -818,6 +820,7 @@ testthat::test_that("the full_process parameter is boolean", {
 
 testthat::test_that("the method returns a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.fuzz")
 
   init = FuzzMatcher$new()
@@ -837,6 +840,7 @@ testthat::test_that("the method returns a numeric value", {
 
 testthat::test_that("input is non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -847,6 +851,7 @@ testthat::test_that("input is non-NULL", {
 
 testthat::test_that("input is character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -857,6 +862,7 @@ testthat::test_that("input is character string", {
 
 testthat::test_that("the force_ascii parameter is boolean", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -867,6 +873,7 @@ testthat::test_that("the force_ascii parameter is boolean", {
 
 testthat::test_that("the method returns the expected output", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -880,6 +887,7 @@ testthat::test_that("the method returns the expected output", {
 
 testthat::test_that("input is numeric", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -890,6 +898,7 @@ testthat::test_that("input is numeric", {
 
 testthat::test_that("input is numeric", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -904,6 +913,7 @@ testthat::test_that("input is numeric", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -914,6 +924,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -924,6 +935,7 @@ testthat::test_that("both inputs are non-NULL", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -934,6 +946,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("both inputs are character strings", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -944,6 +957,7 @@ testthat::test_that("both inputs are character strings", {
 
 testthat::test_that("the method returns the expected output", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -960,6 +974,7 @@ testthat::test_that("the method returns the expected output", {
 
 testthat::test_that("the method takes as input a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -971,6 +986,7 @@ testthat::test_that("the method takes as input a numeric value", {
 
 testthat::test_that("the method takes as input a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -982,11 +998,13 @@ testthat::test_that("the method takes as input a numeric value", {
 
 testthat::test_that("the method takes as input a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
 
-  testthat::expect_true( init$Asciidammit(input = data.frame(123)) == "{'X123': 123.0}" )
+  testthat::expect_true( init$Asciidammit(input = data.frame(123)) == "    X123\n0  123.0" )
+  # testthat::expect_true( init$Asciidammit(input = data.frame(123)) == "{'X123': 123.0}" )
 })
 
 
@@ -994,6 +1012,7 @@ testthat::test_that("the method takes as input a numeric value", {
 
 testthat::test_that("the method takes as input a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1006,6 +1025,7 @@ testthat::test_that("the method takes as input a numeric value", {
 
 testthat::test_that("the method takes as input a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1021,6 +1041,7 @@ testthat::test_that("the method takes as input a numeric value", {
 
 testthat::test_that("input is non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1031,6 +1052,7 @@ testthat::test_that("input is non-NULL", {
 
 testthat::test_that("input is character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1042,6 +1064,7 @@ testthat::test_that("input is character string", {
 
 testthat::test_that("the method returns the expected output", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1057,6 +1080,7 @@ testthat::test_that("the method returns the expected output", {
 
 testthat::test_that("input is non-NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1067,6 +1091,7 @@ testthat::test_that("input is non-NULL", {
 
 testthat::test_that("input is character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1078,6 +1103,7 @@ testthat::test_that("input is character string", {
 
 testthat::test_that("the method returns the expected output , the input is of length greater than 0", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1089,6 +1115,7 @@ testthat::test_that("the method returns the expected output , the input is of le
 
 testthat::test_that("the method returns the expected output , the input is of length equal to 0", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.utils")
 
   init = FuzzUtils$new()
@@ -1109,6 +1136,7 @@ testthat::test_that("the method returns the expected output , the input is of le
 
 testthat::test_that("the string argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1119,6 +1147,7 @@ testthat::test_that("the string argument is not NULL", {
 
 testthat::test_that("the sequence_strings argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1130,6 +1159,7 @@ testthat::test_that("the sequence_strings argument is not NULL", {
 
 testthat::test_that("the string argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1140,6 +1170,7 @@ testthat::test_that("the string argument is a character string", {
 
 testthat::test_that("the sequence_strings argument is a character vector", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1151,6 +1182,7 @@ testthat::test_that("the sequence_strings argument is a character vector", {
 
 testthat::test_that("the processor argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1165,6 +1197,7 @@ testthat::test_that("the processor argument is a function in case that is not NU
 
 testthat::test_that("the scorer argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1180,6 +1213,7 @@ testthat::test_that("the scorer argument is a function in case that is not NULL"
 
 testthat::test_that("the limit argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1194,6 +1228,7 @@ testthat::test_that("the limit argument is a numeric value", {
 
 testthat::test_that("returns the expected output if scorer is NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1211,6 +1246,7 @@ testthat::test_that("returns the expected output if scorer is NULL - processor t
 
 testthat::test_that("returns the expected output if scorer is not NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1232,6 +1268,7 @@ testthat::test_that("returns the expected output if scorer is not NULL - process
 
 testthat::test_that("the string argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1242,6 +1279,7 @@ testthat::test_that("the string argument is not NULL", {
 
 testthat::test_that("the sequence_strings argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1253,6 +1291,7 @@ testthat::test_that("the sequence_strings argument is not NULL", {
 
 testthat::test_that("the string argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1263,6 +1302,7 @@ testthat::test_that("the string argument is a character string", {
 
 testthat::test_that("the sequence_strings argument is a character vector", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1274,6 +1314,7 @@ testthat::test_that("the sequence_strings argument is a character vector", {
 
 testthat::test_that("the processor argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1288,6 +1329,7 @@ testthat::test_that("the processor argument is a function in case that is not NU
 
 testthat::test_that("the scorer argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1302,6 +1344,7 @@ testthat::test_that("the scorer argument is a function in case that is not NULL"
 
 testthat::test_that("the score_cutoff argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1316,6 +1359,7 @@ testthat::test_that("the score_cutoff argument is a numeric value", {
 
 testthat::test_that("the limit argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1330,6 +1374,7 @@ testthat::test_that("the limit argument is a numeric value", {
 
 testthat::test_that("returns the expected output if scorer is NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1347,6 +1392,7 @@ testthat::test_that("returns the expected output if scorer is NULL - processor t
 
 testthat::test_that("returns the expected output if scorer is not NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1369,6 +1415,7 @@ testthat::test_that("returns the expected output if scorer is not NULL - process
 
 testthat::test_that("the string argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1379,6 +1426,7 @@ testthat::test_that("the string argument is not NULL", {
 
 testthat::test_that("the sequence_strings argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1390,6 +1438,7 @@ testthat::test_that("the sequence_strings argument is not NULL", {
 
 testthat::test_that("the string argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1400,6 +1449,7 @@ testthat::test_that("the string argument is a character string", {
 
 testthat::test_that("the sequence_strings argument is a character vector", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1411,6 +1461,7 @@ testthat::test_that("the sequence_strings argument is a character vector", {
 
 testthat::test_that("the processor argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1425,6 +1476,7 @@ testthat::test_that("the processor argument is a function in case that is not NU
 
 testthat::test_that("the scorer argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1439,6 +1491,7 @@ testthat::test_that("the scorer argument is a function in case that is not NULL"
 
 testthat::test_that("the score_cutoff argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1453,6 +1506,7 @@ testthat::test_that("the score_cutoff argument is a numeric value", {
 
 testthat::test_that("returns the expected output if scorer is NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1470,6 +1524,7 @@ testthat::test_that("returns the expected output if scorer is NULL - processor t
 
 testthat::test_that("returns the expected output if scorer is not NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1492,6 +1547,7 @@ testthat::test_that("returns the expected output if scorer is not NULL - process
 
 testthat::test_that("the string argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1502,6 +1558,7 @@ testthat::test_that("the string argument is not NULL", {
 
 testthat::test_that("the sequence_strings argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1513,6 +1570,7 @@ testthat::test_that("the sequence_strings argument is not NULL", {
 
 testthat::test_that("the string argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1523,6 +1581,7 @@ testthat::test_that("the string argument is a character string", {
 
 testthat::test_that("the sequence_strings argument is a character vector", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1534,6 +1593,7 @@ testthat::test_that("the sequence_strings argument is a character vector", {
 
 testthat::test_that("the processor argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1548,6 +1608,7 @@ testthat::test_that("the processor argument is a function in case that is not NU
 
 testthat::test_that("the scorer argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1562,6 +1623,7 @@ testthat::test_that("the scorer argument is a function in case that is not NULL"
 
 testthat::test_that("the score_cutoff argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1576,6 +1638,7 @@ testthat::test_that("the score_cutoff argument is a numeric value", {
 
 testthat::test_that("returns the expected output if scorer is NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1593,6 +1656,7 @@ testthat::test_that("returns the expected output if scorer is NULL - processor t
 
 testthat::test_that("returns the expected output if scorer is not NULL - processor takes default function", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1614,6 +1678,7 @@ testthat::test_that("returns the expected output if scorer is not NULL - process
 
 testthat::test_that("the contains_dupes argument is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1625,6 +1690,7 @@ testthat::test_that("the contains_dupes argument is not NULL", {
 
 testthat::test_that("the contains_dupes argument is a character string", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1635,6 +1701,7 @@ testthat::test_that("the contains_dupes argument is a character string", {
 
 testthat::test_that("the scorer argument is a function in case that is not NULL", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1646,6 +1713,7 @@ testthat::test_that("the scorer argument is a function in case that is not NULL"
 
 testthat::test_that("the threshold argument is a numeric value", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1656,6 +1724,7 @@ testthat::test_that("the threshold argument is a numeric value", {
 
 testthat::test_that("it returns the expected output", {
 
+  skip_test_if_no_python()
   skip_test_if_no_module("fuzzywuzzy.process")
 
   init = FuzzExtract$new()
@@ -1679,6 +1748,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1689,6 +1759,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1699,6 +1770,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1709,6 +1781,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1719,6 +1792,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1730,6 +1804,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1740,6 +1815,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1750,6 +1826,7 @@ if (.Platform$OS.type != "windows") {
 
   testthat::test_that("the method returns a numeric value", {
 
+    skip_test_if_no_python()
     skip_test_if_no_module("fuzzywuzzy.fuzz")
 
     init = FuzzMatcher$new()
@@ -1774,376 +1851,422 @@ if (.Platform$OS.type != "windows") {
 
 if (.Platform$OS.type != "windows") {                         # run the decoding tests only on unix OS's due to an exception-error on win32
 
-  if (reticulate::py_available()) {                           # add this line otherwise solaris OS raises an error
+  py_avail = NULL
 
-    if (tests_python2()) {                                    # running the "test_python2()" function on win32 will raise an error  ["Your current architecture is 32bit however this version of Python is compiled for 64bit" -- on win64 works error-free ]
+  try({
+    py_avail = reticulate::py_available(initialize = FALSE)
+  }, silent=TRUE)
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_set_ratio ] function", {
+  if (!is.null(py_avail)) {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+    if (py_avail) {                           # add this line otherwise solaris OS raises an error
 
-        init = FuzzMatcher$new(decoding = NULL)
+      py_vers = tests_python2()
 
-        testthat::expect_true( init$Partial_token_set_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+      if (!is.null(py_vers)) {                # running the "test_python2()" function on win32 will raise an error  ["Your current architecture is 32bit however this version of Python is compiled for 64bit" -- on win64 works error-free ]
 
+        if (py_vers) {
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Partial_token_set_ratio ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_set_ratio ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$Partial_token_set_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_true( init$Partial_token_set_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+          })
 
 
-      # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_sort_ratio ] function", {
-      #
-      #   skip_test_if_no_module("fuzzywuzzy.fuzz")
-      #
-      #   init = FuzzMatcher$new(decoding = NULL)
-      #
-      #   testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      # })
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Partial_token_set_ratio ] function", {
 
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Partial_token_sort_ratio ] function", {
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            testthat::expect_true( init$Partial_token_set_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+          # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ Partial_token_sort_ratio ] function", {
+          #
+          #   skip_test_if_no_module("fuzzywuzzy.fuzz")
+          #
+          #   init = FuzzMatcher$new(decoding = NULL)
+          #
+          #   testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+          # })
 
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ QRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Partial_token_sort_ratio ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = NULL)
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_true( init$QRATIO(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+            testthat::expect_true( init$Partial_token_sort_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ QRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ QRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$QRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_true( init$QRATIO(string1 = one_word, string2 = seq_words[1]) == 0 )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ WRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ QRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = NULL)
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_true( init$WRATIO(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+            testthat::expect_true( init$QRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ WRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value (incorrect result) for the [ WRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$WRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_true( init$WRATIO(string1 = one_word, string2 = seq_words[1]) == 0 )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ WRATIO ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ UWRATIO ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        init = FuzzMatcher$new(decoding = NULL)
+            testthat::expect_true( init$WRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
-        testthat::expect_error( init$UWRATIO(string1 = one_word, string2 = seq_words[1]) )
-      })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ UWRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ UWRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$UWRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_error( init$UWRATIO(string1 = one_word, string2 = seq_words[1]) )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ UQRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ UWRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = NULL)
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_error( init$UQRATIO(string1 = one_word, string2 = seq_words[1]) )
-      })
+            testthat::expect_true( init$UWRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ UQRATIO ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ UQRATIO ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$UQRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_error( init$UQRATIO(string1 = one_word, string2 = seq_words[1]) )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ UQRATIO ] function", {
 
-      # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_sort_ratio ] function", {
-      #
-      #   skip_test_if_no_module("fuzzywuzzy.fuzz")
-      #
-      #   init = FuzzMatcher$new(decoding = NULL)
-      #
-      #   testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      # })
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Token_sort_ratio ] function", {
+            testthat::expect_true( init$UQRATIO(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+          # testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_sort_ratio ] function", {
+          #
+          #   skip_test_if_no_module("fuzzywuzzy.fuzz")
+          #
+          #   init = FuzzMatcher$new(decoding = NULL)
+          #
+          #   testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+          # })
 
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_set_ratio ] function", {
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Token_sort_ratio ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = NULL)
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        testthat::expect_true( init$Token_set_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
-      })
+            testthat::expect_true( init$Token_sort_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Token_set_ratio ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Token_set_ratio ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            init = FuzzMatcher$new(decoding = NULL)
 
-        testthat::expect_true( init$Token_set_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
-      })
+            testthat::expect_true( init$Token_set_ratio(string1 = one_word, string2 = seq_words[1]) == 0 )
+          })
 
 
-      # randomly pick a function and validate the score with an ascii character string
-      #-------------------------------------------------------------------------------
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for the [ Token_set_ratio ] function", {
 
-      testthat::test_that("validate for a random method of the FuzzMatcher class that both ascii and non-ascii character strings give the same score", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
-        init = FuzzMatcher$new(decoding = 'utf-8')
+            testthat::expect_true( init$Token_set_ratio(string1 = one_word, string2 = seq_words[1]) > 0 )
+          })
 
-        non_ascii = init$Token_set_ratio(string1 = one_word, string2 = seq_words[1])
 
-        init1 = FuzzMatcher$new(decoding = NULL)
+          # randomly pick a function and validate the score with an ascii character string
+          #-------------------------------------------------------------------------------
 
-        ascii = init$Token_set_ratio(string1 = valid_one_word, string2 = valid_seq_words[1])
+          testthat::test_that("validate for a random method of the FuzzMatcher class that both ascii and non-ascii character strings give the same score", {
 
-        testthat::expect_true( non_ascii == ascii )
-      })
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FuzzUtils [ methods ]
+            init = FuzzMatcher$new(decoding = 'utf-8')
 
+            non_ascii = init$Token_set_ratio(string1 = one_word, string2 = seq_words[1])
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an empty string for the [ Full_process ] function", {
+            init1 = FuzzMatcher$new(decoding = NULL)
 
-        skip_test_if_no_module("fuzzywuzzy.utils")
+            ascii = init$Token_set_ratio(string1 = valid_one_word, string2 = valid_seq_words[1])
 
-        init = FuzzUtils$new()
+            testthat::expect_true( non_ascii == ascii )
+          })
 
-        testthat::expect_true( init$Full_process(string = one_word, decoding = NULL) == "" )
-      })
+          #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FuzzUtils [ methods ]
 
 
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an empty string for the [ Full_process ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns the initial string after removing the special characters for the [ Full_process ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.utils")
 
-        skip_test_if_no_module("fuzzywuzzy.utils")
+            init = FuzzUtils$new()
 
-        init = FuzzUtils$new()
+            testthat::expect_true( init$Full_process(string = one_word, decoding = NULL) == "" )
+          })
 
-        special_chars = paste0(one_word, "%$&-*")                    # add some special characters
 
-        testthat::expect_true( init$Full_process(string = special_chars, decoding = 'utf-8') == one_word )
-      })
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns the initial string after removing the special characters for the [ Full_process ] function", {
 
-      #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FuzzExtract [ methods ]
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.utils")
 
+            init = FuzzUtils$new()
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ Extract ] function", {
+            special_chars = paste0(one_word, "%$&-*")                    # add some special characters
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            testthat::expect_true( init$Full_process(string = special_chars, decoding = 'utf-8') == one_word )
+          })
 
-        init = FuzzExtract$new(decoding = NULL)
 
-        testthat::expect_true( sum(unlist(lapply(init$Extract(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
-      })
+          #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FuzzExtract [ methods ]
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ Extract ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ Extract ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        init = FuzzExtract$new(decoding = 'utf-8')
+            init = FuzzExtract$new(decoding = NULL)
 
-        testthat::expect_true( sum(unlist(lapply(init$Extract(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
-      })
+            testthat::expect_true( sum(unlist(lapply(init$Extract(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ Extract ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractBests ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-        init = FuzzExtract$new(decoding = NULL)
+            testthat::expect_true( sum(unlist(lapply(init$Extract(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
+          })
 
-        testthat::expect_true( sum(unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
-      })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractBests ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractBests ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        init = FuzzExtract$new(decoding = 'utf-8')
+            init = FuzzExtract$new(decoding = NULL)
 
-        testthat::expect_true( sum(unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
-      })
+            testthat::expect_true( sum(unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractBests ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractWithoutOrder ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-        init = FuzzExtract$new(decoding = NULL)
+            testthat::expect_true( sum(unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
+          })
 
-        testthat::expect_true( sum(unlist(lapply(init$ExtractWithoutOrder(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
-      })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractWithoutOrder ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractWithoutOrder ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        init = FuzzExtract$new(decoding = 'utf-8')
+            init = FuzzExtract$new(decoding = NULL)
 
-        testthat::expect_true( sum(unlist(lapply(init$ExtractWithoutOrder(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
-      })
+            testthat::expect_true( sum(unlist(lapply(init$ExtractWithoutOrder(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))) == 0 )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractWithoutOrder ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractOne ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-        init = FuzzExtract$new(decoding = NULL)
+            testthat::expect_true( sum(unlist(lapply(init$ExtractWithoutOrder(string = one_word, sequence_strings = seq_words), function(x) x[[2]] > 0))) == 2 )
+          })
 
-        testthat::expect_true( init$ExtractOne(string = one_word, sequence_strings = seq_words)[[2]] == 0 )
-      })
 
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractOne ] function", {
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns a 0 value for both sublists for the [ ExtractOne ] function", {
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        init = FuzzExtract$new(decoding = 'utf-8')
+            init = FuzzExtract$new(decoding = NULL)
 
-        testthat::expect_true( init$ExtractOne(string = one_word, sequence_strings = seq_words)[[2]] > 0 )
-      })
+            testthat::expect_true( init$ExtractOne(string = one_word, sequence_strings = seq_words)[[2]] == 0 )
+          })
 
 
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ ExtractOne ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Dedupe ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-        init = FuzzExtract$new(decoding = NULL)
+            testthat::expect_true( init$ExtractOne(string = one_word, sequence_strings = seq_words)[[2]] > 0 )
+          })
 
-        duplicate_sec = c(seq_words, seq_words)
 
-        testthat::expect_error( init$Dedupe(contains_dupes = duplicate_sec) )
-      })
 
+          testthat::test_that("if the 'decoding' parameter is equal to NULL it returns an error for the [ Dedupe ] function", {
 
-      testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ Dedupe ] function", {
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            init = FuzzExtract$new(decoding = NULL)
 
-        init = FuzzExtract$new(decoding = 'utf-8')
+            duplicate_sec = c(seq_words, seq_words)
 
-        duplicate_sec = c(seq_words, seq_words)       # create a duplicate vector
+            testthat::expect_error( init$Dedupe(contains_dupes = duplicate_sec) )
+          })
 
-        tmp_res = init$Dedupe(contains_dupes = duplicate_sec)
 
-        testthat::expect_true( sum(seq_words %in% tmp_res) == length(seq_words) )
-      })
+          testthat::test_that("if the 'decoding' parameter is NOT equal to NULL it returns a value greater than 0 for both sublists for the [ Dedupe ] function", {
 
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-      # randomly pick a function and validate the score with an ascii character string
-      #-------------------------------------------------------------------------------
+            duplicate_sec = c(seq_words, seq_words)       # create a duplicate vector
 
-      testthat::test_that("validate for a random method of the FuzzExtract class that both ascii and non-ascii character strings give the same score", {
+            tmp_res = init$Dedupe(contains_dupes = duplicate_sec)
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            testthat::expect_true( sum(seq_words %in% tmp_res) == length(seq_words) )
+          })
 
-        init = FuzzExtract$new(decoding = 'utf-8')
 
-        non_ascii = unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))
 
-        init_valid = FuzzExtract$new(decoding = NULL)
+          # randomly pick a function and validate the score with an ascii character string
+          #-------------------------------------------------------------------------------
 
-        ascii = unlist(lapply(init$ExtractBests(string = valid_one_word, sequence_strings = valid_seq_words), function(x) x[[2]]))
+          testthat::test_that("validate for a random method of the FuzzExtract class that both ascii and non-ascii character strings give the same score", {
 
-        testthat::expect_true( sum(non_ascii == ascii) == 2 )
-      })
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
 
+            init = FuzzExtract$new(decoding = 'utf-8')
 
-      #========================================================================================== Error cases for all (three) initialization classes
+            non_ascii = unlist(lapply(init$ExtractBests(string = one_word, sequence_strings = seq_words), function(x) x[[2]]))
 
+            init_valid = FuzzExtract$new(decoding = NULL)
 
-      testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzMatcher ] class", {
+            ascii = unlist(lapply(init$ExtractBests(string = valid_one_word, sequence_strings = valid_seq_words), function(x) x[[2]]))
 
-        skip_test_if_no_module("fuzzywuzzy.fuzz")
+            testthat::expect_true( sum(non_ascii == ascii) == 2 )
+          })
 
-        testthat::expect_error( FuzzMatcher$new(decoding = list()) )
-      })
 
+          #========================================================================================== Error cases for all (three) initialization classes
 
-      testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzUtils ] class", {
 
-        skip_test_if_no_module("fuzzywuzzy.utils")
+          testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzMatcher ] class", {
 
-        init = FuzzUtils$new()
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.fuzz")
 
-        testthat::expect_error( init$Full_process(string = one_word, decoding = list()) )
-      })
+            testthat::expect_error( FuzzMatcher$new(decoding = list()) )
+          })
 
 
-      testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzExtract ] class", {
+          testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzUtils ] class", {
 
-        skip_test_if_no_module("fuzzywuzzy.process")
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.utils")
 
-        testthat::expect_error( FuzzExtract$new(decoding = list()) )
-      })
+            init = FuzzUtils$new()
+
+            testthat::expect_error( init$Full_process(string = one_word, decoding = list()) )
+          })
+
+
+          testthat::test_that("if the 'decoding' parameter is not a character string it returns an error for the [ FuzzExtract ] class", {
+
+            skip_test_if_no_python()
+            skip_test_if_no_module("fuzzywuzzy.process")
+
+            testthat::expect_error( FuzzExtract$new(decoding = list()) )
+          })
+        }
+      }
     }
   }
 }
+

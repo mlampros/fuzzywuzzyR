@@ -1,4 +1,9 @@
 
+## fuzzywuzzyR 1.0.4
+
+* I've added the *CITATION* file in the *inst* directory
+
+
 ## fuzzywuzzyR 1.0.3
 
 I added an exception in the additional tests, to avoid Solaris OS throw an error if python is not available

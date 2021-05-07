@@ -4,22 +4,12 @@
 \name{FuzzMatcher}
 \alias{FuzzMatcher}
 \title{Fuzzy character string matching ( ratios )}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 # init <- FuzzMatcher$new(decoding = NULL)
 }
-\arguments{
-\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
-
-\item{string1}{a character string.}
-
-\item{string2}{a character string.}
-
-\item{force_ascii}{allow only ASCII characters (force convert to ascii)}
-
-\item{full_process}{either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case}
-}
 \description{
+Fuzzy character string matching ( ratios )
+
 Fuzzy character string matching ( ratios )
 }
 \details{
@@ -100,41 +90,319 @@ the \emph{Token_set_ratio} method works in the following way : 1. Find all alpha
 
 \examples{
 
-if (check_availability()) {
+try({
+  if (reticulate::py_available(initialize = FALSE)) {
 
+    if (check_availability()) {
 
-  library(fuzzywuzzyR)
+      library(fuzzywuzzyR)
 
-  s1 = "Atlanta Falcons"
+      s1 = "Atlanta Falcons"
 
-  s2 = "New York Jets"
+      s2 = "New York Jets"
 
-  init = FuzzMatcher$new()
+      init = FuzzMatcher$new()
 
-  init$Partial_token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+      init$Partial_token_set_ratio(string1 = s1,
+                                   string2 = s2,
+                                   force_ascii = TRUE,
+                                   full_process = TRUE)
 
-  init$Partial_token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+      init$Partial_token_sort_ratio(string1 = s1,
+                                    string2 = s2,
+                                    force_ascii = TRUE,
+                                    full_process = TRUE)
 
-  init$Ratio(string1 = s1, string2 = s2)
+      init$Ratio(string1 = s1, string2 = s2)
 
-  init$QRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+      init$QRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
 
-  init$WRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+      init$WRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
 
-  init$UWRATIO(string1 = s1, string2 = s2)
+      init$UWRATIO(string1 = s1, string2 = s2)
 
-  init$UQRATIO(string1 = s1, string2 = s2)
+      init$UQRATIO(string1 = s1, string2 = s2)
 
-  init$Token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+      init$Token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
 
-  init$Partial_ratio(string1 = s1, string2 = s2)
+      init$Partial_ratio(string1 = s1, string2 = s2)
 
-  init$Token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
-
-
-}
+      init$Token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+    }
+  }
+}, silent=TRUE)
 }
 \references{
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{FuzzMatcher$new()}}
+\item \href{#method-Partial_token_set_ratio}{\code{FuzzMatcher$Partial_token_set_ratio()}}
+\item \href{#method-Partial_token_sort_ratio}{\code{FuzzMatcher$Partial_token_sort_ratio()}}
+\item \href{#method-Ratio}{\code{FuzzMatcher$Ratio()}}
+\item \href{#method-QRATIO}{\code{FuzzMatcher$QRATIO()}}
+\item \href{#method-WRATIO}{\code{FuzzMatcher$WRATIO()}}
+\item \href{#method-UWRATIO}{\code{FuzzMatcher$UWRATIO()}}
+\item \href{#method-UQRATIO}{\code{FuzzMatcher$UQRATIO()}}
+\item \href{#method-Token_sort_ratio}{\code{FuzzMatcher$Token_sort_ratio()}}
+\item \href{#method-Partial_ratio}{\code{FuzzMatcher$Partial_ratio()}}
+\item \href{#method-Token_set_ratio}{\code{FuzzMatcher$Token_set_ratio()}}
+\item \href{#method-clone}{\code{FuzzMatcher$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$new(decoding = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{decoding}}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Partial_token_set_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Partial_token_set_ratio}{}}}
+\subsection{Method \code{Partial_token_set_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_token_set_ratio(
+  string1 = NULL,
+  string2 = NULL,
+  force_ascii = TRUE,
+  full_process = TRUE
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+
+\item{\code{full_process}}{either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Partial_token_sort_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Partial_token_sort_ratio}{}}}
+\subsection{Method \code{Partial_token_sort_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_token_sort_ratio(
+  string1 = NULL,
+  string2 = NULL,
+  force_ascii = TRUE,
+  full_process = TRUE
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+
+\item{\code{full_process}}{either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Ratio}{}}}
+\subsection{Method \code{Ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Ratio(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-QRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-QRATIO}{}}}
+\subsection{Method \code{QRATIO()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$QRATIO(string1 = NULL, string2 = NULL, force_ascii = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-WRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-WRATIO}{}}}
+\subsection{Method \code{WRATIO()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$WRATIO(string1 = NULL, string2 = NULL, force_ascii = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-UWRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-UWRATIO}{}}}
+\subsection{Method \code{UWRATIO()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$UWRATIO(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-UQRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-UQRATIO}{}}}
+\subsection{Method \code{UQRATIO()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$UQRATIO(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Token_sort_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Token_sort_ratio}{}}}
+\subsection{Method \code{Token_sort_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Token_sort_ratio(
+  string1 = NULL,
+  string2 = NULL,
+  force_ascii = TRUE,
+  full_process = TRUE
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+
+\item{\code{full_process}}{either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Partial_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Partial_ratio}{}}}
+\subsection{Method \code{Partial_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_ratio(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Token_set_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-Token_set_ratio}{}}}
+\subsection{Method \code{Token_set_ratio()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Token_set_ratio(
+  string1 = NULL,
+  string2 = NULL,
+  force_ascii = TRUE,
+  full_process = TRUE
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+
+\item{\code{full_process}}{either TRUE or FALSE. If TRUE then it process the string by : 1. removing all but letters and numbers, 2. trim whitespace, 3. force to lower case}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

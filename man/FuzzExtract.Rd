@@ -4,30 +4,12 @@
 \name{FuzzExtract}
 \alias{FuzzExtract}
 \title{Fuzzy extraction from a sequence}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 # init <- FuzzExtract$new(decoding = NULL)
 }
-\arguments{
-\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
-
-\item{string}{a character string.}
-
-\item{sequence_strings}{a character string vector}
-
-\item{contains_dupes}{a vector of strings that we would like to dedupe}
-
-\item{processor}{either NULL or a function of the form f(a) -> b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.}
-
-\item{scorer}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
-
-\item{limit}{An integer value for the maximum number of elements to be returned. Defaults to 5L}
-
-\item{score_cutoff}{an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0}
-
-\item{threshold}{the numerical value (0, 100) point at which we expect to find duplicates. Defaults to 70 out of 100}
-}
 \description{
+Fuzzy extraction from a sequence
+
 Fuzzy extraction from a sequence
 }
 \details{
@@ -77,60 +59,251 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.
 
 \examples{
 
-if (check_availability()) {
+try({
+  if (reticulate::py_available(initialize = FALSE)) {
+
+    if (check_availability()) {
+
+      library(fuzzywuzzyR)
+
+      word = "new york jets"
+
+      choices = c("Atlanta Falcons", "New York Jets", "New York Giants", "Dallas Cowboys")
+
+      duplicat = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin', 'Samuel L. Jackson',
+
+                   'F. Baggins', 'Frody Baggins', 'Bilbo Baggins')
+
+      #------------
+      # processor :
+      #------------
+
+      init_proc = FuzzUtils$new()
+
+      PROC = init_proc$Full_process    # class process-method
+
+      PROC1 = tolower                  # base R function
+
+      #---------
+      # scorer :
+      #---------
+
+      init_scor = FuzzMatcher$new()
+
+      SCOR = init_scor$WRATIO
 
 
-  library(fuzzywuzzyR)
+      init <- FuzzExtract$new()
 
-  word = "new york jets"
+      init$Extract(string = word, sequence_strings = choices, processor = PROC, scorer = SCOR)
 
-  choices = c("Atlanta Falcons", "New York Jets", "New York Giants", "Dallas Cowboys")
+      init$ExtractBests(string = word, sequence_strings = choices, processor = PROC1,
 
-  duplicat = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin', 'Samuel L. Jackson',
+                        scorer = SCOR, score_cutoff = 0L, limit = 2L)
 
-               'F. Baggins', 'Frody Baggins', 'Bilbo Baggins')
+      init$ExtractWithoutOrder(string = word, sequence_strings = choices, processor = PROC,
 
-  #------------
-  # processor :
-  #------------
+                               scorer = SCOR, score_cutoff = 0L)
 
-  init_proc = FuzzUtils$new()
+      init$ExtractOne(string = word, sequence_strings = choices, processor = PROC,
 
-  PROC = init_proc$Full_process    # class process-method
+                      scorer = SCOR, score_cutoff = 0L)
 
-  PROC1 = tolower                  # base R function
+      init$Dedupe(contains_dupes = duplicat, threshold = 70L, scorer = SCOR)
 
-  #---------
-  # scorer :
-  #---------
-
-  init_scor = FuzzMatcher$new()
-
-  SCOR = init_scor$WRATIO
-
-
-  init <- FuzzExtract$new()
-
-  init$Extract(string = word, sequence_strings = choices, processor = PROC, scorer = SCOR)
-
-  init$ExtractBests(string = word, sequence_strings = choices, processor = PROC1,
-
-                    scorer = SCOR, score_cutoff = 0L, limit = 2L)
-
-  init$ExtractWithoutOrder(string = word, sequence_strings = choices, processor = PROC,
-
-                           scorer = SCOR, score_cutoff = 0L)
-
-  init$ExtractOne(string = word, sequence_strings = choices, processor = PROC,
-
-                  scorer = SCOR, score_cutoff = 0L)
-
-  init$Dedupe(contains_dupes = duplicat, threshold = 70L, scorer = SCOR)
-
-
-}
+    }
+  }
+}, silent=TRUE)
 }
 \references{
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{FuzzExtract$new()}}
+\item \href{#method-Extract}{\code{FuzzExtract$Extract()}}
+\item \href{#method-ExtractBests}{\code{FuzzExtract$ExtractBests()}}
+\item \href{#method-ExtractWithoutOrder}{\code{FuzzExtract$ExtractWithoutOrder()}}
+\item \href{#method-ExtractOne}{\code{FuzzExtract$ExtractOne()}}
+\item \href{#method-Dedupe}{\code{FuzzExtract$Dedupe()}}
+\item \href{#method-clone}{\code{FuzzExtract$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$new(decoding = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{decoding}}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Extract"></a>}}
+\if{latex}{\out{\hypertarget{method-Extract}{}}}
+\subsection{Method \code{Extract()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$Extract(
+  string = NULL,
+  sequence_strings = NULL,
+  processor = NULL,
+  scorer = NULL,
+  limit = 5L
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+
+\item{\code{sequence_strings}}{a character string vector}
+
+\item{\code{processor}}{either NULL or a function of the form f(a) -> b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.}
+
+\item{\code{scorer}}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
+
+\item{\code{limit}}{An integer value for the maximum number of elements to be returned. Defaults to 5L}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ExtractBests"></a>}}
+\if{latex}{\out{\hypertarget{method-ExtractBests}{}}}
+\subsection{Method \code{ExtractBests()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractBests(
+  string = NULL,
+  sequence_strings = NULL,
+  processor = NULL,
+  scorer = NULL,
+  score_cutoff = 0L,
+  limit = 5L
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+
+\item{\code{sequence_strings}}{a character string vector}
+
+\item{\code{processor}}{either NULL or a function of the form f(a) -> b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.}
+
+\item{\code{scorer}}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
+
+\item{\code{score_cutoff}}{an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0}
+
+\item{\code{limit}}{An integer value for the maximum number of elements to be returned. Defaults to 5L}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ExtractWithoutOrder"></a>}}
+\if{latex}{\out{\hypertarget{method-ExtractWithoutOrder}{}}}
+\subsection{Method \code{ExtractWithoutOrder()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractWithoutOrder(
+  string = NULL,
+  sequence_strings = NULL,
+  processor = NULL,
+  scorer = NULL,
+  score_cutoff = 0L
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+
+\item{\code{sequence_strings}}{a character string vector}
+
+\item{\code{processor}}{either NULL or a function of the form f(a) -> b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.}
+
+\item{\code{scorer}}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
+
+\item{\code{score_cutoff}}{an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ExtractOne"></a>}}
+\if{latex}{\out{\hypertarget{method-ExtractOne}{}}}
+\subsection{Method \code{ExtractOne()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractOne(
+  string = NULL,
+  sequence_strings = NULL,
+  processor = NULL,
+  scorer = NULL,
+  score_cutoff = 0L
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+
+\item{\code{sequence_strings}}{a character string vector}
+
+\item{\code{processor}}{either NULL or a function of the form f(a) -> b, where a is the query or individual choice and b is the choice to be used in matching. See the examples for more details.}
+
+\item{\code{scorer}}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
+
+\item{\code{score_cutoff}}{an integer value for the score threshold. No matches with a score less than this number will be returned. Defaults to 0}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Dedupe"></a>}}
+\if{latex}{\out{\hypertarget{method-Dedupe}{}}}
+\subsection{Method \code{Dedupe()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$Dedupe(contains_dupes = NULL, threshold = 70L, scorer = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{contains_dupes}}{a vector of strings that we would like to dedupe}
+
+\item{\code{threshold}}{the numerical value (0, 100) point at which we expect to find duplicates. Defaults to 70 out of 100}
+
+\item{\code{scorer}}{a function for scoring matches between the query and an individual processed choice. This should be a function of the form f(query, choice) -> int. By default, FuzzMatcher.WRATIO() is used and expects both query and choice to be strings. See the examples for more details.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

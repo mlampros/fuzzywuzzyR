@@ -1,0 +1,21 @@
+citHeader("Please cite both the package and the original software in your publications:")
+
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{fuzzywuzzyR}: Fuzzy String Matching",
+  author  = person("Lampros", "Mouselimis"),
+  year    = year,
+  note    = note,
+  url     = "https://CRAN.R-project.org/package=fuzzywuzzyR"
+)
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{fuzzywuzzy}: Fuzzy String Matching in Python",
+  author  = person("SeatGeek", "Inc"),
+  year    = "2014",
+  url     = "https://github.com/seatgeek/fuzzywuzzy"
+)

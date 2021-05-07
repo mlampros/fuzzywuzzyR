@@ -131,3 +131,21 @@ Use the following link to report bugs/issues,
 [https://github.com/mlampros/fuzzywuzzyR/issues](https://github.com/mlampros/fuzzywuzzyR/issues)
 
 <br>
+
+### **Citation:**
+
+If you use the code of this repository in your paper or research please cite both **fuzzywuzzyR** and the **original software** [https://cran.r-project.org/web/packages/fuzzywuzzyR/citation.html](https://cran.r-project.org/web/packages/fuzzywuzzyR/citation.html):
+
+<br>
+
+```R
+@Manual{,
+  title = {{fuzzywuzzyR}: Fuzzy String Matching},
+  author = {Lampros Mouselimis},
+  year = {2021},
+  note = {R package version 1.0.4},
+  url = {https://CRAN.R-project.org/package=fuzzywuzzyR},
+}
+```
+
+<br>

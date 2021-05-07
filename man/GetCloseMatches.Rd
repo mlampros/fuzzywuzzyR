@@ -4,8 +4,7 @@
 \alias{GetCloseMatches}
 \title{Matches of character strings}
 \usage{
-GetCloseMatches(string = NULL, sequence_strings = NULL, n = 3L,
-  cutoff = 0.6)
+GetCloseMatches(string = NULL, sequence_strings = NULL, n = 3L, cutoff = 0.6)
 }
 \arguments{
 \item{string}{a character string.}
@@ -25,19 +24,22 @@ which to match \emph{string} (typically a list of strings).
 }
 \examples{
 
-if (check_availability()) {
+try({
+  if (reticulate::py_available(initialize = FALSE)) {
 
+    if (check_availability()) {
 
-  library(fuzzywuzzyR)
+      library(fuzzywuzzyR)
 
-  vec = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
+      vec = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
 
-  str1 = 'Fra Bagg'
+      str1 = 'Fra Bagg'
 
-  GetCloseMatches(string = str1, sequence_strings = vec, n = 2L, cutoff = 0.6)
+      GetCloseMatches(string = str1, sequence_strings = vec, n = 2L, cutoff = 0.6)
 
-
-}
+    }
+  }
+}, silent=TRUE)
 }
 \references{
 https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison

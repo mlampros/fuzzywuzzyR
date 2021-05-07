@@ -6,14 +6,34 @@
 
 check_availability = function() {
 
-  if (reticulate::py_available() && reticulate::py_module_available("fuzzywuzzy") && reticulate::py_module_available("difflib")) {
+  builtins_av = fuzz = util_av = dif_av = extr_av = NULL
 
-    TRUE
-  }
+  try({
+    builtins_av = reticulate::import_builtins(convert = FALSE)                      # 'buildins' are used in non-ascii languages (see issue https://github.com/mlampros/fuzzywuzzyR/issues/3) where the R-function accepts a python object as input [ convert = FALSE ]
+  }, silent=TRUE)
 
-  else {
+  try({
+    fuzz = reticulate::import("fuzzywuzzy.fuzz", delay_load = TRUE)              # delay load foo module ( will only be loaded when accessed via $ )
+  }, silent=TRUE)
 
+  try({
+    util_av = reticulate::import("fuzzywuzzy.utils", delay_load = TRUE)
+  }, silent=TRUE)
+
+  try({
+    dif_av = reticulate::import("difflib", delay_load = TRUE)
+  }, silent=TRUE)
+
+  try({
+    extr_av = reticulate::import("fuzzywuzzy.process", delay_load = TRUE)
+  }, silent=TRUE)
+
+
+  if (any(c(is.null(builtins_av), is.null(fuzz), is.null(util_av), is.null(dif_av), is.null(extr_av)))) {
     FALSE
+  }
+  else {
+    TRUE
   }
 }
 
@@ -21,16 +41,22 @@ check_availability = function() {
 
 
 #' This function returns TRUE if python2 is installed and used in the OS
-#' 
+#'
 #' @keywords internal
 
 is_python2 = function() {
-  
-  vers = reticulate::py_config()
-  
-  out = (as.numeric(vers$version) < 3)
-  
-  return(out)
+
+  vers = NULL
+
+  try({
+    vers <- reticulate::py_config()
+  }, silent=TRUE)
+
+  if (!is.null(vers)) {
+    vers = (as.numeric(vers$version) < 3)
+  }
+
+  return(vers)
 }
 
 
@@ -96,29 +122,32 @@ is_python2 = function() {
 #' @usage # init <- SequenceMatcher$new(string1 = NULL, string2 = NULL)
 #' @examples
 #'
-#' if (check_availability()) {
+#' try({
+#'   if (reticulate::py_available(initialize = FALSE)) {
 #'
+#'     if (check_availability()) {
 #'
-#'   library(fuzzywuzzyR)
+#'       library(fuzzywuzzyR)
 #'
-#'   s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
+#'       s1 = ' It was a dark and stormy night. I was all alone sitting on a red chair.'
 #'
-#'   s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
+#'       s2 = ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'
 #'
-#'   init = SequenceMatcher$new(string1 = s1, string2 = s2)
+#'       init = SequenceMatcher$new(string1 = s1, string2 = s2)
 #'
-#'   init$ratio()
+#'       init$ratio()
 #'
-#'   init$quick_ratio()
+#'       init$quick_ratio()
 #'
-#'   init$real_quick_ratio()
+#'       init$real_quick_ratio()
 #'
-#'   init$get_matching_blocks()
+#'       init$get_matching_blocks()
 #'
-#'   init$get_opcodes()
+#'       init$get_opcodes()
 #'
-#'
-#' }
+#'     }
+#'   }
+#' }, silent=TRUE)
 
 
 SequenceMatcher <- R6::R6Class("SequenceMatcher",
@@ -142,9 +171,9 @@ SequenceMatcher <- R6::R6Class("SequenceMatcher",
 
                                      stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                    }
-                                   
+
                                    private$tmp = DIFFLIB$SequenceMatcher(NULL, self$string1, self$string2)
-                                   
+
                                  },
 
                                  ratio = function() {
@@ -194,19 +223,23 @@ SequenceMatcher <- R6::R6Class("SequenceMatcher",
 #' @references https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/10383044/fuzzy-string-comparison
 #' @examples
 #'
-#' if (check_availability()) {
+#' try({
+#'   if (reticulate::py_available(initialize = FALSE)) {
 #'
+#'     if (check_availability()) {
 #'
-#'   library(fuzzywuzzyR)
+#'       library(fuzzywuzzyR)
 #'
-#'   vec = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
+#'       vec = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin')
 #'
-#'   str1 = 'Fra Bagg'
+#'       str1 = 'Fra Bagg'
 #'
-#'   GetCloseMatches(string = str1, sequence_strings = vec, n = 2L, cutoff = 0.6)
+#'       GetCloseMatches(string = str1, sequence_strings = vec, n = 2L, cutoff = 0.6)
 #'
-#'
-#' }
+#'     }
+#'   }
+#' }, silent=TRUE)
+
 
 
 GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutoff = 0.6) {
@@ -324,39 +357,48 @@ GetCloseMatches = function(string = NULL, sequence_strings = NULL, n = 3L, cutof
 #' @usage # init <- FuzzMatcher$new(decoding = NULL)
 #' @examples
 #'
-#' if (check_availability()) {
+#' try({
+#'   if (reticulate::py_available(initialize = FALSE)) {
 #'
+#'     if (check_availability()) {
 #'
-#'   library(fuzzywuzzyR)
+#'       library(fuzzywuzzyR)
 #'
-#'   s1 = "Atlanta Falcons"
+#'       s1 = "Atlanta Falcons"
 #'
-#'   s2 = "New York Jets"
+#'       s2 = "New York Jets"
 #'
-#'   init = FuzzMatcher$new()
+#'       init = FuzzMatcher$new()
 #'
-#'   init$Partial_token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+#'       init$Partial_token_set_ratio(string1 = s1,
+#'                                    string2 = s2,
+#'                                    force_ascii = TRUE,
+#'                                    full_process = TRUE)
 #'
-#'   init$Partial_token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+#'       init$Partial_token_sort_ratio(string1 = s1,
+#'                                     string2 = s2,
+#'                                     force_ascii = TRUE,
+#'                                     full_process = TRUE)
 #'
-#'   init$Ratio(string1 = s1, string2 = s2)
+#'       init$Ratio(string1 = s1, string2 = s2)
 #'
-#'   init$QRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+#'       init$QRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
 #'
-#'   init$WRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
+#'       init$WRATIO(string1 = s1, string2 = s2, force_ascii = TRUE)
 #'
-#'   init$UWRATIO(string1 = s1, string2 = s2)
+#'       init$UWRATIO(string1 = s1, string2 = s2)
 #'
-#'   init$UQRATIO(string1 = s1, string2 = s2)
+#'       init$UQRATIO(string1 = s1, string2 = s2)
 #'
-#'   init$Token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+#'       init$Token_sort_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
 #'
-#'   init$Partial_ratio(string1 = s1, string2 = s2)
+#'       init$Partial_ratio(string1 = s1, string2 = s2)
 #'
-#'   init$Token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
-#'
-#'
-#' }
+#'       init$Token_set_ratio(string1 = s1, string2 = s2, force_ascii = TRUE, full_process = TRUE)
+#'     }
+#'   }
+#' }, silent=TRUE)
+
 
 
 FuzzMatcher <- R6::R6Class("FuzzMatcher",
@@ -366,20 +408,20 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                              public = list(
 
                                initialize = function(decoding = NULL) {
-                                 
+
                                  self$decoding <- decoding
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
+
                                    if (!inherits(self$decoding, 'character')) {
-                                     
+
                                      stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
                                    }
                                  }
                                },
 
                                Partial_token_set_ratio = function(string1 = NULL, string2 = NULL, force_ascii = TRUE, full_process = TRUE) {
-                                 
+
                                  if (is.null(string1) || is.null(string2)) { stop("both parameters 'string1' and 'string2' should be non-NULL", call. = F) }
 
                                  if (!inherits(string1, c('character', 'vector')) || !inherits(string2, c('character', 'vector'))) {
@@ -390,16 +432,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                     
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -418,16 +465,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -442,14 +494,19 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                  }
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     }
                                    }
                                  }
 
@@ -466,16 +523,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  }
 
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -492,16 +554,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  }
 
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -516,14 +583,19 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                  }
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     }
                                    }
                                  }
 
@@ -538,14 +610,19 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                  }
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     }
                                    }
                                  }
 
@@ -564,16 +641,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -588,14 +670,19 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 
                                    stop("both parameters 'string1' and 'string2' should be of type character string", call. = F)
                                  }
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+                                     }
                                    }
                                  }
 
@@ -614,16 +701,21 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
                                  if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
 
                                  if (!is.logical(full_process)) stop("the 'full_process' parameter should be of type boolean", call. = F)
-                                 
+
                                  if (!is.null(self$decoding)) {
-                                   
-                                   if (is_python2()) {
-                                     
-                                     string1 <- BUILTINS$str(string1)$decode(self$decoding)
-                                   
-                                     string2 <- BUILTINS$str(string2)$decode(self$decoding)
-                                     
-                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                   py_vers = is_python2()
+
+                                   if (!is.null(py_vers)) {
+
+                                     if (py_vers) {
+
+                                       string1 <- BUILTINS$str(string1)$decode(self$decoding)
+
+                                       string2 <- BUILTINS$str(string2)$decode(self$decoding)
+
+                                       force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                     }
                                    }
                                  }
 
@@ -699,41 +791,43 @@ FuzzMatcher <- R6::R6Class("FuzzMatcher",
 #' @usage # init <- FuzzUtils$new()
 #' @examples
 #'
-#' if (check_availability()) {
+#' try({
+#'   if (reticulate::py_available(initialize = FALSE)) {
 #'
+#'     if (check_availability()) {
 #'
-#'   library(fuzzywuzzyR)
+#'       library(fuzzywuzzyR)
 #'
-#'   s1 = 'Frodo Baggins'
+#'       s1 = 'Frodo Baggins'
 #'
-#'   s2 = 'Bilbo Baggin'
+#'       s2 = 'Bilbo Baggin'
 #'
-#'   init = FuzzUtils$new()
+#'       init = FuzzUtils$new()
 #'
-#'   init$Full_process(string = s1, force_ascii = TRUE)
+#'       init$Full_process(string = s1, force_ascii = TRUE)
 #'
-#'   init$INTR(n = 2.0)
+#'       init$INTR(n = 2.0)
 #'
-#'   init$Make_type_consistent(string1 = s1, string2 = s2)
+#'       init$Make_type_consistent(string1 = s1, string2 = s2)
 #'
-#'   #------------------------------------
-#'   # 'Asciidammit' with character string
-#'   #------------------------------------
+#'       #------------------------------------
+#'       # 'Asciidammit' with character string
+#'       #------------------------------------
 #'
-#'   init$Asciidammit(input = s1)
+#'       init$Asciidammit(input = s1)
 #'
-#'   #----------------------------------------------------------------
-#'   # 'Asciidammit' with data.frame(123) [ or any kind of data type ]
-#'   #----------------------------------------------------------------
+#'       #----------------------------------------------------------------
+#'       # 'Asciidammit' with data.frame(123) [ or any kind of data type ]
+#'       #----------------------------------------------------------------
 #'
-#'   init$Asciidammit(input = data.frame(123))
+#'       init$Asciidammit(input = data.frame(123))
 #'
-#'   init$Asciionly(string = s1)
+#'       init$Asciionly(string = s1)
 #'
-#'   init$Validate_string(string = s2)
-#'
-#'
-#' }
+#'       init$Validate_string(string = s2)
+#'     }
+#'   }
+#' }, silent=TRUE)
 
 
 FuzzUtils <- R6::R6Class("FuzzUtils",
@@ -747,11 +841,11 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
                              },
 
                              Full_process = function(string = NULL, force_ascii = TRUE, decoding = NULL) {
-                               
+
                                if (!is.null(decoding)) {
-                                 
+
                                  if (!inherits(decoding, 'character')) {
-                                   
+
                                    stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
                                  }
                                }
@@ -764,14 +858,19 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
                                }
 
                                if (!is.logical(force_ascii)) stop("the 'force_ascii' parameter should be of type boolean", call. = F)
-                               
+
                                if (!is.null(decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   string <- BUILTINS$str(string)$decode(decoding)
-                                 
-                                   force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     string <- BUILTINS$str(string)$decode(decoding)
+
+                                     force_ascii = FALSE                                       # in case of 'decoding != NULL' force_ascii = FALSE
+                                   }
                                  }
                                }
 
@@ -812,7 +911,7 @@ FuzzUtils <- R6::R6Class("FuzzUtils",
 
                                  stop("the 'string' parameter should be of type character string", call. = F)
                                }
-                               
+
                                return(UTILS$asciionly(string))
                              },
 
@@ -922,58 +1021,61 @@ check_scorer = function(scorer, DECODING) {
 #' @usage # init <- FuzzExtract$new(decoding = NULL)
 #' @examples
 #'
-#' if (check_availability()) {
+#' try({
+#'   if (reticulate::py_available(initialize = FALSE)) {
+#'
+#'     if (check_availability()) {
+#'
+#'       library(fuzzywuzzyR)
+#'
+#'       word = "new york jets"
+#'
+#'       choices = c("Atlanta Falcons", "New York Jets", "New York Giants", "Dallas Cowboys")
+#'
+#'       duplicat = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin', 'Samuel L. Jackson',
+#'
+#'                    'F. Baggins', 'Frody Baggins', 'Bilbo Baggins')
+#'
+#'       #------------
+#'       # processor :
+#'       #------------
+#'
+#'       init_proc = FuzzUtils$new()
+#'
+#'       PROC = init_proc$Full_process    # class process-method
+#'
+#'       PROC1 = tolower                  # base R function
+#'
+#'       #---------
+#'       # scorer :
+#'       #---------
+#'
+#'       init_scor = FuzzMatcher$new()
+#'
+#'       SCOR = init_scor$WRATIO
 #'
 #'
-#'   library(fuzzywuzzyR)
+#'       init <- FuzzExtract$new()
 #'
-#'   word = "new york jets"
+#'       init$Extract(string = word, sequence_strings = choices, processor = PROC, scorer = SCOR)
 #'
-#'   choices = c("Atlanta Falcons", "New York Jets", "New York Giants", "Dallas Cowboys")
+#'       init$ExtractBests(string = word, sequence_strings = choices, processor = PROC1,
 #'
-#'   duplicat = c('Frodo Baggins', 'Tom Sawyer', 'Bilbo Baggin', 'Samuel L. Jackson',
+#'                         scorer = SCOR, score_cutoff = 0L, limit = 2L)
 #'
-#'                'F. Baggins', 'Frody Baggins', 'Bilbo Baggins')
+#'       init$ExtractWithoutOrder(string = word, sequence_strings = choices, processor = PROC,
 #'
-#'   #------------
-#'   # processor :
-#'   #------------
+#'                                scorer = SCOR, score_cutoff = 0L)
 #'
-#'   init_proc = FuzzUtils$new()
+#'       init$ExtractOne(string = word, sequence_strings = choices, processor = PROC,
 #'
-#'   PROC = init_proc$Full_process    # class process-method
+#'                       scorer = SCOR, score_cutoff = 0L)
 #'
-#'   PROC1 = tolower                  # base R function
+#'       init$Dedupe(contains_dupes = duplicat, threshold = 70L, scorer = SCOR)
 #'
-#'   #---------
-#'   # scorer :
-#'   #---------
-#'
-#'   init_scor = FuzzMatcher$new()
-#'
-#'   SCOR = init_scor$WRATIO
-#'
-#'
-#'   init <- FuzzExtract$new()
-#'
-#'   init$Extract(string = word, sequence_strings = choices, processor = PROC, scorer = SCOR)
-#'
-#'   init$ExtractBests(string = word, sequence_strings = choices, processor = PROC1,
-#'
-#'                     scorer = SCOR, score_cutoff = 0L, limit = 2L)
-#'
-#'   init$ExtractWithoutOrder(string = word, sequence_strings = choices, processor = PROC,
-#'
-#'                            scorer = SCOR, score_cutoff = 0L)
-#'
-#'   init$ExtractOne(string = word, sequence_strings = choices, processor = PROC,
-#'
-#'                   scorer = SCOR, score_cutoff = 0L)
-#'
-#'   init$Dedupe(contains_dupes = duplicat, threshold = 70L, scorer = SCOR)
-#'
-#'
-#' }
+#'     }
+#'   }
+#' }, silent=TRUE)
 
 
 FuzzExtract <- R6::R6Class("FuzzExtract",
@@ -983,13 +1085,13 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                            public = list(
 
                              initialize = function(decoding = NULL) {
-                               
+
                                self$decoding <- decoding
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
+
                                  if (!inherits(self$decoding, 'character')) {
-                                   
+
                                    stop("the 'decoding' parameter can be either NULL or a character string", call. = F)
                                  }
                                }
@@ -1014,14 +1116,19 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                if (!inherits(limit, c('numeric', 'integer'))) { stop("the 'limit' parameter should be of type integer", call. = F) }
 
                                limit = as.integer(limit)
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   string <- BUILTINS$str(string)$decode(self$decoding)
-                                 
-                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))    # add parallelization in case of big vectors [ if requested ]
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     string <- BUILTINS$str(string)$decode(self$decoding)
+
+                                     sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))    # add parallelization in case of big vectors [ if requested ]
+                                   }
                                  }
                                }
 
@@ -1053,14 +1160,19 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                limit = as.integer(limit)
 
                                score_cutoff = as.integer(score_cutoff)
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   string <- BUILTINS$str(string)$decode(self$decoding)
-                                 
-                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     string <- BUILTINS$str(string)$decode(self$decoding)
+
+                                     sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   }
                                  }
                                }
 
@@ -1089,14 +1201,19 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                if (!inherits(score_cutoff, c('numeric', 'integer'))) { stop("the 'score_cutoff' parameter should be of type integer", call. = F) }
 
                                score_cutoff = as.integer(score_cutoff)
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   string <- BUILTINS$str(string)$decode(self$decoding)
-                                 
-                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     string <- BUILTINS$str(string)$decode(self$decoding)
+
+                                     sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   }
                                  }
                                }
 
@@ -1127,14 +1244,19 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                if (!inherits(score_cutoff, c('numeric', 'integer'))) { stop("the 'score_cutoff' parameter should be of type integer", call. = F) }
 
                                score_cutoff = as.integer(score_cutoff)
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   string <- BUILTINS$str(string)$decode(self$decoding)
-                                 
-                                   sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     string <- BUILTINS$str(string)$decode(self$decoding)
+
+                                     sequence_strings = unlist(lapply(1:length(sequence_strings), function(item) BUILTINS$str(sequence_strings[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   }
                                  }
                                }
 
@@ -1157,12 +1279,17 @@ FuzzExtract <- R6::R6Class("FuzzExtract",
                                if (!inherits(threshold, c('numeric', 'integer'))) { stop("the 'threshold' parameter should be of type integer", call. = F) }
 
                                threshold = as.integer(threshold)
-                               
+
                                if (!is.null(self$decoding)) {
-                                 
-                                 if (is_python2()) {
-                                   
-                                   contains_dupes = unlist(lapply(1:length(contains_dupes), function(item) BUILTINS$str(contains_dupes[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+
+                                 py_vers = is_python2()
+
+                                 if (!is.null(py_vers)) {
+
+                                   if (py_vers) {
+
+                                     contains_dupes = unlist(lapply(1:length(contains_dupes), function(item) BUILTINS$str(contains_dupes[item])$decode(self$decoding)))       # add parallelization in case of big vectors [ if requested ]
+                                   }
                                  }
                                }
 

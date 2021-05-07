@@ -4,26 +4,12 @@
 \name{FuzzUtils}
 \alias{FuzzUtils}
 \title{Utility functions}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 # init <- FuzzUtils$new()
 }
-\arguments{
-\item{decoding}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information (in this class it applies only to the \emph{Full_process} function)}
-
-\item{string}{a character string.}
-
-\item{string1}{a character string.}
-
-\item{string2}{a character string.}
-
-\item{input}{any kind of data type (applies to the \emph{Asciidammit} method)}
-
-\item{force_ascii}{allow only ASCII characters (force convert to ascii)}
-
-\item{n}{a float number}
-}
 \description{
+Utility functions
+
 Utility functions
 }
 \details{
@@ -77,43 +63,186 @@ Some of the utils functions are used as secondary methods in the \emph{FuzzExtra
 
 \examples{
 
-if (check_availability()) {
+try({
+  if (reticulate::py_available(initialize = FALSE)) {
 
+    if (check_availability()) {
 
-  library(fuzzywuzzyR)
+      library(fuzzywuzzyR)
 
-  s1 = 'Frodo Baggins'
+      s1 = 'Frodo Baggins'
 
-  s2 = 'Bilbo Baggin'
+      s2 = 'Bilbo Baggin'
 
-  init = FuzzUtils$new()
+      init = FuzzUtils$new()
 
-  init$Full_process(string = s1, force_ascii = TRUE)
+      init$Full_process(string = s1, force_ascii = TRUE)
 
-  init$INTR(n = 2.0)
+      init$INTR(n = 2.0)
 
-  init$Make_type_consistent(string1 = s1, string2 = s2)
+      init$Make_type_consistent(string1 = s1, string2 = s2)
 
-  #------------------------------------
-  # 'Asciidammit' with character string
-  #------------------------------------
+      #------------------------------------
+      # 'Asciidammit' with character string
+      #------------------------------------
 
-  init$Asciidammit(input = s1)
+      init$Asciidammit(input = s1)
 
-  #----------------------------------------------------------------
-  # 'Asciidammit' with data.frame(123) [ or any kind of data type ]
-  #----------------------------------------------------------------
+      #----------------------------------------------------------------
+      # 'Asciidammit' with data.frame(123) [ or any kind of data type ]
+      #----------------------------------------------------------------
 
-  init$Asciidammit(input = data.frame(123))
+      init$Asciidammit(input = data.frame(123))
 
-  init$Asciionly(string = s1)
+      init$Asciionly(string = s1)
 
-  init$Validate_string(string = s2)
-
-
-}
+      init$Validate_string(string = s2)
+    }
+  }
+}, silent=TRUE)
 }
 \references{
 https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://docs.python.org/3/library/codecs.html#standard-encodings
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{FuzzUtils$new()}}
+\item \href{#method-Full_process}{\code{FuzzUtils$Full_process()}}
+\item \href{#method-INTR}{\code{FuzzUtils$INTR()}}
+\item \href{#method-Make_type_consistent}{\code{FuzzUtils$Make_type_consistent()}}
+\item \href{#method-Asciidammit}{\code{FuzzUtils$Asciidammit()}}
+\item \href{#method-Asciionly}{\code{FuzzUtils$Asciionly()}}
+\item \href{#method-Validate_string}{\code{FuzzUtils$Validate_string()}}
+\item \href{#method-clone}{\code{FuzzUtils$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$new()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Full_process"></a>}}
+\if{latex}{\out{\hypertarget{method-Full_process}{}}}
+\subsection{Method \code{Full_process()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Full_process(string = NULL, force_ascii = TRUE, decoding = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+
+\item{\code{force_ascii}}{allow only ASCII characters (force convert to ascii)}
+
+\item{\code{decoding}}{either NULL or a character string. If not NULL then the \emph{decoding} parameter takes one of the standard python encodings (such as 'utf-8'). See the \emph{details} and \emph{references} link for more information (in this class it applies only to the \emph{Full_process} function)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-INTR"></a>}}
+\if{latex}{\out{\hypertarget{method-INTR}{}}}
+\subsection{Method \code{INTR()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$INTR(n = 2)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{n}}{a float number}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Make_type_consistent"></a>}}
+\if{latex}{\out{\hypertarget{method-Make_type_consistent}{}}}
+\subsection{Method \code{Make_type_consistent()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Make_type_consistent(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string1}}{a character string.}
+
+\item{\code{string2}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Asciidammit"></a>}}
+\if{latex}{\out{\hypertarget{method-Asciidammit}{}}}
+\subsection{Method \code{Asciidammit()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Asciidammit(input = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{input}}{any kind of data type (applies to the \emph{Asciidammit} method)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Asciionly"></a>}}
+\if{latex}{\out{\hypertarget{method-Asciionly}{}}}
+\subsection{Method \code{Asciionly()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Asciionly(string = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Validate_string"></a>}}
+\if{latex}{\out{\hypertarget{method-Validate_string}{}}}
+\subsection{Method \code{Validate_string()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Validate_string(string = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{string}}{a character string.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
