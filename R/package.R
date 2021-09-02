@@ -7,7 +7,9 @@ FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL; BUILTINS <- NULL;
 
 
 .onLoad <- function(libname, pkgname) {
-
+  
+  reticulate::py_config() # search for available python versions
+  
   try({
     if (reticulate::py_available(initialize = FALSE)) {
 
