@@ -33,3 +33,9 @@ FUZZ <- NULL; DIFFLIB <- NULL; EXTRACT <- NULL; UTILS <- NULL; BUILTINS <- NULL;
     }
   }, silent=TRUE)
 }
+
+
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("If the 'fuzzywuzzyR' package gives the following error: 'attempt to apply non-function' then make sure to open a new R session and run 'reticulate::py_config()' before loading the package!")
+}
+

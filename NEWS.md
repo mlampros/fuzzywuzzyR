@@ -1,4 +1,9 @@
 
+## fuzzywuzzyR 1.0.5
+
+* I've added a 'packageStartupMessage' informing the user in case of the error 'attempt to apply non-function' that he/she has to use the 'reticulate::py_config()' before loading the package (in a new R session)
+
+
 ## fuzzywuzzyR 1.0.4
 
 * I've added the *CITATION* file in the *inst* directory

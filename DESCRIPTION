@@ -1,8 +1,8 @@
 Package: fuzzywuzzyR
 Type: Package
 Title: Fuzzy String Matching
-Version: 1.0.4
-Date: 2021-05-07
+Version: 1.0.5
+Date: 2021-09-17
 Authors@R: c( person(given = "Lampros", family = "Mouselimis", email = "mouselimislampros@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "https://orcid.org/0000-0002-8024-1546")), person("SeatGeek", "Inc", role = "cph"))
 BugReports: https://github.com/mlampros/fuzzywuzzyR/issues
 URL: https://github.com/mlampros/fuzzywuzzyR

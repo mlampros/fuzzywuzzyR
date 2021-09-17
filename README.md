@@ -10,7 +10,7 @@
 ## fuzzywuzzyR
 <br>
 
-The **fuzzywuzzyR** package is a fuzzy string matching implemenation of the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python package. It uses the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to calculate the differences between sequences. More details on the functionality of fuzzywuzzyR can be found in the [blog-post](http://mlampros.github.io/2017/04/13/fuzzywuzzyR_package/) and in the package Vignette.
+The **fuzzywuzzyR** package is a fuzzy string matching implementation of the [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) python package. It uses the [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to calculate the differences between sequences. More details on the functionality of fuzzywuzzyR can be found in the [blog-post](http://mlampros.github.io/2017/04/13/fuzzywuzzyR_package/) and in the package Vignette.
 
 
 <br>
@@ -134,16 +134,16 @@ Use the following link to report bugs/issues,
 
 ### **Citation:**
 
-If you use the code of this repository in your paper or research please cite both **fuzzywuzzyR** and the **original software** [https://cran.r-project.org/web/packages/fuzzywuzzyR/citation.html](https://cran.r-project.org/web/packages/fuzzywuzzyR/citation.html):
+If you use the code of this repository in your paper or research please cite both **fuzzywuzzyR** and the **original software** [https://CRAN.R-project.org/package=fuzzywuzzyR/citation.html](https://CRAN.R-project.org/package=fuzzywuzzyR/citation.html):
 
 <br>
 
 ```R
 @Manual{,
-  title = {{fuzzywuzzyR}: Fuzzy String Matching},
+  title = {{fuzzywuzzyR}: Fuzzy String Matching in R},
   author = {Lampros Mouselimis},
   year = {2021},
-  note = {R package version 1.0.4},
+  note = {R package version 1.0.5},
   url = {https://CRAN.R-project.org/package=fuzzywuzzyR},
 }
 ```
