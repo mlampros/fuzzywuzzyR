@@ -422,49 +422,49 @@ partial_token_sort_ratio and partial_token_set_ratio scale all of these by the r
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span>
-  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-
-    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-
-      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
-
-      <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>"Atlanta Falcons"</span>
-
-      <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>"New York Jets"</span>
-
-      <span class='va'>init</span> <span class='op'>=</span> <span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,
-                                   string2 <span class='op'>=</span> <span class='va'>s2</span>,
-                                   force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
-                                   full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,
-                                    string2 <span class='op'>=</span> <span class='va'>s2</span>,
-                                    force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,
-                                    full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>QRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>WRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UWRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UQRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-    <span class='op'>}</span>
-  <span class='op'>}</span>
-<span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span></span>
+<span class='r-in'>  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'></span>
+<span class='r-in'>    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>s1</span> <span class='op'>=</span> <span class='st'>"Atlanta Falcons"</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>s2</span> <span class='op'>=</span> <span class='st'>"New York Jets"</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span> <span class='op'>=</span> <span class='va'>FuzzMatcher</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,</span>
+<span class='r-in'>                                   string2 <span class='op'>=</span> <span class='va'>s2</span>,</span>
+<span class='r-in'>                                   force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>                                   full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>,</span>
+<span class='r-in'>                                    string2 <span class='op'>=</span> <span class='va'>s2</span>,</span>
+<span class='r-in'>                                    force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>                                    full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>QRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>WRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UWRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>UQRATIO</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_sort_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Partial_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Token_set_ratio</span><span class='op'>(</span>string1 <span class='op'>=</span> <span class='va'>s1</span>, string2 <span class='op'>=</span> <span class='va'>s2</span>, force_ascii <span class='op'>=</span> <span class='cn'>TRUE</span>, full_process <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'>    <span class='op'>}</span></span>
+<span class='r-in'>  <span class='op'>}</span></span>
+<span class='r-in'><span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

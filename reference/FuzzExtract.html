@@ -158,7 +158,7 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.</p>
 
  <dt><code>--------------</code></dt><dd><p></p></dd>
 
- <dt><code><a href='https://rdrr.io/r/base/Extract.html'>Extract(string = NULL, sequence_strings = NULL, processor = NULL, scorer = NULL, limit = 5L)</a></code></dt><dd><p></p></dd>
+ <dt><code>Extract(string = NULL, sequence_strings = NULL, processor = NULL, scorer = NULL, limit = 5L)</code></dt><dd><p></p></dd>
 
  <dt><code>--------------</code></dt><dd><p></p></dd>
 
@@ -339,63 +339,63 @@ Raise the threshold for fuzzy_dedupe to be less sensitive.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span>
-  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-
-    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-
-      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span>
-
-      <span class='va'>word</span> <span class='op'>=</span> <span class='st'>"new york jets"</span>
-
-      <span class='va'>choices</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Atlanta Falcons"</span>, <span class='st'>"New York Jets"</span>, <span class='st'>"New York Giants"</span>, <span class='st'>"Dallas Cowboys"</span><span class='op'>)</span>
-
-      <span class='va'>duplicat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Frodo Baggins'</span>, <span class='st'>'Tom Sawyer'</span>, <span class='st'>'Bilbo Baggin'</span>, <span class='st'>'Samuel L. Jackson'</span>,
-
-                   <span class='st'>'F. Baggins'</span>, <span class='st'>'Frody Baggins'</span>, <span class='st'>'Bilbo Baggins'</span><span class='op'>)</span>
-
-      <span class='co'>#------------</span>
-      <span class='co'># processor :</span>
-      <span class='co'>#------------</span>
-
-      <span class='va'>init_proc</span> <span class='op'>=</span> <span class='va'><a href='FuzzUtils.html'>FuzzUtils</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-      <span class='va'>PROC</span> <span class='op'>=</span> <span class='va'>init_proc</span><span class='op'>$</span><span class='va'>Full_process</span>    <span class='co'># class process-method</span>
-
-      <span class='va'>PROC1</span> <span class='op'>=</span> <span class='va'>tolower</span>                  <span class='co'># base R function</span>
-
-      <span class='co'>#---------</span>
-      <span class='co'># scorer :</span>
-      <span class='co'>#---------</span>
-
-      <span class='va'>init_scor</span> <span class='op'>=</span> <span class='va'><a href='FuzzMatcher.html'>FuzzMatcher</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-      <span class='va'>SCOR</span> <span class='op'>=</span> <span class='va'>init_scor</span><span class='op'>$</span><span class='va'>WRATIO</span>
-
-
-      <span class='va'>init</span> <span class='op'>&lt;-</span> <span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC1</span>,
-
-                        scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>, limit <span class='op'>=</span> <span class='fl'>2L</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractWithoutOrder</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
-
-                               scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractOne</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,
-
-                      scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span>
-
-      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='va'>duplicat</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span>
-
-    <span class='op'>}</span>
-  <span class='op'>}</span>
-<span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='op'>{</span></span>
+<span class='r-in'>  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/py_available.html'>py_available</a></span><span class='op'>(</span>initialize <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'></span>
+<span class='r-in'>    <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='check_availability.html'>check_availability</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mlampros/fuzzywuzzyR'>fuzzywuzzyR</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>word</span> <span class='op'>=</span> <span class='st'>"new york jets"</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>choices</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Atlanta Falcons"</span>, <span class='st'>"New York Jets"</span>, <span class='st'>"New York Giants"</span>, <span class='st'>"Dallas Cowboys"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>duplicat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Frodo Baggins'</span>, <span class='st'>'Tom Sawyer'</span>, <span class='st'>'Bilbo Baggin'</span>, <span class='st'>'Samuel L. Jackson'</span>,</span>
+<span class='r-in'></span>
+<span class='r-in'>                   <span class='st'>'F. Baggins'</span>, <span class='st'>'Frody Baggins'</span>, <span class='st'>'Bilbo Baggins'</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='co'>#------------</span></span>
+<span class='r-in'>      <span class='co'># processor :</span></span>
+<span class='r-in'>      <span class='co'>#------------</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init_proc</span> <span class='op'>=</span> <span class='va'><a href='FuzzUtils.html'>FuzzUtils</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>PROC</span> <span class='op'>=</span> <span class='va'>init_proc</span><span class='op'>$</span><span class='va'>Full_process</span>    <span class='co'># class process-method</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>PROC1</span> <span class='op'>=</span> <span class='va'>tolower</span>                  <span class='co'># base R function</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='co'>#---------</span></span>
+<span class='r-in'>      <span class='co'># scorer :</span></span>
+<span class='r-in'>      <span class='co'>#---------</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init_scor</span> <span class='op'>=</span> <span class='va'><a href='FuzzMatcher.html'>FuzzMatcher</a></span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>SCOR</span> <span class='op'>=</span> <span class='va'>init_scor</span><span class='op'>$</span><span class='va'>WRATIO</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span> <span class='op'>&lt;-</span> <span class='va'>FuzzExtract</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Extract</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractBests</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC1</span>,</span>
+<span class='r-in'></span>
+<span class='r-in'>                        scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span>, limit <span class='op'>=</span> <span class='fl'>2L</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractWithoutOrder</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,</span>
+<span class='r-in'></span>
+<span class='r-in'>                               scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>ExtractOne</span><span class='op'>(</span>string <span class='op'>=</span> <span class='va'>word</span>, sequence_strings <span class='op'>=</span> <span class='va'>choices</span>, processor <span class='op'>=</span> <span class='va'>PROC</span>,</span>
+<span class='r-in'></span>
+<span class='r-in'>                      scorer <span class='op'>=</span> <span class='va'>SCOR</span>, score_cutoff <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>      <span class='va'>init</span><span class='op'>$</span><span class='fu'>Dedupe</span><span class='op'>(</span>contains_dupes <span class='op'>=</span> <span class='va'>duplicat</span>, threshold <span class='op'>=</span> <span class='fl'>70L</span>, scorer <span class='op'>=</span> <span class='va'>SCOR</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'>    <span class='op'>}</span></span>
+<span class='r-in'>  <span class='op'>}</span></span>
+<span class='r-in'><span class='op'>}</span>, silent<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
