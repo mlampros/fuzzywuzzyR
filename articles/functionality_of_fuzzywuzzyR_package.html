@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fuzzywuzzyR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mlampros/fuzzywuzzyR/">
+  <a href="https://github.com/mlampros/fuzzywuzzyR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -79,28 +75,34 @@
 
       
 
-      </header><script src="functionality_of_fuzzywuzzyR_package_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Functionality of the fuzzywuzzyR package</h1>
-                        <h4 class="author">Lampros Mouselimis</h4>
+                        <h4 data-toc-skip class="author">Lampros
+Mouselimis</h4>
             
-            <h4 class="date">2021-11-30</h4>
+            <h4 data-toc-skip class="date">2022-12-07</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/mlampros/fuzzywuzzyR/blob/master/vignettes/functionality_of_fuzzywuzzyR_package.Rmd"><code>vignettes/functionality_of_fuzzywuzzyR_package.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/mlampros/fuzzywuzzyR/blob/HEAD/vignettes/functionality_of_fuzzywuzzyR_package.Rmd" class="external-link"><code>vignettes/functionality_of_fuzzywuzzyR_package.Rmd</code></a></small>
       <div class="hidden name"><code>functionality_of_fuzzywuzzyR_package.Rmd</code></div>
 
     </div>
 
     
     
-<p>I recently released an (other one) R package on CRAN - <strong>fuzzywuzzyR</strong> - which ports the <a href="https://github.com/seatgeek/fuzzywuzzy">fuzzywuzzy</a> python library in R. “fuzzywuzzy does fuzzy string matching by using the Levenshtein Distance to calculate the differences between sequences (of character strings).” <br></p>
+<p>I recently released an (other one) R package on CRAN -
+<strong>fuzzywuzzyR</strong> - which ports the <a href="https://github.com/seatgeek/fuzzywuzzy" class="external-link">fuzzywuzzy</a> python
+library in R. “fuzzywuzzy does fuzzy string matching by using the
+Levenshtein Distance to calculate the differences between sequences (of
+character strings).” <br></p>
 <p><br></p>
-<p>The <em>fuzzywuzzyR</em> package includes R6-classes / functions for string matching,</p>
+<p>The <em>fuzzywuzzyR</em> package includes R6-classes / functions for
+string matching,</p>
 <p><br></p>
-<div id="classes" class="section level5">
-<h5 class="hasAnchor">
-<a href="#classes" class="anchor"></a><strong>classes</strong>
+<div class="section level5">
+<h5 id="classes">
+<strong>classes</strong><a class="anchor" aria-label="anchor" href="#classes"></a>
 </h5>
 <p><br></p>
 <table class="table">
@@ -181,9 +183,9 @@
 </table>
 <p><br></p>
 </div>
-<div id="functions" class="section level5">
-<h5 class="hasAnchor">
-<a href="#functions" class="anchor"></a><strong>functions</strong>
+<div class="section level5">
+<h5 id="functions">
+<strong>functions</strong><a class="anchor" aria-label="anchor" href="#functions"></a>
 </h5>
 <p><br></p>
 <table class="table">
@@ -193,296 +195,326 @@
 <tbody></tbody>
 </table>
 <p><br></p>
-<p>The following code chunks / examples are part of the package documentation and give an idea on what can be done with the <em>fuzzywuzzyR</em> package,</p>
+<p>The following code chunks / examples are part of the package
+documentation and give an idea on what can be done with the
+<em>fuzzywuzzyR</em> package,</p>
 <p><br></p>
 </div>
-<div id="fuzzextract" class="section level5">
-<h5 class="hasAnchor">
-<a href="#fuzzextract" class="anchor"></a><em>FuzzExtract</em>
+<div class="section level5">
+<h5 id="fuzzextract">
+<em>FuzzExtract</em><a class="anchor" aria-label="anchor" href="#fuzzextract"></a>
 </h5>
 <p><br></p>
-<p>Each one of the methods in the <em>FuzzExtract</em> class takes a <em>character string</em> and a <em>character string sequence</em> as input ( except for the <em>Dedupe</em> method which takes a string sequence only ) and given a <em>processor</em> and a <em>scorer</em> it returns one or more string match(es) and the corresponding score ( in the range 0 - 100 ). Information about the additional parameters (<em>limit</em>, <em>score_cutoff</em> and <em>threshold</em>) can be found in the package documentation,</p>
+<p>Each one of the methods in the <em>FuzzExtract</em> class takes a
+<em>character string</em> and a <em>character string sequence</em> as
+input ( except for the <em>Dedupe</em> method which takes a string
+sequence only ) and given a <em>processor</em> and a <em>scorer</em> it
+returns one or more string match(es) and the corresponding score ( in
+the range 0 - 100 ). Information about the additional parameters
+(<em>limit</em>, <em>score_cutoff</em> and <em>threshold</em>) can be
+found in the package documentation,</p>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlampros/fuzzywuzzyR">fuzzywuzzyR</a></span><span class="op">)</span>
-
-<span class="va">word</span> <span class="op">=</span> <span class="st">"new york jets"</span>
-
-<span class="va">choices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Atlanta Falcons"</span>, <span class="st">"New York Jets"</span>, <span class="st">"New York Giants"</span>, <span class="st">"Dallas Cowboys"</span><span class="op">)</span>
-
-
-<span class="co">#------------</span>
-<span class="co"># processor :</span>
-<span class="co">#------------</span>
-
-<span class="va">init_proc</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzUtils.html">FuzzUtils</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>      <span class="co"># initialization of FuzzUtils class to choose a processor</span>
-
-<span class="va">PROC</span> <span class="op">=</span> <span class="va">init_proc</span><span class="op">$</span><span class="va">Full_process</span>    <span class="co"># processor-method</span>
-
-<span class="va">PROC1</span> <span class="op">=</span> <span class="va">tolower</span>                  <span class="co"># base R function ( as an example for a processor )</span>
-
-<span class="co">#---------</span>
-<span class="co"># scorer :</span>
-<span class="co">#---------</span>
-
-<span class="va">init_scor</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzMatcher.html">FuzzMatcher</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>    <span class="co"># initialization of the scorer class</span>
-
-<span class="va">SCOR</span> <span class="op">=</span> <span class="va">init_scor</span><span class="op">$</span><span class="va">WRATIO</span>          <span class="co"># choosen scorer function</span>
-
-
-<span class="va">init</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/FuzzExtract.html">FuzzExtract</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>        <span class="co"># Initialization of the FuzzExtract class</span>
-
-<span class="va">init</span><span class="op">$</span><span class="fu">Extract</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>, scorer <span class="op">=</span> <span class="va">SCOR</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># example output</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  </span>
-<span id="cb2-3"><a href="#cb2-3"></a>  [[<span class="dv">1</span>]]</span>
-<span id="cb2-4"><a href="#cb2-4"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb2-8"><a href="#cb2-8"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb2-12"><a href="#cb2-12"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb2-13"><a href="#cb2-13"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb2-16"><a href="#cb2-16"></a>[<span class="dv">1</span>] <span class="dv">79</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a></span>
-<span id="cb2-19"><a href="#cb2-19"></a>[[<span class="dv">3</span>]]</span>
-<span id="cb2-20"><a href="#cb2-20"></a>[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb2-21"><a href="#cb2-21"></a>[<span class="dv">1</span>] <span class="st">"Atlanta Falcons"</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a>[[<span class="dv">3</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb2-24"><a href="#cb2-24"></a>[<span class="dv">1</span>] <span class="dv">29</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a>[[<span class="dv">4</span>]]</span>
-<span id="cb2-28"><a href="#cb2-28"></a>[[<span class="dv">4</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb2-29"><a href="#cb2-29"></a>[<span class="dv">1</span>] <span class="st">"Dallas Cowboys"</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a>[[<span class="dv">4</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb2-32"><a href="#cb2-32"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlampros/fuzzywuzzyR" class="external-link">fuzzywuzzyR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">word</span> <span class="op">=</span> <span class="st">"new york jets"</span></span>
+<span></span>
+<span><span class="va">choices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atlanta Falcons"</span>, <span class="st">"New York Jets"</span>, <span class="st">"New York Giants"</span>, <span class="st">"Dallas Cowboys"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#------------</span></span>
+<span><span class="co"># processor :</span></span>
+<span><span class="co">#------------</span></span>
+<span></span>
+<span><span class="va">init_proc</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzUtils.html">FuzzUtils</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>      <span class="co"># initialization of FuzzUtils class to choose a processor</span></span>
+<span></span>
+<span><span class="va">PROC</span> <span class="op">=</span> <span class="va">init_proc</span><span class="op">$</span><span class="va">Full_process</span>    <span class="co"># processor-method</span></span>
+<span></span>
+<span><span class="va">PROC1</span> <span class="op">=</span> <span class="va">tolower</span>                  <span class="co"># base R function ( as an example for a processor )</span></span>
+<span></span>
+<span><span class="co">#---------</span></span>
+<span><span class="co"># scorer :</span></span>
+<span><span class="co">#---------</span></span>
+<span></span>
+<span><span class="va">init_scor</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzMatcher.html">FuzzMatcher</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>    <span class="co"># initialization of the scorer class</span></span>
+<span></span>
+<span><span class="va">SCOR</span> <span class="op">=</span> <span class="va">init_scor</span><span class="op">$</span><span class="va">WRATIO</span>          <span class="co"># choosen scorer function</span></span>
+<span></span>
+<span></span>
+<span><span class="va">init</span> <span class="op">&lt;-</span> <span class="va"><a href="../reference/FuzzExtract.html">FuzzExtract</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>        <span class="co"># Initialization of the FuzzExtract class</span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">Extract</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>, scorer <span class="op">=</span> <span class="va">SCOR</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example output</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  [[<span class="dv">1</span>]]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">79</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Atlanta Falcons"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]]</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Dallas Cowboys"</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># extracts best matches (limited to 2 matches)</span>
-
-<span class="va">init</span><span class="op">$</span><span class="fu">ExtractBests</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC1</span>,
-
-                  scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span>, limit <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>[[<span class="dv">1</span>]]</span>
-<span id="cb4-2"><a href="#cb4-2"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb4-3"><a href="#cb4-3"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb4-6"><a href="#cb4-6"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb4-10"><a href="#cb4-10"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb4-11"><a href="#cb4-11"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb4-14"><a href="#cb4-14"></a>[<span class="dv">1</span>] <span class="dv">79</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># extracts best matches (limited to 2 matches)</span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">ExtractBests</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC1</span>,</span>
+<span></span>
+<span>                  scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span>, limit <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">79</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># extracts matches without keeping the output order</span>
-
-<span class="va">init</span><span class="op">$</span><span class="fu">ExtractWithoutOrder</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>,
-
-                         scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>[[<span class="dv">1</span>]]</span>
-<span id="cb6-2"><a href="#cb6-2"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb6-3"><a href="#cb6-3"></a>[<span class="dv">1</span>] <span class="st">"Atlanta Falcons"</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb6-6"><a href="#cb6-6"></a>[<span class="dv">1</span>] <span class="dv">29</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb6-10"><a href="#cb6-10"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb6-11"><a href="#cb6-11"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb6-14"><a href="#cb6-14"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a>[[<span class="dv">3</span>]]</span>
-<span id="cb6-18"><a href="#cb6-18"></a>[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb6-19"><a href="#cb6-19"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a>[[<span class="dv">3</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb6-22"><a href="#cb6-22"></a>[<span class="dv">1</span>] <span class="dv">79</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a></span>
-<span id="cb6-24"><a href="#cb6-24"></a></span>
-<span id="cb6-25"><a href="#cb6-25"></a>[[<span class="dv">4</span>]]</span>
-<span id="cb6-26"><a href="#cb6-26"></a>[[<span class="dv">4</span>]][[<span class="dv">1</span>]]</span>
-<span id="cb6-27"><a href="#cb6-27"></a>[<span class="dv">1</span>] <span class="st">"Dallas Cowboys"</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a></span>
-<span id="cb6-29"><a href="#cb6-29"></a>[[<span class="dv">4</span>]][[<span class="dv">2</span>]]</span>
-<span id="cb6-30"><a href="#cb6-30"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># extracts matches without keeping the output order</span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">ExtractWithoutOrder</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>,</span>
+<span></span>
+<span>                         scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Atlanta Falcons"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Giants"</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">79</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]]</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]][[<span class="dv">1</span>]]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Dallas Cowboys"</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]][[<span class="dv">2</span>]]</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">22</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># extracts first result </span>
-
-<span class="va">init</span><span class="op">$</span><span class="fu">ExtractOne</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>,
-
-                scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>[[<span class="dv">1</span>]]</span>
-<span id="cb8-2"><a href="#cb8-2"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>[[<span class="dv">2</span>]]</span>
-<span id="cb8-5"><a href="#cb8-5"></a>[<span class="dv">1</span>] <span class="dv">100</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># extracts first result </span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">ExtractOne</span><span class="op">(</span>string <span class="op">=</span> <span class="va">word</span>, sequence_strings <span class="op">=</span> <span class="va">choices</span>, processor <span class="op">=</span> <span class="va">PROC</span>,</span>
+<span></span>
+<span>                scorer <span class="op">=</span> <span class="va">SCOR</span>, score_cutoff <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"New York Jets"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span></code></pre></div>
 <p><br></p>
-<p>The <em>dedupe</em> method removes duplicates from a sequence of character strings using fuzzy string matching,</p>
+<p>The <em>dedupe</em> method removes duplicates from a sequence of
+character strings using fuzzy string matching,</p>
 <p><br></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">duplicat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Frodo Baggins'</span>, <span class="st">'Tom Sawyer'</span>, <span class="st">'Bilbo Baggin'</span>, <span class="st">'Samuel L. Jackson'</span>,
-
-             <span class="st">'F. Baggins'</span>, <span class="st">'Frody Baggins'</span>, <span class="st">'Bilbo Baggins'</span><span class="op">)</span>
-
-
-<span class="va">init</span><span class="op">$</span><span class="fu">Dedupe</span><span class="op">(</span>contains_dupes <span class="op">=</span> <span class="va">duplicat</span>, threshold <span class="op">=</span> <span class="fl">70L</span>, scorer <span class="op">=</span> <span class="va">SCOR</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>[<span class="dv">1</span>] <span class="st">"Frodo Baggins"</span>     <span class="st">"Samuel L. Jackson"</span> <span class="st">"Bilbo Baggins"</span>     <span class="st">"Tom Sawyer"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">duplicat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Frodo Baggins'</span>, <span class="st">'Tom Sawyer'</span>, <span class="st">'Bilbo Baggin'</span>, <span class="st">'Samuel L. Jackson'</span>,</span>
+<span></span>
+<span>             <span class="st">'F. Baggins'</span>, <span class="st">'Frody Baggins'</span>, <span class="st">'Bilbo Baggins'</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">Dedupe</span><span class="op">(</span>contains_dupes <span class="op">=</span> <span class="va">duplicat</span>, threshold <span class="op">=</span> <span class="fl">70L</span>, scorer <span class="op">=</span> <span class="va">SCOR</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Frodo Baggins"</span>     <span class="st">"Samuel L. Jackson"</span> <span class="st">"Bilbo Baggins"</span>     <span class="st">"Tom Sawyer"</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="fuzzmatcher" class="section level5">
-<h5 class="hasAnchor">
-<a href="#fuzzmatcher" class="anchor"></a><em>FuzzMatcher</em>
+<div class="section level5">
+<h5 id="fuzzmatcher">
+<em>FuzzMatcher</em><a class="anchor" aria-label="anchor" href="#fuzzmatcher"></a>
 </h5>
 <p><br></p>
-<p>Each one of the methods in the <em>FuzzMatcher</em> class takes two <em>character strings</em> (string1, string2) as input and returns a score ( in range 0 to 100 ). Information about the additional parameters (<em>force_ascii</em>, <em>full_process</em> and <em>threshold</em>) can be found in the package documentation,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>s1 =<span class="st"> "Atlanta Falcons"</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>s2 =<span class="st"> "New York Jets"</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>init =<span class="st"> </span>FuzzMatcher<span class="op">$</span><span class="kw">new</span>()          initialization of FuzzMatcher class</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a>init<span class="op">$</span><span class="kw">Partial_token_set_ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>, <span class="dt">full_process =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co"># example output</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a>[<span class="dv">1</span>] <span class="dv">31</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>init<span class="op">$</span><span class="kw">Partial_token_sort_ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>, <span class="dt">full_process =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a>[<span class="dv">1</span>] <span class="dv">31</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>init<span class="op">$</span><span class="kw">Ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2)</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>[<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>init<span class="op">$</span><span class="kw">QRATIO</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>init<span class="op">$</span><span class="kw">WRATIO</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>init<span class="op">$</span><span class="kw">UWRATIO</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2)</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>init<span class="op">$</span><span class="kw">UQRATIO</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2)</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>init<span class="op">$</span><span class="kw">Token_sort_ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>, <span class="dt">full_process =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>init<span class="op">$</span><span class="kw">Partial_ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2)</span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a>[<span class="dv">1</span>] <span class="dv">23</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>init<span class="op">$</span><span class="kw">Token_set_ratio</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2, <span class="dt">force_ascii =</span> <span class="ot">TRUE</span>, <span class="dt">full_process =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<p>Each one of the methods in the <em>FuzzMatcher</em> class takes two
+<em>character strings</em> (string1, string2) as input and returns a
+score ( in range 0 to 100 ). Information about the additional parameters
+(<em>force_ascii</em>, <em>full_process</em> and <em>threshold</em>) can
+be found in the package documentation,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="st">"Atlanta Falcons"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="st">"New York Jets"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>init <span class="ot">=</span> FuzzMatcher<span class="sc">$</span><span class="fu">new</span>()          initialization of FuzzMatcher class</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Partial_token_set_ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>, <span class="at">full_process =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># example output</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">31</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Partial_token_sort_ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>, <span class="at">full_process =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">31</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">21</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">QRATIO</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">WRATIO</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">UWRATIO</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">UQRATIO</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Token_sort_ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>, <span class="at">full_process =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Partial_ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">23</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">Token_set_ratio</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2, <span class="at">force_ascii =</span> <span class="cn">TRUE</span>, <span class="at">full_process =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">29</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="fuzzutils" class="section level5">
-<h5 class="hasAnchor">
-<a href="#fuzzutils" class="anchor"></a><em>FuzzUtils</em>
+<div class="section level5">
+<h5 id="fuzzutils">
+<em>FuzzUtils</em><a class="anchor" aria-label="anchor" href="#fuzzutils"></a>
 </h5>
 <p><br></p>
-<p>The <em>FuzzUtils</em> class includes a number of utility methods, from which the <em>Full_process</em> method is from greater importance as besides its main functionality it can also be used as a secondary function in some of the other fuzzy matching classes,</p>
+<p>The <em>FuzzUtils</em> class includes a number of utility methods,
+from which the <em>Full_process</em> method is from greater importance
+as besides its main functionality it can also be used as a secondary
+function in some of the other fuzzy matching classes,</p>
 <p><br></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">s1</span> <span class="op">=</span> <span class="st">'Frodo Baggins'</span>
-
-<span class="va">init</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzUtils.html">FuzzUtils</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">init</span><span class="op">$</span><span class="fu">Full_process</span><span class="op">(</span>string <span class="op">=</span> <span class="va">s1</span>, force_ascii <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># example output</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>[<span class="dv">1</span>] <span class="st">"frodo baggins"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">s1</span> <span class="op">=</span> <span class="st">'Frodo Baggins'</span></span>
+<span></span>
+<span><span class="va">init</span> <span class="op">=</span> <span class="va"><a href="../reference/FuzzUtils.html">FuzzUtils</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">init</span><span class="op">$</span><span class="fu">Full_process</span><span class="op">(</span>string <span class="op">=</span> <span class="va">s1</span>, force_ascii <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example output</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"frodo baggins"</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="getclosematches" class="section level5">
-<h5 class="hasAnchor">
-<a href="#getclosematches" class="anchor"></a><em>GetCloseMatches</em>
+<div class="section level5">
+<h5 id="getclosematches">
+<em>GetCloseMatches</em><a class="anchor" aria-label="anchor" href="#getclosematches"></a>
 </h5>
 <p><br></p>
-<p>The <em>GetCloseMatches</em> method returns a list of the best “good enough” matches. The parameter <em>string</em> is a sequence for which close matches are desired (typically a character string), and <em>sequence_strings</em> is a list of sequences against which to match the parameter <em>string</em> (typically a list of strings).</p>
+<p>The <em>GetCloseMatches</em> method returns a list of the best “good
+enough” matches. The parameter <em>string</em> is a sequence for which
+close matches are desired (typically a character string), and
+<em>sequence_strings</em> is a list of sequences against which to match
+the parameter <em>string</em> (typically a list of strings).</p>
 <p><br></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">vec</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Frodo Baggins'</span>, <span class="st">'Tom Sawyer'</span>, <span class="st">'Bilbo Baggin'</span><span class="op">)</span>
-
-<span class="va">str1</span> <span class="op">=</span> <span class="st">'Fra Bagg'</span>
-
-<span class="fu"><a href="../reference/GetCloseMatches.html">GetCloseMatches</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">str1</span>, sequence_strings <span class="op">=</span> <span class="va">vec</span>, n <span class="op">=</span> <span class="fl">2L</span>, cutoff <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>[<span class="dv">1</span>] <span class="st">"Frodo Baggins"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">vec</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Frodo Baggins'</span>, <span class="st">'Tom Sawyer'</span>, <span class="st">'Bilbo Baggin'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">str1</span> <span class="op">=</span> <span class="st">'Fra Bagg'</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/GetCloseMatches.html">GetCloseMatches</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">str1</span>, sequence_strings <span class="op">=</span> <span class="va">vec</span>, n <span class="op">=</span> <span class="fl">2L</span>, cutoff <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Frodo Baggins"</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div id="sequencematcher" class="section level5">
-<h5 class="hasAnchor">
-<a href="#sequencematcher" class="anchor"></a><em>SequenceMatcher</em>
+<div class="section level5">
+<h5 id="sequencematcher">
+<em>SequenceMatcher</em><a class="anchor" aria-label="anchor" href="#sequencematcher"></a>
 </h5>
 <p><br></p>
-<p>The <em>SequenceMatcher</em> class is based on <a href="https://www.npmjs.com/package/difflib">difflib</a> which comes by default installed with python and includes the following fuzzy string matching methods,</p>
+<p>The <em>SequenceMatcher</em> class is based on <a href="https://www.npmjs.com/package/difflib" class="external-link">difflib</a> which comes by
+default installed with python and includes the following fuzzy string
+matching methods,</p>
 <p><br></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>s1 =<span class="st"> ' It was a dark and stormy night. I was all alone sitting on a red chair.'</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a></span>
-<span id="cb25-3"><a href="#cb25-3"></a>s2 =<span class="st"> ' It was a murky and stormy night. I was all alone sitting on a crimson chair.'</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a></span>
-<span id="cb25-5"><a href="#cb25-5"></a>init =<span class="st"> </span>SequenceMatcher<span class="op">$</span><span class="kw">new</span>(<span class="dt">string1 =</span> s1, <span class="dt">string2 =</span> s2)</span>
-<span id="cb25-6"><a href="#cb25-6"></a></span>
-<span id="cb25-7"><a href="#cb25-7"></a>init<span class="op">$</span><span class="kw">ratio</span>()</span>
-<span id="cb25-8"><a href="#cb25-8"></a></span>
-<span id="cb25-9"><a href="#cb25-9"></a>[<span class="dv">1</span>] <span class="fl">0.9127517</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>init<span class="op">$</span><span class="kw">quick_ratio</span>()</span>
-<span id="cb26-2"><a href="#cb26-2"></a></span>
-<span id="cb26-3"><a href="#cb26-3"></a>[<span class="dv">1</span>] <span class="fl">0.9127517</span></span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>init<span class="op">$</span><span class="kw">real_quick_ratio</span>()</span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a>[<span class="dv">1</span>] <span class="fl">0.966443</span> </span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="st">' It was a dark and stormy night. I was all alone sitting on a red chair.'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="st">' It was a murky and stormy night. I was all alone sitting on a crimson chair.'</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>init <span class="ot">=</span> SequenceMatcher<span class="sc">$</span><span class="fu">new</span>(<span class="at">string1 =</span> s1, <span class="at">string2 =</span> s2)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">ratio</span>()</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9127517</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">quick_ratio</span>()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.9127517</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>init<span class="sc">$</span><span class="fu">real_quick_ratio</span>()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.966443</span> </span></code></pre></div>
 <p><br></p>
-<p>The <em>get_matching_blocks</em> and <em>get_opcodes</em> return triples and 5-tuples describing matching subsequences. More information can be found in the <a href="https://www.npmjs.com/package/difflib">Python’s difflib module</a> and in the <em>fuzzywuzzyR</em> package documentation.</p>
+<p>The <em>get_matching_blocks</em> and <em>get_opcodes</em> return
+triples and 5-tuples describing matching subsequences. More information
+can be found in the <a href="https://www.npmjs.com/package/difflib" class="external-link">Python’s difflib module</a>
+and in the <em>fuzzywuzzyR</em> package documentation.</p>
 <p><br></p>
-<p>A last think to note here is that the mentioned fuzzy string matching classes can be parallelized using the base R <em>parallel</em> package. For instance, the following <em>MCLAPPLY_RATIOS</em> function can take two vectors of character strings (QUERY1, QUERY2) and return the scores for each method of the <em>FuzzMatcher</em> class,</p>
+<p>A last think to note here is that the mentioned fuzzy string matching
+classes can be parallelized using the base R <em>parallel</em> package.
+For instance, the following <em>MCLAPPLY_RATIOS</em> function can take
+two vectors of character strings (QUERY1, QUERY2) and return the scores
+for each method of the <em>FuzzMatcher</em> class,</p>
 <p><br></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">MCLAPPLY_RATIOS</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">QUERY1</span>, <span class="va">QUERY2</span>, <span class="va">class_fuzz</span> <span class="op">=</span> <span class="st">'FuzzMatcher'</span>, <span class="va">method_fuzz</span> <span class="op">=</span> <span class="st">'QRATIO'</span>, <span class="va">threads</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
-
-  <span class="va">init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">class_fuzz</span>, <span class="st">'$new()'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-  <span class="va">METHOD</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'init$'</span>, <span class="va">method_fuzz</span><span class="op">)</span>
-
-  <span class="kw">if</span> <span class="op">(</span><span class="va">threads</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
-
-    <span class="va">res_qrat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">METHOD</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">QUERY2</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">}</span>
-
-  <span class="kw">else</span> <span class="op">{</span>
-
-    <span class="va">res_qrat</span> <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/mclapply.html">mclapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">METHOD</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">QUERY2</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span>, mc.cores <span class="op">=</span> <span class="va">threads</span><span class="op">)</span>
-  <span class="op">}</span>
-
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">res_qrat</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">MCLAPPLY_RATIOS</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">QUERY1</span>, <span class="va">QUERY2</span>, <span class="va">class_fuzz</span> <span class="op">=</span> <span class="st">'FuzzMatcher'</span>, <span class="va">method_fuzz</span> <span class="op">=</span> <span class="st">'QRATIO'</span>, <span class="va">threads</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>  <span class="va">init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">class_fuzz</span>, <span class="st">'$new()'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">METHOD</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'init$'</span>, <span class="va">method_fuzz</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">threads</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">res_qrat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">METHOD</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">QUERY2</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span></span>
+<span>  <span class="kw">else</span> <span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">res_qrat</span> <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/mclapply.html" class="external-link">mclapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">METHOD</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">QUERY1</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">QUERY2</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span>, mc.cores <span class="op">=</span> <span class="va">threads</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">res_qrat</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><br></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">query1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'word1'</span>, <span class="st">'word2'</span>, <span class="st">'word3'</span><span class="op">)</span>
-
-<span class="va">query2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'similarword1'</span>, <span class="st">'similar_word2'</span>, <span class="st">'similarwor'</span><span class="op">)</span>
-
-<span class="va">quer_res</span> <span class="op">=</span> <span class="fu">MCLAPPLY_RATIOS</span><span class="op">(</span><span class="va">query1</span>, <span class="va">query2</span>, class_fuzz <span class="op">=</span> <span class="st">'FuzzMatcher'</span>, method_fuzz <span class="op">=</span> <span class="st">'QRATIO'</span>, threads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">quer_res</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># example output</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a></span>
-<span id="cb30-3"><a href="#cb30-3"></a>[<span class="dv">1</span>] <span class="dv">59</span> <span class="dv">56</span> <span class="dv">40</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">query1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'word1'</span>, <span class="st">'word2'</span>, <span class="st">'word3'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">query2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'similarword1'</span>, <span class="st">'similar_word2'</span>, <span class="st">'similarwor'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">quer_res</span> <span class="op">=</span> <span class="fu">MCLAPPLY_RATIOS</span><span class="op">(</span><span class="va">query1</span>, <span class="va">query2</span>, class_fuzz <span class="op">=</span> <span class="st">'FuzzMatcher'</span>, method_fuzz <span class="op">=</span> <span class="st">'QRATIO'</span>, threads <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">quer_res</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example output</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">59</span> <span class="dv">56</span> <span class="dv">40</span></span></code></pre></div>
 <p><br></p>
 </div>
   </div>
@@ -496,11 +528,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Lampros Mouselimis.</p>
+  <p></p>
+<p>Developed by Lampros Mouselimis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -508,6 +542,8 @@
 
   
 
+
+  
 
   </body>
 </html>

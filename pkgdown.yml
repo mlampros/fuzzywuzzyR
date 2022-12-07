@@ -1,7 +1,7 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   functionality_of_fuzzywuzzyR_package: functionality_of_fuzzywuzzyR_package.html
-last_built: 2021-11-30T04:33Z
+last_built: 2022-12-07T15:55Z
 
