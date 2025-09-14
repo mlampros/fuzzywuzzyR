@@ -107,19 +107,19 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FuzzUtils$new()}}
-\item \href{#method-Full_process}{\code{FuzzUtils$Full_process()}}
-\item \href{#method-INTR}{\code{FuzzUtils$INTR()}}
-\item \href{#method-Make_type_consistent}{\code{FuzzUtils$Make_type_consistent()}}
-\item \href{#method-Asciidammit}{\code{FuzzUtils$Asciidammit()}}
-\item \href{#method-Asciionly}{\code{FuzzUtils$Asciionly()}}
-\item \href{#method-Validate_string}{\code{FuzzUtils$Validate_string()}}
-\item \href{#method-clone}{\code{FuzzUtils$clone()}}
+\item \href{#method-FuzzUtils-new}{\code{FuzzUtils$new()}}
+\item \href{#method-FuzzUtils-Full_process}{\code{FuzzUtils$Full_process()}}
+\item \href{#method-FuzzUtils-INTR}{\code{FuzzUtils$INTR()}}
+\item \href{#method-FuzzUtils-Make_type_consistent}{\code{FuzzUtils$Make_type_consistent()}}
+\item \href{#method-FuzzUtils-Asciidammit}{\code{FuzzUtils$Asciidammit()}}
+\item \href{#method-FuzzUtils-Asciionly}{\code{FuzzUtils$Asciionly()}}
+\item \href{#method-FuzzUtils-Validate_string}{\code{FuzzUtils$Validate_string()}}
+\item \href{#method-FuzzUtils-clone}{\code{FuzzUtils$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$new()}\if{html}{\out{</div>}}
@@ -127,8 +127,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Full_process"></a>}}
-\if{latex}{\out{\hypertarget{method-Full_process}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-Full_process"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-Full_process}{}}}
 \subsection{Method \code{Full_process()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Full_process(string = NULL, force_ascii = TRUE, decoding = NULL)}\if{html}{\out{</div>}}
@@ -147,8 +147,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-INTR"></a>}}
-\if{latex}{\out{\hypertarget{method-INTR}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-INTR"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-INTR}{}}}
 \subsection{Method \code{INTR()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$INTR(n = 2)}\if{html}{\out{</div>}}
@@ -163,8 +163,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Make_type_consistent"></a>}}
-\if{latex}{\out{\hypertarget{method-Make_type_consistent}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-Make_type_consistent"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-Make_type_consistent}{}}}
 \subsection{Method \code{Make_type_consistent()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Make_type_consistent(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -181,8 +181,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Asciidammit"></a>}}
-\if{latex}{\out{\hypertarget{method-Asciidammit}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-Asciidammit"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-Asciidammit}{}}}
 \subsection{Method \code{Asciidammit()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Asciidammit(input = NULL)}\if{html}{\out{</div>}}
@@ -197,8 +197,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Asciionly"></a>}}
-\if{latex}{\out{\hypertarget{method-Asciionly}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-Asciionly"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-Asciionly}{}}}
 \subsection{Method \code{Asciionly()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Asciionly(string = NULL)}\if{html}{\out{</div>}}
@@ -213,8 +213,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Validate_string"></a>}}
-\if{latex}{\out{\hypertarget{method-Validate_string}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-Validate_string"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-Validate_string}{}}}
 \subsection{Method \code{Validate_string()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzUtils$Validate_string(string = NULL)}\if{html}{\out{</div>}}
@@ -229,8 +229,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/utils.py, https://
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FuzzUtils-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzUtils-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

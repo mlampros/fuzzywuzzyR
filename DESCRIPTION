@@ -1,14 +1,14 @@
 Package: fuzzywuzzyR
 Type: Package
 Title: Fuzzy String Matching
-Version: 1.0.5
-Date: 2021-09-17
+Version: 1.0.6
+Date: 2025-09-03
 Authors@R: c( person(given = "Lampros", family = "Mouselimis", email = "mouselimislampros@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "https://orcid.org/0000-0002-8024-1546")), person("SeatGeek", "Inc", role = "cph"))
 BugReports: https://github.com/mlampros/fuzzywuzzyR/issues
 URL: https://github.com/mlampros/fuzzywuzzyR
 Description: Fuzzy string matching implementation of the 'fuzzywuzzy' <https://github.com/seatgeek/fuzzywuzzy> 'python' package. It uses the Levenshtein Distance <https://en.wikipedia.org/wiki/Levenshtein_distance> to calculate the differences between sequences. 
 License: GPL-2
-SystemRequirements: Python (>= 2.4), difflib, fuzzywuzzy ( >=0.15.0 ), python-Levenshtein ( >=0.12.0 ). Detailed installation instructions for each operating system can be found in the README file.
+SystemRequirements: Python (>= 3.8), difflib, fuzzywuzzy ( >=0.15.0 ), python-Levenshtein ( >=0.12.0 ). Detailed installation instructions can be found in the README file.
 Depends:
     R(>= 3.2.3)
 Imports:
@@ -21,4 +21,4 @@ Suggests:
     rmarkdown
 Encoding: UTF-8
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2

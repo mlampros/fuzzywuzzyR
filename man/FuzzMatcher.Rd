@@ -138,23 +138,23 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FuzzMatcher$new()}}
-\item \href{#method-Partial_token_set_ratio}{\code{FuzzMatcher$Partial_token_set_ratio()}}
-\item \href{#method-Partial_token_sort_ratio}{\code{FuzzMatcher$Partial_token_sort_ratio()}}
-\item \href{#method-Ratio}{\code{FuzzMatcher$Ratio()}}
-\item \href{#method-QRATIO}{\code{FuzzMatcher$QRATIO()}}
-\item \href{#method-WRATIO}{\code{FuzzMatcher$WRATIO()}}
-\item \href{#method-UWRATIO}{\code{FuzzMatcher$UWRATIO()}}
-\item \href{#method-UQRATIO}{\code{FuzzMatcher$UQRATIO()}}
-\item \href{#method-Token_sort_ratio}{\code{FuzzMatcher$Token_sort_ratio()}}
-\item \href{#method-Partial_ratio}{\code{FuzzMatcher$Partial_ratio()}}
-\item \href{#method-Token_set_ratio}{\code{FuzzMatcher$Token_set_ratio()}}
-\item \href{#method-clone}{\code{FuzzMatcher$clone()}}
+\item \href{#method-FuzzMatcher-new}{\code{FuzzMatcher$new()}}
+\item \href{#method-FuzzMatcher-Partial_token_set_ratio}{\code{FuzzMatcher$Partial_token_set_ratio()}}
+\item \href{#method-FuzzMatcher-Partial_token_sort_ratio}{\code{FuzzMatcher$Partial_token_sort_ratio()}}
+\item \href{#method-FuzzMatcher-Ratio}{\code{FuzzMatcher$Ratio()}}
+\item \href{#method-FuzzMatcher-QRATIO}{\code{FuzzMatcher$QRATIO()}}
+\item \href{#method-FuzzMatcher-WRATIO}{\code{FuzzMatcher$WRATIO()}}
+\item \href{#method-FuzzMatcher-UWRATIO}{\code{FuzzMatcher$UWRATIO()}}
+\item \href{#method-FuzzMatcher-UQRATIO}{\code{FuzzMatcher$UQRATIO()}}
+\item \href{#method-FuzzMatcher-Token_sort_ratio}{\code{FuzzMatcher$Token_sort_ratio()}}
+\item \href{#method-FuzzMatcher-Partial_ratio}{\code{FuzzMatcher$Partial_ratio()}}
+\item \href{#method-FuzzMatcher-Token_set_ratio}{\code{FuzzMatcher$Token_set_ratio()}}
+\item \href{#method-FuzzMatcher-clone}{\code{FuzzMatcher$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$new(decoding = NULL)}\if{html}{\out{</div>}}
@@ -169,8 +169,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Partial_token_set_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Partial_token_set_ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Partial_token_set_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Partial_token_set_ratio}{}}}
 \subsection{Method \code{Partial_token_set_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_token_set_ratio(
@@ -196,8 +196,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Partial_token_sort_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Partial_token_sort_ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Partial_token_sort_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Partial_token_sort_ratio}{}}}
 \subsection{Method \code{Partial_token_sort_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_token_sort_ratio(
@@ -223,8 +223,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Ratio}{}}}
 \subsection{Method \code{Ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Ratio(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -241,8 +241,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-QRATIO"></a>}}
-\if{latex}{\out{\hypertarget{method-QRATIO}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-QRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-QRATIO}{}}}
 \subsection{Method \code{QRATIO()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$QRATIO(string1 = NULL, string2 = NULL, force_ascii = TRUE)}\if{html}{\out{</div>}}
@@ -261,8 +261,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-WRATIO"></a>}}
-\if{latex}{\out{\hypertarget{method-WRATIO}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-WRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-WRATIO}{}}}
 \subsection{Method \code{WRATIO()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$WRATIO(string1 = NULL, string2 = NULL, force_ascii = TRUE)}\if{html}{\out{</div>}}
@@ -281,8 +281,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-UWRATIO"></a>}}
-\if{latex}{\out{\hypertarget{method-UWRATIO}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-UWRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-UWRATIO}{}}}
 \subsection{Method \code{UWRATIO()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$UWRATIO(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -299,8 +299,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-UQRATIO"></a>}}
-\if{latex}{\out{\hypertarget{method-UQRATIO}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-UQRATIO"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-UQRATIO}{}}}
 \subsection{Method \code{UQRATIO()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$UQRATIO(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -317,8 +317,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Token_sort_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Token_sort_ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Token_sort_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Token_sort_ratio}{}}}
 \subsection{Method \code{Token_sort_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Token_sort_ratio(
@@ -344,8 +344,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Partial_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Partial_ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Partial_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Partial_ratio}{}}}
 \subsection{Method \code{Partial_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Partial_ratio(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -362,8 +362,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Token_set_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-Token_set_ratio}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-Token_set_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-Token_set_ratio}{}}}
 \subsection{Method \code{Token_set_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzMatcher$Token_set_ratio(
@@ -389,8 +389,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/fuzz.py, https://d
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FuzzMatcher-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzMatcher-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

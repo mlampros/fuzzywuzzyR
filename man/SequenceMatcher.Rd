@@ -95,18 +95,18 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{SequenceMatcher$new()}}
-\item \href{#method-ratio}{\code{SequenceMatcher$ratio()}}
-\item \href{#method-quick_ratio}{\code{SequenceMatcher$quick_ratio()}}
-\item \href{#method-real_quick_ratio}{\code{SequenceMatcher$real_quick_ratio()}}
-\item \href{#method-get_matching_blocks}{\code{SequenceMatcher$get_matching_blocks()}}
-\item \href{#method-get_opcodes}{\code{SequenceMatcher$get_opcodes()}}
-\item \href{#method-clone}{\code{SequenceMatcher$clone()}}
+\item \href{#method-SequenceMatcher-new}{\code{SequenceMatcher$new()}}
+\item \href{#method-SequenceMatcher-ratio}{\code{SequenceMatcher$ratio()}}
+\item \href{#method-SequenceMatcher-quick_ratio}{\code{SequenceMatcher$quick_ratio()}}
+\item \href{#method-SequenceMatcher-real_quick_ratio}{\code{SequenceMatcher$real_quick_ratio()}}
+\item \href{#method-SequenceMatcher-get_matching_blocks}{\code{SequenceMatcher$get_matching_blocks()}}
+\item \href{#method-SequenceMatcher-get_opcodes}{\code{SequenceMatcher$get_opcodes()}}
+\item \href{#method-SequenceMatcher-clone}{\code{SequenceMatcher$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-new"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$new(string1 = NULL, string2 = NULL)}\if{html}{\out{</div>}}
@@ -123,8 +123,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-ratio}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-ratio}{}}}
 \subsection{Method \code{ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$ratio()}\if{html}{\out{</div>}}
@@ -132,8 +132,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-quick_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-quick_ratio}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-quick_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-quick_ratio}{}}}
 \subsection{Method \code{quick_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$quick_ratio()}\if{html}{\out{</div>}}
@@ -141,8 +141,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-real_quick_ratio"></a>}}
-\if{latex}{\out{\hypertarget{method-real_quick_ratio}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-real_quick_ratio"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-real_quick_ratio}{}}}
 \subsection{Method \code{real_quick_ratio()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$real_quick_ratio()}\if{html}{\out{</div>}}
@@ -150,8 +150,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_matching_blocks"></a>}}
-\if{latex}{\out{\hypertarget{method-get_matching_blocks}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-get_matching_blocks"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-get_matching_blocks}{}}}
 \subsection{Method \code{get_matching_blocks()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$get_matching_blocks()}\if{html}{\out{</div>}}
@@ -159,8 +159,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get_opcodes"></a>}}
-\if{latex}{\out{\hypertarget{method-get_opcodes}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-get_opcodes"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-get_opcodes}{}}}
 \subsection{Method \code{get_opcodes()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SequenceMatcher$get_opcodes()}\if{html}{\out{</div>}}
@@ -168,8 +168,8 @@ https://www.npmjs.com/package/difflib, http://stackoverflow.com/questions/103830
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-SequenceMatcher-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-SequenceMatcher-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

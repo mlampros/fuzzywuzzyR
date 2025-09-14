@@ -1,7 +1,12 @@
 
+## fuzzywuzzyR 1.0.6
+
+* I re-generated the documentation as requested from the CRAN Team. Moreover, I modified the README.md file by removing Python 2 and also the installation instructions for Mac OSX and Windows which were outdated. Users of the `fuzzywuzzyR` package will find the required information for the Python configuration in the [reticulate](https://github.com/rstudio/reticulate) Github repository.
+
+
 ## fuzzywuzzyR 1.0.5
 
-* I've added a 'packageStartupMessage' informing the user in case of the error 'attempt to apply non-function' that he/she has to use the 'reticulate::py_config()' before loading the package (in a new R session)
+* I've added a 'packageStartupMessage' informing the user in case of the error 'attempt to apply non-function' that s/he has to use the 'reticulate::py_config()' before loading the package (in a new R session)
 
 
 ## fuzzywuzzyR 1.0.4
@@ -26,7 +31,4 @@ I added links to the github repository (master repository, issues).
 
 
 ## fuzzywuzzyR 1.0.0
-
-
-
 

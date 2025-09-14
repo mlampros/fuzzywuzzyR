@@ -15,15 +15,11 @@ The **fuzzywuzzyR** package is a fuzzy string matching implementation of the [fu
 
 <br>
 
-**UPDATE 26-07-2018**: A [Singularity image file](http://mlampros.github.io/2018/07/26/singularity_containers/) is available in case that someone intends to run *fuzzywuzzyR* on Ubuntu Linux (locally or in a cloud instance) with all package requirements pre-installed. This allows the user to utilize the *fuzzywuzzyR* package without having to spend time on the installation process.
-
-<br>
-
 ### **System Requirements**
 
 <br>
 
-* Python (>= 2.4)
+* Python (>= 3.8)
 
 * difflib
 
@@ -43,25 +39,13 @@ reticulate::py_config()
 ```
 <br>
 
-All modules should be installed in the default python configuration (the configuration that the R-session displays as default), otherwise errors will occur during package installation. 
+All modules should be installed in the default python configuration (the configuration that the R-session displays as default), otherwise errors might occur during package installation. 
 
 <br>
 
-#### **Debian/Ubuntu/Fedora**
+#### **Linux OS (Debian, Ubuntu, Fedora etc.)**
 
 <br>
-
-**Python2**
-
-```R
-sudo apt-get install python-pip
-sudo pip install --upgrade pip
-pip install fuzzywuzzy
-pip install python-Levenshtein
-```
-<br>
-
-**Python 3**
 
 ```R
 sudo apt-get install python3-pip
@@ -73,32 +57,11 @@ pip3 install python-Levenshtein
 
 
 
-#### **Macintosh OSX** 
-<br>
-
-```R
-sudo easy_install pip
-sudo pip install fuzzywuzzy
-sudo pip install python-Levenshtein
-```
-<br>
-
-#### **Windows OS**
+#### **Mac OSX** and **Windows OS**
 
 <br>
 
-* Download of [get-pip.py](https://bootstrap.pypa.io/get-pip.py)
-* Update of the Environment variables ( Control Panel >> System and Security >> System >> Advanced system settings >> Environment variables >> System variables >> Path >> Edit ) by adding ( for instance in case of python 2.7 ) : 
-```R
-C:\Python27;C:\Python27\Scripts
-```
-
-* Install the [Build Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017)
-* Open the *Command prompt* and use the following commands:
-```R
-pip install fuzzywuzzy
-pip install python-Levenshtein
-```
+Users of the `fuzzywuzzyR` package will find the required information on how to configure Python for **Mac OSX** and **Windows OS** in the [reticulate](https://github.com/rstudio/reticulate) Github repository. The `fuzzywuzzyR` package depends on the `reticulate` package.
 
 <br>
 
@@ -116,12 +79,12 @@ install.packages('fuzzywuzzyR')
 ```
 <br>
 
-and to download the latest version from Github use the *install_github* function of the devtools package,
+and to download the latest version from Github use the *install_github* function of the remotes package,
 <br><br>
 
 ```R
 
-devtools::install_github(repo = 'mlampros/fuzzywuzzyR')
+remotes::install_github(repo = 'mlampros/fuzzywuzzyR')
 
 ```
 <br>
@@ -142,8 +105,8 @@ If you use the code of this repository in your paper or research please cite bot
 @Manual{,
   title = {{fuzzywuzzyR}: Fuzzy String Matching in R},
   author = {Lampros Mouselimis},
-  year = {2021},
-  note = {R package version 1.0.5},
+  year = {2025},
+  note = {R package version 1.0.6},
   url = {https://CRAN.R-project.org/package=fuzzywuzzyR},
 }
 ```

@@ -121,18 +121,18 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{FuzzExtract$new()}}
-\item \href{#method-Extract}{\code{FuzzExtract$Extract()}}
-\item \href{#method-ExtractBests}{\code{FuzzExtract$ExtractBests()}}
-\item \href{#method-ExtractWithoutOrder}{\code{FuzzExtract$ExtractWithoutOrder()}}
-\item \href{#method-ExtractOne}{\code{FuzzExtract$ExtractOne()}}
-\item \href{#method-Dedupe}{\code{FuzzExtract$Dedupe()}}
-\item \href{#method-clone}{\code{FuzzExtract$clone()}}
+\item \href{#method-FuzzExtract-new}{\code{FuzzExtract$new()}}
+\item \href{#method-FuzzExtract-Extract}{\code{FuzzExtract$Extract()}}
+\item \href{#method-FuzzExtract-ExtractBests}{\code{FuzzExtract$ExtractBests()}}
+\item \href{#method-FuzzExtract-ExtractWithoutOrder}{\code{FuzzExtract$ExtractWithoutOrder()}}
+\item \href{#method-FuzzExtract-ExtractOne}{\code{FuzzExtract$ExtractOne()}}
+\item \href{#method-FuzzExtract-Dedupe}{\code{FuzzExtract$Dedupe()}}
+\item \href{#method-FuzzExtract-clone}{\code{FuzzExtract$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-new"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$new(decoding = NULL)}\if{html}{\out{</div>}}
@@ -147,8 +147,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Extract"></a>}}
-\if{latex}{\out{\hypertarget{method-Extract}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-Extract"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-Extract}{}}}
 \subsection{Method \code{Extract()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$Extract(
@@ -177,8 +177,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ExtractBests"></a>}}
-\if{latex}{\out{\hypertarget{method-ExtractBests}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-ExtractBests"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-ExtractBests}{}}}
 \subsection{Method \code{ExtractBests()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractBests(
@@ -210,8 +210,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ExtractWithoutOrder"></a>}}
-\if{latex}{\out{\hypertarget{method-ExtractWithoutOrder}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-ExtractWithoutOrder"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-ExtractWithoutOrder}{}}}
 \subsection{Method \code{ExtractWithoutOrder()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractWithoutOrder(
@@ -240,8 +240,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ExtractOne"></a>}}
-\if{latex}{\out{\hypertarget{method-ExtractOne}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-ExtractOne"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-ExtractOne}{}}}
 \subsection{Method \code{ExtractOne()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$ExtractOne(
@@ -270,8 +270,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Dedupe"></a>}}
-\if{latex}{\out{\hypertarget{method-Dedupe}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-Dedupe"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-Dedupe}{}}}
 \subsection{Method \code{Dedupe()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{FuzzExtract$Dedupe(contains_dupes = NULL, threshold = 70L, scorer = NULL)}\if{html}{\out{</div>}}
@@ -290,8 +290,8 @@ https://github.com/seatgeek/fuzzywuzzy/blob/master/fuzzywuzzy/process.py, https:
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-FuzzExtract-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-FuzzExtract-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
